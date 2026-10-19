@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zoom Out &amp; Give 2026 | Endaoment</title>
+<meta name="description" content="See the forest through the trees. Take a moment to gather with your people and plan your giving. Finish the worksheet and claim your Endaoment hat.">
+<meta property="og:title" content="Zoom Out &amp; Give 2026">
+<meta property="og:description" content="Take a moment to gather with your people and plan your giving. Start with one page.">
+<meta property="og:url" content="https://zoom-out-and-give.netlify.app/">
+<meta property="og:image" content="https://zoom-out-and-give.netlify.app/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light">
+<link rel="preload" href="assets/forest.webp" as="image" type="image/webp">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="preview-bar" id="preview-bar" hidden>Preview for review. The hat form doesn't send anything yet.</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a href="https://endaoment.org" aria-label="Endaoment home"><img src="assets/logo-endaoment-blue.svg" alt="Endaoment" width="145" height="30"></a>
+    <a class="daf-link" href="https://app.endaoment.org" target="_blank" rel="noopener">Open a donor-advised fund</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-inner">
+        <span class="kicker">Zoom Out &amp; Give 2026</span>
+        <h1>See the forest through the trees.</h1>
+        <p class="lede">Take a moment to gather with your people and plan your giving. Start with one page, then claim your Endaoment hat.</p>
+        <div class="btn-row">
+          <a class="btn btn-light" href="#worksheet">Start the worksheet</a>
+          <a class="btn btn-ghost" href="#claim">Claim your hat</a>
+        </div>
+        <div class="meta"><img src="assets/icon-clock.svg" alt="" width="18" height="18">About 30 minutes. There are no wrong answers.</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="get">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Why do it</div>
+        <h2>It's been a big year. Give it a plan.</h2>
+        <p>Grab a pen and anyone you'd give with. In about 30 minutes you'll know what you want your giving to do, and what to get done before December 31.</p>
+      </div>
+      <div class="get-grid">
+        <article class="get-card">
+          <div class="art" style="background-image:url(assets/hills.webp)" role="img" aria-label="Rolling blue hills at dawn"></div>
+          <div class="body">
+            <h3>A plan for your giving</h3>
+            <p>Get ahead of your giving with a strategy for this tax year and beyond, made with the people you give with.</p>
+          </div>
+        </article>
+        <article class="get-card">
+          <div class="art" style="background-image:url(assets/table.webp);background-position:center 35%" role="img" aria-label="A family around a table, planning together"></div>
+          <div class="body">
+            <h3>A very sweet Endaoment hat</h3>
+            <p>Finish the worksheet, tell us your favorite takeaway, and we'll mail you one.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">How it works</div>
+        <h2>Three steps, one page.</h2>
+      </div>
+      <ol class="steps">
+        <li><span class="num">1</span><h3>Gather your people</h3><p>Family, a partner, your advisor, or just you. Everyone at the table gets a say.</p></li>
+        <li><span class="num">2</span><h3>Fill out the worksheet</h3><p>Print it or fill it out right here. Zoom out, pick your causes, and make a plan.</p></li>
+        <li><span class="num">3</span><h3>Claim your hat</h3><p>Share your favorite takeaway and where to send it. Then put the plan in motion.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="worksheet">
+    <div class="wrap">
+      <div class="ws-intro">
+        <div class="section-head">
+          <div class="eyebrow">The worksheet</div>
+          <h2>Zoom out, then plan.</h2>
+          <p>Fill it out below, or print the PDF and do it on paper. Your answers stay on this device and are never sent to us.</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-outline" id="pdf-link" href="#" download>Download the PDF</a>
+          <button class="btn btn-outline" type="button" id="print-btn">Print or save as PDF</button>
+        </div>
+      </div>
+
+      <form id="ws" autocomplete="off" onsubmit="return false">
+        <div class="ws-banner"><h3><span class="small">Zoom Out &amp; Give 2026</span>See the forest through the trees.</h3></div>
+        <div class="field-who"><label for="who">Who's at the table:</label><input id="who" name="who" type="text"></div>
+        <div class="ws-lead">
+          <p>It's been a big year. Grab a pen and anyone you'd give with. Use this to synthesize your collective vision and make a plan.</p>
+          <div class="time"><img src="assets/icon-clock.svg" alt="" width="18" height="18"><span>About 30 minutes.<br>There are no wrong answers.</span></div>
+        </div>
+
+        <div class="ws-section">
+          <div class="ws-art" style="background-image:url(assets/hills.webp)" aria-hidden="true"></div>
+          <div>
+            <div class="ws-title"><h3>The forest</h3><span class="pill">About 10 minutes</span></div>
+            <div class="ws-cards">
+              <div class="ws-card">
+                <label class="q" for="q-right">Zoom out on the last ten years. What went right?</label>
+                <p class="nudge">What are you proud of? What gift, of money or time, meant the most to you?</p>
+                <textarea id="q-right" name="right"></textarea>
+              </div>
+              <div class="ws-card">
+                <label class="q" for="q-enough">How much is enough?</label>
+                <p class="nudge">What could you give without changing how you live?</p>
+                <textarea id="q-enough" name="enough"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ws-section">
+          <div class="ws-art" style="background-image:url(assets/tree.webp)" aria-hidden="true"></div>
+          <div>
+            <div class="ws-title"><h3>The trees</h3><span class="pill">About 10 minutes</span></div>
+            <div class="ws-cards">
+              <div class="ws-card">
+                <p class="q" id="causes-q">Which causes move you?</p>
+                <div class="chips" role="group" aria-labelledby="causes-q">
+                  <label class="chip"><input type="checkbox" name="cause" value="Education"><span>Education</span></label>
+                  <label class="chip"><input type="checkbox" name="cause" value="Health"><span>Health</span></label>
+                  <label class="chip"><input type="checkbox" name="cause" value="Climate and environment"><span>Climate and environment</span></label>
+                  <label class="chip"><input type="checkbox" name="cause" value="Hunger and housing"><span>Hunger and housing</span></label>
+                  <label class="chip"><input type="checkbox" name="cause" value="Arts and culture"><span>Arts and culture</span></label>
+                  <label class="chip"><input type="checkbox" name="cause" value="Animals"><span>Animals</span></label>
+                  <label class="chip"><input type="checkbox" name="cause" value="Faith"><span>Faith</span></label>
+                  <label class="chip"><input type="checkbox" name="cause" value="Your community"><span>Your community</span></label>
+                  <label class="chip"><input type="checkbox" name="cause" value="Around the world"><span>Around the world</span></label>
+                  <label class="chip"><input type="checkbox" name="cause" value="Other"><span>Other</span></label>
+                </div>
+                <label class="q" for="q-problem" style="display:block;margin-top:20px">What problem do you wish someone would solve?</label>
+                <textarea id="q-problem" name="problem"></textarea>
+              </div>
+              <div class="ws-card">
+                <p class="q">Which nonprofits are already working on it?</p>
+                <p class="nudge">Name one for each cause. If others are at the table, everyone picks one, kids too. Look them up at <a href="https://app.endaoment.org/explore" target="_blank" rel="noopener">app.endaoment.org/explore</a>. Search by name or EIN.</p>
+                <table class="np-table">
+                  <thead><tr><th scope="col">Who</th><th scope="col">Cause</th><th scope="col">Nonprofit</th></tr></thead>
+                  <tbody id="np-body"></tbody>
+                </table>
+                <p class="tiny">Know a nonprofit whose page needs an update? Tell us at <a href="mailto:hello@endaoment.org">hello@endaoment.org</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ws-section">
+          <div class="ws-art" style="background-image:url(assets/table.webp)" aria-hidden="true"></div>
+          <div>
+            <div class="ws-title"><h3>Your plan</h3><span class="pill">About 10 minutes</span></div>
+            <div class="ws-cards">
+              <div class="ws-card full">
+                <label class="q" for="q-fit">Where does giving fit in this year's plan?</label>
+                <p class="nudge">Little grants to many, or a lot to a few? Once, or annually?</p>
+                <textarea id="q-fit" name="fit" style="min-height:70px"></textarea>
+              </div>
+              <div class="ws-card">
+                <div class="plan-head"><p class="q">This year</p><span class="pill">By midnight, December 31, 2026</span></div>
+                <ul class="checklist">
+                  <li><label><input type="checkbox" name="now1">Open a donor-advised fund, or add to the one you have.</label></li>
+                  <li><label><input type="checkbox" name="now2">Decide what to give: stock, cash, crypto, or something else.</label></li>
+                  <li><label><input type="checkbox" name="now3">Fund it.</label></li>
+                  <li><label><input type="checkbox" name="now4">Recommend a first grant to a nonprofit on this page.</label></li>
+                </ul>
+                <p class="tiny">Giving stock? It can take 1 to 2 weeks to arrive, so start early.</p>
+              </div>
+              <div class="ws-card">
+                <p class="q">When you have time, or after it's funded:</p>
+                <ul class="checklist">
+                  <li><label><input type="checkbox" name="later1">Experiment with investing in a portfolio.</label></li>
+                  <li><label><input type="checkbox" name="later2">Schedule recurring grants to the nonprofits you picked.</label></li>
+                  <li><label><input type="checkbox" name="later3">Invite your advisor or a family member to the fund.</label></li>
+                  <li><label><input type="checkbox" name="later4">Get to know the nonprofits you picked.</label></li>
+                </ul>
+                <p class="tiny">Funding it in a hurry? That's fine. Once it's funded, the rest can wait.</p>
+              </div>
+              <div class="ws-card full">
+                <label class="q" for="q-else">Something else:</label>
+                <input id="q-else" name="else" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ws-section">
+          <div class="ws-art" style="background-image:url(assets/night.webp)" aria-hidden="true"></div>
+          <div>
+            <div class="ws-title"><h3>Make it real</h3></div>
+            <div class="commit">
+              <div class="ws-card"><label class="q" for="c-move">Giving is in the plan. First move:</label><input id="c-move" name="move" type="text"></div>
+              <div class="ws-card"><div class="plan-head"><label class="q" for="c-done">Done by:</label><span class="pill soft">Before December 31</span></div><input id="c-done" name="done" type="date" min="2026-10-01" max="2026-12-31"></div>
+              <div class="ws-card"><label class="q" for="c-back">Come back to this on:</label><input id="c-back" name="back" type="date" min="2026-10-01"></div>
+            </div>
+            <p class="daf-note">A donor-advised fund is something you come back to. The money is already set aside for giving, so there's time to get to know the nonprofits, bring others in, and give with a plan. Same time next year?</p>
+          </div>
+        </div>
+        <p class="print-foot">For advisors: Send to clients before year-end meetings to start the conversation. Open a donor-advised fund at app.endaoment.org. Endaoment does not provide financial or tax advice. Consult your CPA.</p>
+      </form>
+
+      <div class="ws-actions">
+        <span class="saved" id="saved" aria-live="polite">Your answers save on this device as you type.</span>
+        <div class="btn-row">
+          <button class="btn btn-outline" type="button" id="clear-btn">Clear my answers</button>
+          <a class="btn btn-primary" href="#claim" id="done-btn">I'm done. Claim my hat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="claim-section" id="claim">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Claim your hat</div>
+        <h2>You zoomed out. Here's your hat.</h2>
+        <p>Tell us your favorite takeaway and where to send it. One hat per household.</p>
+      </div>
+
+      <div class="claim">
+        <form id="claim-form" name="claim-hat" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company_site" data-netlify-recaptcha="true" novalidate>
+          <input type="hidden" name="form-name" value="claim-hat">
+          <input type="hidden" name="subject" value="Zoom Out &amp; Give hat claim (%{submissionId})">
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
+          <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company_site" tabindex="-1" autocomplete="off"></label></div>
+
+          <fieldset>
+            <legend>Your worksheet</legend>
+            <div class="f" data-field="completed">
+              <label class="check big"><input type="checkbox" name="completed" id="completed" value="yes" required>We finished the Zoom Out &amp; Give worksheet.</label>
+              <span class="err">Finish the worksheet first, then check this box.</span>
+            </div>
+            <div class="f" data-field="takeaway">
+              <label for="takeaway">Your favorite takeaway <span class="req">*</span></label>
+              <textarea id="takeaway" name="takeaway" maxlength="600" required placeholder="What came up at the table?"></textarea>
+              <span class="err">Share one takeaway, even a short one.</span>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Put the plan in motion <span class="opt">Optional</span></legend>
+            <div class="daf-box">
+              <p>Your plan starts with a donor-advised fund. Open one in minutes, or add to the one you have.</p>
+              <div class="btn-row">
+                <a class="btn btn-primary" href="https://app.endaoment.org" target="_blank" rel="noopener" data-daf="open">Open a DAF</a>
+                <a class="btn btn-outline" href="https://app.endaoment.org" target="_blank" rel="noopener" data-daf="fund">Fund my DAF</a>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Where should we send it?</legend>
+            <p class="help">We ship to addresses in the United States.</p>
+            <div class="grid2">
+              <div class="f" data-field="name"><label for="name">Full name <span class="req">*</span></label><input id="name" name="name" type="text" autocomplete="name" required><span class="err">Add your name.</span></div>
+              <div class="f" data-field="email"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" autocomplete="email" required><span class="err">Add an email we can reach you at.</span></div>
+            </div>
+            <div class="f" data-field="address1"><label for="address1">Street address <span class="req">*</span></label><input id="address1" name="address1" type="text" autocomplete="address-line1" required><span class="err">Add a street address.</span></div>
+            <div class="f"><label for="address2">Apartment, suite, etc.</label><input id="address2" name="address2" type="text" autocomplete="address-line2"></div>
+            <div class="grid3">
+              <div class="f" data-field="city"><label for="city">City <span class="req">*</span></label><input id="city" name="city" type="text" autocomplete="address-level2" required><span class="err">Add a city.</span></div>
+              <div class="f" data-field="state"><label for="state">State <span class="req">*</span></label>
+                <select id="state" name="state" autocomplete="address-level1" required><option value="">Choose</option><option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="DC">DC</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option><option value="PR">PR</option></select><span class="err">Pick a state.</span></div>
+              <div class="f" data-field="zip"><label for="zip">ZIP <span class="req">*</span></label><input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="\d{5}(-\d{4})?" maxlength="10" required><span class="err">Use a 5-digit ZIP.</span></div>
+            </div>
+            <label class="check"><input type="checkbox" name="advisor" value="yes">I'm a financial advisor.</label>
+            <label class="check"><input type="checkbox" name="updates" value="yes">Send me Endaoment news and giving season reminders.</label>
+          </fieldset>
+
+          <div class="captcha no-print" data-netlify-recaptcha="true"></div>
+          <div class="submit-row">
+            <button class="btn btn-primary" type="submit" id="submit-btn">Claim my hat</button>
+            <p class="privacy">We use your address only to send your hat. While supplies last.</p>
+            <p class="form-msg" id="form-msg" role="alert" hidden></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="advisor-note"><img src="assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: Send to clients before year-end meetings to start the conversation.</p></div>
+    <div class="foot-row">
+      <span>Open a donor-advised fund at <a href="https://app.endaoment.org" target="_blank" rel="noopener">app.endaoment.org</a></span>
+      <span>Endaoment does not provide financial or tax advice. Consult your CPA.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Settings. pdfUrl: the final worksheet PDF from Atra, once it exists. */
+const CONFIG = {
+  pdfUrl: "",
+  minSecondsOnPage: 4,       // claims sent faster than this are treated as bots
+  liveHosts: []              // add a custom domain here if one ever points at the Netlify site
+};
+// The form only sends on Netlify. Anywhere else (this computer, a review link) it runs as a preview.
+const IS_PREVIEW = location.protocol === "file:" || !(location.hostname.endsWith(".netlify.app") || CONFIG.liveHosts.includes(location.hostname));
+if (IS_PREVIEW) document.getElementById("preview-bar").hidden = false;
+
+const store = {
+  get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch(e){ return false; } },
+  del(k){ try { localStorage.removeItem(k); } catch(e){} }
+};
+const loadedAt = Date.now();
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+/* Nonprofit table: five rows, like the paper sheet */
+const npBody = $("#np-body");
+for (let i = 1; i <= 5; i++) {
+  const tr = document.createElement("tr");
+  ["who","cause","nonprofit"].forEach(col => {
+    const td = document.createElement("td");
+    const inp = document.createElement("input");
+    inp.type = "text"; inp.name = `np_${col}_${i}`;
+    inp.setAttribute("aria-label", `${col[0].toUpperCase()+col.slice(1)}, row ${i}`);
+    td.appendChild(inp); tr.appendChild(td);
+  });
+  npBody.appendChild(tr);
+}
+
+/* PDF link */
+const pdf = $("#pdf-link");
+if (CONFIG.pdfUrl) { pdf.href = CONFIG.pdfUrl; }
+else { pdf.hidden = true; }
+
+/* Worksheet autosave */
+const WS_KEY = "zog2026-worksheet";
+const ws = $("#ws");
+function readWs(){
+  const data = {};
+  $$("input,textarea", ws).forEach(el => {
+    if (el.type === "checkbox") { if (el.name === "cause") { (data.cause = data.cause || []); if (el.checked) data.cause.push(el.value); } else data[el.name] = el.checked; }
+    else data[el.name] = el.value;
+  });
+  return data;
+}
+function writeWs(data){
+  if (!data) return;
+  $$("input,textarea", ws).forEach(el => {
+    if (el.type === "checkbox") el.checked = el.name === "cause" ? (data.cause || []).includes(el.value) : !!data[el.name];
+    else if (data[el.name] != null) el.value = data[el.name];
+  });
+}
+writeWs(store.get(WS_KEY));
+let saveTimer;
+ws.addEventListener("input", () => {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    $("#saved").textContent = store.set(WS_KEY, readWs()) ? "Saved on this device." : "Your browser isn't saving answers. Print them before you leave.";
+  }, 400);
+});
+$("#clear-btn").addEventListener("click", () => {
+  if (!confirm("Clear every answer on this worksheet?")) return;
+  ws.reset(); store.del(WS_KEY); $("#saved").textContent = "Cleared.";
+});
+$("#print-btn").addEventListener("click", () => window.print());
+$("#done-btn").addEventListener("click", () => { $("#completed").checked = true; });
+
+/* UTM passthrough */
+const qs = new URLSearchParams(location.search);
+["utm_source","utm_medium","utm_campaign","utm_content"].forEach(k => { const el = $(`[name=${k}]`); if (el) el.value = qs.get(k) || ""; });
+
+/* Validation */
+const form = $("#claim-form");
+function validate(){
+  let ok = true; let first = null;
+  $$("[data-field]", form).forEach(wrap => {
+    const el = $("input,textarea,select", wrap);
+    const valid = el.type === "checkbox" ? el.checked : el.checkValidity() && el.value.trim() !== "";
+    wrap.classList.toggle("invalid", !valid);
+    el.setAttribute("aria-invalid", String(!valid));
+    if (!valid) { ok = false; first = first || el; }
+  });
+  if (first) first.focus();
+  return ok;
+}
+form.addEventListener("input", e => { const w = e.target.closest("[data-field]"); if (w && w.classList.contains("invalid")) validate(); });
+
+form.addEventListener("submit", e => {
+  const msg = $("#form-msg"); msg.hidden = true;
+  if (!validate()) { e.preventDefault(); return; }
+  const captcha = $("[name='g-recaptcha-response']", form);
+  if (captcha && !captcha.value) { e.preventDefault(); msg.textContent = "Tick the box above the button, then claim your hat."; msg.hidden = false; return; }
+  const tooFast = (Date.now() - loadedAt) / 1000 < CONFIG.minSecondsOnPage;
+  if (IS_PREVIEW || tooFast) { e.preventDefault(); location.href = "thanks/" + (IS_PREVIEW ? "?preview=1" : ""); return; }
+  // Live on Netlify: the browser posts the form, Netlify saves it and opens /thanks/.
+  const btn = $("#submit-btn"); btn.textContent = "Sending...";
+  setTimeout(() => { btn.disabled = true; }, 0);
+});
+</script>
+</body>
+</html>
