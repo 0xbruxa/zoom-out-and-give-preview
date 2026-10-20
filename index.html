@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zoom Out &amp; Give 2026 | Endaoment</title>
-<meta name="description" content="See the forest through the trees. Take a moment to gather with your people and plan your giving. Finish the worksheet and claim your Endaoment hat.">
+<meta name="description" content="An hour with your people. Plan your giving together on one page, then claim your Endaoment hats.">
 <meta property="og:title" content="Zoom Out &amp; Give 2026">
 <meta property="og:description" content="Take a moment to gather with your people and plan your giving. Start with one page.">
 <meta property="og:type" content="website">
@@ -34,13 +34,14 @@
     <div class="hero">
       <div class="hero-inner">
         <span class="kicker">Zoom Out &amp; Give 2026</span>
-        <h1>See the forest through the trees.</h1>
-        <p class="lede">Take a moment to gather with your people and plan your giving. Start with one page, then claim your Endaoment hat.</p>
+        <h1>An hour with your people.</h1>
+        <p class="lede">Giving goes further when you plan it with the people you give with. That might be an advisor and the clients they have known for years. It might be those clients and their family, around the kitchen table. Zoom Out &amp; Give is one page to start that conversation, and about 30 minutes to finish it.</p>
+        <p class="lede">You leave with a plan for your giving this tax year and the years after it. You also leave with a very sweet Endaoment hat, on us.</p>
         <div class="btn-row">
-          <a class="btn btn-light" href="#worksheet">Start the worksheet</a>
-          <a class="btn btn-ghost" href="#claim">Claim your hat</a>
+          <a class="btn btn-light" href="#worksheet" id="hero-ws">Start the worksheet</a>
+          <a class="btn btn-ghost" href="#claim">Claim your hats</a>
         </div>
-        <div class="meta"><img src="assets/icon-clock.svg" alt="" width="18" height="18">About 30 minutes. There are no wrong answers.</div>
+        <p class="meta">Your answers stay with you. We never ask to see them.</p>
       </div>
     </div>
   </div>
@@ -64,7 +65,7 @@
           <div class="art" style="background-image:url(assets/table.webp);background-position:center 35%" role="img" aria-label="A family around a table, planning together"></div>
           <div class="body">
             <h3>A very sweet Endaoment hat</h3>
-            <p>Finish the worksheet, tell us your favorite takeaway, and we'll mail you one.</p>
+            <p>Finish the worksheet, tell us one thing that came out of it, and we'll mail one for everyone at the table, up to four.</p>
           </div>
         </article>
       </div>
@@ -80,7 +81,7 @@
       <ol class="steps">
         <li><span class="num">1</span><h3>Gather your people</h3><p>Family, a partner, your advisor, or just you. Everyone at the table gets a say.</p></li>
         <li><span class="num">2</span><h3>Fill out the worksheet</h3><p>Print it or fill it out right here. Zoom out, pick your causes, and make a plan.</p></li>
-        <li><span class="num">3</span><h3>Claim your hat</h3><p>Share your favorite takeaway and where to send it. Then put the plan in motion.</p></li>
+        <li><span class="num">3</span><h3>Claim your hats</h3><p>Tell us one thing that came out of it and where to send your hats. Then put the plan in motion.</p></li>
       </ol>
     </div>
   </section>
@@ -218,7 +219,7 @@
         <span class="saved" id="saved" aria-live="polite">Your answers save on this device as you type.</span>
         <div class="btn-row">
           <button class="btn btn-outline" type="button" id="clear-btn">Clear my answers</button>
-          <a class="btn btn-primary" href="#claim" id="done-btn">I'm done. Claim my hat</a>
+          <a class="btn btn-primary" href="#claim" id="done-btn">Finished? Claim your hats</a>
         </div>
       </div>
     </div>
@@ -227,9 +228,8 @@
   <section class="claim-section" id="claim">
     <div class="wrap">
       <div class="section-head">
-        <div class="eyebrow">Claim your hat</div>
-        <h2>You zoomed out. Here's your hat.</h2>
-        <p>Tell us your favorite takeaway and where to send it. One hat per household.</p>
+        <div class="eyebrow">The hats</div>
+        <h2>Finished? Claim your hats.</h2>
       </div>
 
       <div class="claim">
@@ -239,33 +239,51 @@
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
           <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company_site" tabindex="-1" autocomplete="off"></label></div>
 
-          <fieldset>
-            <legend>Your worksheet</legend>
+          <fieldset class="q-done">
+            <legend>Did you sit down with the Zoom Out &amp; Give worksheet?</legend>
             <div class="f" data-field="completed">
-              <label class="check big"><input type="checkbox" name="completed" id="completed" value="yes" required>We finished the Zoom Out &amp; Give worksheet.</label>
-              <span class="err">Finish the worksheet first, then check this box.</span>
+              <div class="chips">
+                <label class="chip"><input type="radio" name="completed" value="yes" required><span>Yes, we did.</span></label>
+                <label class="chip"><input type="radio" name="completed" value="not yet"><span>Not yet.</span></label>
+              </div>
+              <span class="err">Pick one to keep going.</span>
             </div>
+            <p class="not-yet" id="not-yet" hidden>No rush. <a href="#worksheet" id="not-yet-link">Here's the worksheet.</a> Come back when you've had your hour.</p>
+          </fieldset>
+
+          <fieldset class="after-yes">
+            <legend id="takeaway-q">What's one thing that came out of the conversation?</legend>
+            <p class="help" id="takeaway-help">A cause, a nonprofit, a surprise. A line is plenty.</p>
             <div class="f" data-field="takeaway">
-              <label for="takeaway">Your favorite takeaway <span class="req">*</span></label>
-              <textarea id="takeaway" name="takeaway" maxlength="600" required placeholder="What came up at the table?"></textarea>
-              <span class="err">Share one takeaway, even a short one.</span>
+              <textarea id="takeaway" name="takeaway" maxlength="600" required aria-labelledby="takeaway-q" aria-describedby="takeaway-help"></textarea>
+              <span class="err">Add one line, even a short one.</span>
             </div>
           </fieldset>
 
-          <fieldset>
-            <legend>Put the plan in motion <span class="opt">Optional</span></legend>
+          <fieldset class="after-yes">
+            <legend>Open or fund an Endaoment DAF.</legend>
             <div class="daf-box">
-              <p>Your plan starts with a donor-advised fund. Open one in minutes, or add to the one you have.</p>
+              <p>Already have one? Skip ahead.</p>
               <div class="btn-row">
-                <a class="btn btn-primary" href="https://app.endaoment.org" target="_blank" rel="noopener" data-daf="open">Open a DAF</a>
-                <a class="btn btn-outline" href="https://app.endaoment.org" target="_blank" rel="noopener" data-daf="fund">Fund my DAF</a>
+                <a class="btn btn-primary" href="https://app.endaoment.org" target="_blank" rel="noopener">Go to the Endaoment App</a>
               </div>
             </div>
           </fieldset>
 
-          <fieldset>
-            <legend>Where should we send it?</legend>
-            <p class="help">We ship to addresses in the United States.</p>
+          <fieldset class="after-yes">
+            <legend>How many hats?</legend>
+            <p class="help">One for everyone at the table, up to four.</p>
+            <div class="chips hat-count">
+              <label class="chip"><input type="radio" name="hats" value="1" checked aria-label="1 hat"><span>1</span></label>
+              <label class="chip"><input type="radio" name="hats" value="2" aria-label="2 hats"><span>2</span></label>
+              <label class="chip"><input type="radio" name="hats" value="3" aria-label="3 hats"><span>3</span></label>
+              <label class="chip"><input type="radio" name="hats" value="4" aria-label="4 hats"><span>4</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="after-yes">
+            <legend>Where should we send them?</legend>
+            <p class="help">US addresses only for now.</p>
             <div class="grid2">
               <div class="f" data-field="name"><label for="name">Full name <span class="req">*</span></label><input id="name" name="name" type="text" autocomplete="name" required><span class="err">Add your name.</span></div>
               <div class="f" data-field="email"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" autocomplete="email" required><span class="err">Add an email we can reach you at.</span></div>
@@ -282,10 +300,10 @@
             <label class="check"><input type="checkbox" name="updates" value="yes">Send me Endaoment news and giving season reminders.</label>
           </fieldset>
 
-          <div class="captcha no-print" data-netlify-recaptcha="true"></div>
-          <div class="submit-row">
-            <button class="btn btn-primary" type="submit" id="submit-btn">Claim my hat</button>
-            <p class="privacy">We use your address only to send your hat. While supplies last.</p>
+          <div class="captcha no-print after-yes" data-netlify-recaptcha="true"></div>
+          <div class="submit-row after-yes">
+            <button class="btn btn-primary" type="submit" id="submit-btn">Send my hats</button>
+            <p class="privacy">We use your address only to send your hats. While supplies last.</p>
             <p class="form-msg" id="form-msg" role="alert" hidden></p>
           </div>
         </form>
@@ -340,7 +358,11 @@ for (let i = 1; i <= 5; i++) {
 
 /* PDF link */
 const pdf = $("#pdf-link");
-if (CONFIG.pdfUrl) { pdf.href = CONFIG.pdfUrl; }
+if (CONFIG.pdfUrl) {
+  pdf.href = CONFIG.pdfUrl;
+  const hero = $("#hero-ws"); hero.href = CONFIG.pdfUrl; hero.textContent = "Download the worksheet"; hero.setAttribute("download", "");
+  $("#not-yet-link").href = CONFIG.pdfUrl;
+}
 else { pdf.hidden = true; }
 
 /* Worksheet autosave */
@@ -374,7 +396,7 @@ $("#clear-btn").addEventListener("click", () => {
   ws.reset(); store.del(WS_KEY); $("#saved").textContent = "Cleared.";
 });
 $("#print-btn").addEventListener("click", () => window.print());
-$("#done-btn").addEventListener("click", () => { $("#completed").checked = true; });
+$("#done-btn").addEventListener("click", () => { $("#claim-form input[name=completed][value=yes]").checked = true; syncNotYet(); });
 
 /* UTM passthrough */
 const qs = new URLSearchParams(location.search);
@@ -382,25 +404,36 @@ const qs = new URLSearchParams(location.search);
 
 /* Validation */
 const form = $("#claim-form");
-function validate(){
-  let ok = true; let first = null;
-  $$("[data-field]", form).forEach(wrap => {
-    const el = $("input,textarea,select", wrap);
-    const valid = el.type === "checkbox" ? el.checked : el.checkValidity() && el.value.trim() !== "";
-    wrap.classList.toggle("invalid", !valid);
-    el.setAttribute("aria-invalid", String(!valid));
-    if (!valid) { ok = false; first = first || el; }
-  });
-  if (first) first.focus();
-  return ok;
+/* "Not yet" hides the rest of the form and points back to the worksheet */
+function syncNotYet(){
+  const notYet = form.elements.completed.value === "not yet";
+  form.classList.toggle("is-not-yet", notYet);
+  $("#not-yet").hidden = !notYet;
 }
-form.addEventListener("input", e => { const w = e.target.closest("[data-field]"); if (w && w.classList.contains("invalid")) validate(); });
+form.addEventListener("change", e => { if (e.target.name === "completed") syncNotYet(); });
+function checkField(wrap){
+  const el = $("input,textarea,select", wrap);
+  let valid;
+  if (el.type === "radio") valid = wrap.dataset.field === "completed" ? form.elements.completed.value === "yes" : form.elements[el.name].value !== "";
+  else if (el.type === "checkbox") valid = el.checked;
+  else valid = el.checkValidity() && el.value.trim() !== "";
+  wrap.classList.toggle("invalid", !valid);
+  el.setAttribute("aria-invalid", String(!valid));
+  return valid ? null : el;
+}
+function validate(){
+  let first = null;
+  $$("[data-field]", form).forEach(wrap => { const bad = checkField(wrap); first = first || bad; });
+  if (first) first.focus();
+  return !first;
+}
+form.addEventListener("input", e => { const w = e.target.closest("[data-field]"); if (w && w.classList.contains("invalid")) checkField(w); });
 
 form.addEventListener("submit", e => {
   const msg = $("#form-msg"); msg.hidden = true;
   if (!validate()) { e.preventDefault(); return; }
   const captcha = $("[name='g-recaptcha-response']", form);
-  if (captcha && !captcha.value) { e.preventDefault(); msg.textContent = "Tick the box above the button, then claim your hat."; msg.hidden = false; return; }
+  if (captcha && !captcha.value) { e.preventDefault(); msg.textContent = "Tick the box above the button, then send your hats."; msg.hidden = false; return; }
   const tooFast = (Date.now() - loadedAt) / 1000 < CONFIG.minSecondsOnPage;
   if (IS_PREVIEW || tooFast) { e.preventDefault(); location.href = "thanks/" + (IS_PREVIEW ? "?preview=1" : ""); return; }
   // Live on Netlify: the browser posts the form, Netlify saves it and opens /thanks/.

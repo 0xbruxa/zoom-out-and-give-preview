@@ -51,12 +51,13 @@ img{display:block;max-width:100%}
 .hero{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:560px;display:flex;align-items:flex-end;
   background:var(--blue-900) url(forest.webp) 0% 58%/150% auto no-repeat}
 .hero::before{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(11,39,101,.86) 0%,rgba(11,39,101,.55) 45%,rgba(11,39,101,0) 78%)}
+  background:linear-gradient(90deg,rgba(11,39,101,.88) 0%,rgba(11,39,101,.66) 48%,rgba(11,39,101,0) 82%)}
 .hero-inner{position:relative;padding:56px;max-width:780px;color:var(--white)}
 .kicker{display:inline-block;font-weight:600;font-size:14px;letter-spacing:.02em;padding:7px 14px;border-radius:999px;
   background:rgba(255,255,255,.16);color:var(--white);backdrop-filter:blur(4px);margin-bottom:20px}
 .hero h1{color:var(--white);font-size:clamp(44px,6.4vw,76px)}
-.hero p.lede{font-size:20px;line-height:1.6;margin-top:20px;color:rgba(255,255,255,.94);max-width:520px}
+.hero p.lede{font-size:20px;line-height:1.6;margin-top:20px;color:rgba(255,255,255,.94);max-width:600px}
+.hero p.lede+p.lede{margin-top:14px}
 .hero .btn-row{margin-top:30px}
 .hero .meta{display:flex;align-items:center;gap:8px;margin-top:22px;font-size:15px;color:rgba(255,255,255,.85)}
 .hero .meta img{width:18px;height:18px;filter:brightness(0) invert(1);opacity:.85}
@@ -172,6 +173,13 @@ section{padding:88px 0 0}
 .invalid input,.invalid textarea,.invalid select{border-color:var(--error)!important}
 .daf-box{display:flex;gap:16px;align-items:center;background:var(--slate-100);border-radius:var(--radius-sm);padding:18px}
 .daf-box p{flex:1;color:var(--blue-900);font-size:15.5px}
+.claim .chips{margin-top:0}
+.claim .chip span{padding:11px 20px;font-size:16px}
+.hat-count .chip span{min-width:60px;text-align:center;font-weight:600;font-size:17px}
+.claim .help+.f{margin-top:0}
+.not-yet{margin-top:16px;background:var(--slate-100);border-radius:var(--radius-sm);padding:14px 16px;color:var(--blue-900)}
+#claim-form.is-not-yet .after-yes{display:none}
+#claim-form.is-not-yet .q-done{padding-bottom:0}
 .hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 .submit-row{display:flex;flex-direction:column;align-items:center;gap:12px;padding-top:8px}
 .submit-row .btn{min-width:260px}
@@ -205,7 +213,7 @@ section{padding:88px 0 0}
   section{padding-top:64px}
   .site-head img{height:24px}
   .hero{min-height:640px;background-size:cover;background-position:42% center}
-  .hero::before{background:linear-gradient(0deg,rgba(11,39,101,.92) 0%,rgba(11,39,101,.7) 50%,rgba(11,39,101,.1) 100%)}
+  .hero::before{background:linear-gradient(0deg,rgba(11,39,101,.92) 0%,rgba(11,39,101,.8) 60%,rgba(11,39,101,.4) 100%)}
   .hero-inner{padding:28px 22px}
   .hero p.lede{font-size:18px}
   .hero .btn-row .btn{flex:1 1 100%}
@@ -216,6 +224,7 @@ section{padding:88px 0 0}
   .claim{padding:24px 18px;border-radius:22px}
   .claim-section{padding:64px 0;margin-top:64px}
   .grid2,.grid3{grid-template-columns:1fr}
+  .claim legend{font-size:21px}
   .daf-box{flex-direction:column;align-items:stretch;text-align:left}
   .daf-box .btn-row .btn{flex:1}
   .submit-row .btn{width:100%;min-width:0}
