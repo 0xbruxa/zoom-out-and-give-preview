@@ -69,7 +69,8 @@
   })(document.body);
 
   const norm = s => s.replace(/ /g, " ").replace(/[ \t]+/g, " ").replace(/ *\n[\s]*/g, "\n").trim();
-  const textOf = el => norm(el.innerText || el.textContent || "");
+  /* The copy as written in the page, not as styled: small labels show in capitals but are written in sentence case */
+  const textOf = el => { const c = el.cloneNode(true); c.querySelectorAll("br").forEach(b => b.replaceWith("\n")); return norm(c.textContent); };
   const orig = [];
   document.querySelectorAll("details").forEach(d => { d.open = true; });
   targets.forEach((el, i) => {
