@@ -412,3 +412,6 @@ section{padding:88px 0 0}
 .head-links a:hover{text-decoration:underline}
 @media (max-width:900px){.head-links .head-label{display:none}}
 @media (max-width:640px){.head-links{gap:4px 12px;font-size:13.5px;justify-content:flex-end}}
+
+/* Hero headline: campaign name big, what it is on its own line */
+.hero h1 .h1-sub{display:block;font-size:.5em;line-height:1.15;margin-top:8px;color:rgba(255,255,255,.92)}
