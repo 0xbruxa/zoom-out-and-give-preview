@@ -7,7 +7,7 @@
 <meta name="description" content="Finished the Zoom Out &amp; Give worksheet? Claim your gift.">
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="../assets/site.css?v=2026-10-22o">
+<link rel="stylesheet" href="../assets/site.css?v=2026-10-22p">
 <style>
   /* On its own page the claim section starts right under the header */
   .claim-section{margin-top:0}
@@ -98,6 +98,7 @@
             <label class="check"><input type="checkbox" name="advisor" value="yes">I'm a financial advisor.</label>
           </fieldset>
 
+          <div class="captcha-slot no-print after-yes" id="claim-captcha"></div>
           <div class="submit-row after-yes">
             <button class="btn btn-primary" type="submit" id="submit-btn">Send my gift</button>
             <p class="privacy">We use your address only to send your gift. While supplies last.</p>
@@ -123,6 +124,7 @@
 /* Same settings as the main page. */
 const CONFIG = {
   claimUrl: "/api/zoom-out-and-give/claim",   // the endpoint that emails the claim through Mailjet (engineering-handoff.md)
+  turnstileSiteKey: "",      // Cloudflare Turnstile site key from Endaoment (engineering-handoff.md). Empty = no checkbox.
   minSecondsOnPage: 4,       // claims sent faster than this are treated as bots
   liveHosts: []              // add the page's host here if it is not on endaoment.org
 };
@@ -168,10 +170,17 @@ function validate(){
 }
 form.addEventListener("input", e => { const w = e.target.closest("[data-field]"); if (w && w.classList.contains("invalid")) checkField(w); });
 
+/* Spam check: Cloudflare Turnstile, only once Endaoment adds its site key and only on the live page */
+if (CONFIG.turnstileSiteKey && !IS_PREVIEW) {
+  const el = document.getElementById("claim-captcha"); el.classList.add("cf-turnstile"); el.dataset.sitekey = CONFIG.turnstileSiteKey;
+  const s = document.createElement("script"); s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js"; s.async = true; s.defer = true; document.head.appendChild(s);
+}
 form.addEventListener("submit", async e => {
   e.preventDefault();
   const msg = $("#form-msg"); msg.hidden = true;
   if (!validate()) return;
+  const captcha = (form.querySelector("[name='cf-turnstile-response']") || {}).value || "";
+  if (CONFIG.turnstileSiteKey && !IS_PREVIEW && !captcha) { msg.textContent = "Tick the box above the button, then send your gift."; msg.hidden = false; return; }
   const tooFast = (Date.now() - loadedAt) / 1000 < CONFIG.minSecondsOnPage;
   if (IS_PREVIEW || tooFast) { location.href = "../thanks/" + (IS_PREVIEW ? "?preview=1" : ""); return; }
   const btn = $("#submit-btn"), label = btn.textContent; btn.disabled = true; btn.textContent = "Sending...";
@@ -187,6 +196,6 @@ form.addEventListener("submit", async e => {
   msg.textContent = "We couldn't send your claim just now. Try again in a minute, or email hello@endaoment.org."; msg.hidden = false;
 });
 </script>
-<script src="../assets/edit-mode.js?v=2026-10-22o"></script>
+<script src="../assets/edit-mode.js?v=2026-10-22p"></script>
 </body>
 </html>

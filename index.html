@@ -17,7 +17,7 @@
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
 <link rel="preload" href="assets/forest.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="assets/site.css?v=2026-10-22o">
+<link rel="stylesheet" href="assets/site.css?v=2026-10-22p">
 </head>
 <body>
 <div class="preview-bar" id="preview-bar" hidden>Preview for review. The forms don't send anything yet.</div>
@@ -80,7 +80,7 @@
       <div class="section-head">
         <div class="eyebrow">What you leave with</div>
         <h2>It's been a big year. Give giving a plan.</h2>
-        <p>In about 30 minutes you'll know what you want your giving to do, and what to get done before December 31.</p>
+        <p>A structured plan and real clarity before December 31, so you skip the year-end rush.</p>
       </div>
       <div class="get-grid">
         <article class="get-card">
@@ -112,6 +112,7 @@
         <li><h3>The right gift at the right time</h3><p>Start early, with the slowest gift first. A stock gift usually takes 1 to 2 weeks.</p></li>
         <li><h3>A reason to look back</h3><p>Start with what went right in the last ten years, and what giving has meant to you.</p></li>
         <li><h3>Made to pass on</h3><p>Send it to the person you'd sit down with.</p></li>
+        <li><h3>Something to come back to</h3><p>Next December, pull it out and see how far your giving has come.</p></li>
       </ul>
     </div>
   </section>
@@ -159,7 +160,7 @@
 
       <form id="ws" autocomplete="off" onsubmit="return false">
         <div class="ws-banner"><h3><span class="small">Zoom Out &amp; Give 2026</span>See the forest through the trees.</h3></div>
-        <div class="field-who"><label for="who">Who's at the table:</label><input id="who" name="who" type="text"></div>
+        <div class="field-who"><label for="who">Who's at the table: <span class="req">*</span></label><input id="who" name="who" type="text" placeholder="Names, or just you"></div>
         <div class="ws-lead">
           <p>It's been a big year. Grab a pen and anyone you'd give with. Use this to synthesize your collective vision and make a plan.</p>
           <div class="time"><img src="assets/icon-clock.svg" alt="" width="18" height="18"><span>About 30 minutes.<br>There are no wrong answers.</span></div>
@@ -190,7 +191,7 @@
             <div class="ws-title"><h3>The trees</h3><span class="pill">About 10 minutes</span></div>
             <div class="ws-cards">
               <div class="ws-card">
-                <p class="q" id="causes-q">Which causes move you?</p>
+                <p class="q" id="causes-q">Which causes move you? <span class="req">*</span></p>
                 <div class="chips" role="group" aria-labelledby="causes-q">
                   <label class="chip"><input type="checkbox" name="cause" value="Education"><span>Education</span></label>
                   <label class="chip"><input type="checkbox" name="cause" value="Health"><span>Health</span></label>
@@ -263,7 +264,7 @@
           <div>
             <div class="ws-title"><h3>Make it real</h3></div>
             <div class="commit">
-              <div class="ws-card"><label class="q" for="c-move">Giving is in the plan. First move:</label><input id="c-move" name="move" type="text"></div>
+              <div class="ws-card"><label class="q" for="c-move">Giving is in the plan. First move: <span class="req">*</span></label><input id="c-move" name="move" type="text"></div>
               <div class="ws-card"><div class="plan-head"><label class="q" for="c-done">Done by:</label><span class="pill soft">Before December 31</span></div><input id="c-done" name="done" type="date" min="2026-10-01" max="2026-12-31"></div>
               <div class="ws-card"><label class="q" for="c-back">Come back to this on:</label><input id="c-back" name="back" type="date" min="2026-10-01"></div>
             </div>
@@ -274,7 +275,7 @@
       </form>
 
       <style>
-        .email-self{margin:20px 0 4px;padding:20px 22px;border:1px solid rgba(15,36,62,.12);border-radius:14px;background:rgba(98,126,234,.06)}
+        .email-self{margin:32px auto 0;max-width:760px;padding:20px 22px;border:1px solid rgba(15,36,62,.12);border-radius:14px;background:rgba(98,126,234,.06)}
         .email-self h3{margin:0 0 4px;font-size:20px}
         .email-self p{margin:0 0 4px}
         .email-self .step-tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-700);margin-bottom:6px}
@@ -304,6 +305,7 @@
             <input id="cc-emails" type="text" inputmode="email" autocomplete="off" placeholder="client@example.com, family@example.com">
             <span class="help">Your client, your family, anyone at the table. Up to 5, separated by commas.</span>
           </div>
+          <div class="captcha-slot" id="email-captcha"></div>
           <div class="send-row"><button class="btn btn-primary" type="submit" id="email-btn">Email my plan</button></div>
           <p class="tiny">We email your plan from Endaoment to you and anyone you added.</p>
           <p class="msg" id="email-msg" role="status" hidden></p>
@@ -351,6 +353,7 @@ const CONFIG = {
   pdfUrl: "",
   sendPlanUrl: "/api/zoom-out-and-give/send-plan",   // the endpoint that emails the plan through Mailjet (engineering-handoff.md)
   maxCc: 5,
+  turnstileSiteKey: "",      // Cloudflare Turnstile site key from Endaoment (engineering-handoff.md). Empty = no checkbox.
   liveHosts: []              // add the page's host here if it is not on endaoment.org
 };
 // The forms only send on Endaoment's own site (endaoment.org or a subdomain, or a host in liveHosts).
@@ -469,7 +472,21 @@ $("#email-form").addEventListener("submit", async e => {
   const f = e.target, email = $("#self-email"), btn = $("#email-btn");
   const self = email.value.trim();
   const others = [...new Set($("#cc-emails").value.split(/[\s,;]+/).filter(Boolean))].filter(x => x.toLowerCase() !== self.toLowerCase());
+  const missing = [
+    [$("#who"), !$("#who").value.trim(), "who's at the table"],
+    [$("input[name=cause]", ws), !$$("input[name=cause]:checked", ws).length, "at least one cause"],
+    [$("#c-move"), !$("#c-move").value.trim(), "your first move"]
+  ].filter(m => m[1]);
+  $$(".needs").forEach(el => el.classList.remove("needs"));
+  if (missing.length) {
+    missing.forEach(m => (m[0].closest(".ws-card, .field-who") || m[0]).classList.add("needs"));
+    say("Almost there. Fill in " + missing.map(m => m[2]).join(", ").replace(/, ([^,]*)$/, " and $1") + " first.");
+    missing[0][0].scrollIntoView({ block: "center" }); if (missing[0][0].type !== "checkbox") missing[0][0].focus();
+    return;
+  }
   if (!isEmail(self)) { say("Add your email address to finish."); email.focus(); return; }
+  const captcha = (f.querySelector("[name='cf-turnstile-response']") || {}).value || "";
+  if (CONFIG.turnstileSiteKey && !IS_PREVIEW && !captcha) { say("Tick the box above the button, then send."); return; }
   const bad = others.filter(x => !isEmail(x));
   if (bad.length) { say("Check this email: " + bad[0]); $("#cc-emails").focus(); return; }
   if (others.length > CONFIG.maxCc) { say("You can add up to " + CONFIG.maxCc + " more emails."); $("#cc-emails").focus(); return; }
@@ -483,7 +500,7 @@ $("#email-form").addEventListener("submit", async e => {
   let ok = false;
   try {
     const res = await fetch(CONFIG.sendPlanUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
-      email: self, cc: others, plan: worksheetText(),
+      email: self, cc: others, plan: worksheetText(), captcha,
       website: f.elements.website.value, secondsOnPage: Math.round((Date.now() - loadedAt) / 1000)
     }) });
     ok = res.ok && (await res.json()).ok;
@@ -492,6 +509,18 @@ $("#email-form").addEventListener("submit", async e => {
   if (ok) { unlockDone(); say("Sent. Check your inbox" + (others.length ? ", and theirs" : "") + ". If it isn't there in a few minutes, look in spam."); }
   else say("We couldn't send it just now.", { href: mailtoHref(self, others), text: "Open it in your email app instead." });
 });
+
+/* Clear the "needs" outline as soon as they fill a required field */
+ws.addEventListener("input", e => { const c = e.target.closest(".needs"); if (c) c.classList.remove("needs"); });
+ws.addEventListener("change", e => { const c = e.target.closest(".needs"); if (c) c.classList.remove("needs"); });
+
+/* Spam check: Cloudflare Turnstile, only once Endaoment adds its site key and only on the live page */
+function mountCaptcha(id){
+  if (!CONFIG.turnstileSiteKey || IS_PREVIEW) return;
+  const el = document.getElementById(id); el.classList.add("cf-turnstile"); el.dataset.sitekey = CONFIG.turnstileSiteKey;
+  if (!document.getElementById("cf-ts")) { const s = document.createElement("script"); s.id = "cf-ts"; s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js"; s.async = true; s.defer = true; document.head.appendChild(s); }
+}
+mountCaptcha("email-captcha");
 
 /* The printed sheet shows this page's own claim link */
 if (location.protocol !== "file:") $$(".site-url").forEach(s => { s.textContent = location.host + location.pathname.replace(/[^/]*$/, "") + "claim/"; });
@@ -505,6 +534,6 @@ if ([...utm.keys()].length) $$(".claim-link").forEach(a => { const u = new URL(a
 
 
 </script>
-<script src="assets/edit-mode.js?v=2026-10-22o"></script>
+<script src="assets/edit-mode.js?v=2026-10-22p"></script>
 </body>
 </html>

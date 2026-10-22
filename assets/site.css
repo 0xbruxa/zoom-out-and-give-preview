@@ -386,3 +386,21 @@ section{padding:88px 0 0}
   .hero .btn-row .btn{flex:1 1 100%}
   .ws-actions .finish-note{text-align:left}
 }
+
+/* Round 4 (Oct 22, from Vince's screenshots) */
+#how .section-head,#get .section-head{grid-template-columns:1fr}
+#how .section-head h2{white-space:nowrap}
+#get .section-head p{grid-column:1;margin-top:14px;max-width:640px;padding:0}
+.field-who input{background:var(--white);border:1.5px solid var(--slate-400);border-radius:12px;padding:10px 14px}
+.field-who input:focus{outline:3px solid var(--blue-200);border-color:var(--blue-700)}
+.req{color:var(--blue-700);font-weight:600}
+.needs{box-shadow:0 0 0 2px var(--blue-700)}
+.commit{grid-template-columns:1.45fr 1fr 1fr}
+.commit .ws-card{gap:12px}
+.commit .ws-card>:last-child{margin-top:auto}
+.commit .ws-card .q{font-size:16px}
+@media (min-width:901px){.commit .ws-card>.q,.commit .ws-card .plan-head .q{white-space:nowrap}}
+.captcha-slot{margin-top:14px}
+.captcha-slot:empty{display:none}
+.claim .captcha-slot{display:flex;justify-content:center;margin:0 0 16px}
+@media (max-width:640px){#how .section-head h2{white-space:normal}}
