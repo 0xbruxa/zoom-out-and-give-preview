@@ -28,7 +28,7 @@
 
   const css = document.createElement("style");
   css.textContent = `
-    [data-zog-edit]{outline:1px dashed rgba(39,89,197,.45);outline-offset:2px;border-radius:2px;cursor:text}
+    [data-zog-edit]{outline:1px dashed rgba(39,89,197,.45);outline-offset:2px;cursor:text}
     [data-zog-edit]:hover{outline-color:#2759C5}
     [data-zog-edit]:focus{outline:2px solid #2759C5}
     [data-zog-edit].zog-changed{outline:2px solid #F5B400}
