@@ -426,3 +426,11 @@ section{padding:88px 0 0}
 body{letter-spacing:.005em}
 h1,h2,.hero h1{letter-spacing:-.02em}
 .steps h3,.get-card h3,.benefits h3,.faq-card h3,.email-self h3,.claim legend,.share h2,.hero p.hero-what{font-weight:500;letter-spacing:-.01em}
+
+/* Headline on one line on laptop and desktop; the rest of the hero stays in its narrower column underneath */
+@media (min-width:768px){
+  .hero-inner{max-width:none}
+  .hero h1{white-space:nowrap;font-size:clamp(38px,5.1vw,66px)}
+  .hero p.hero-what,.hero p.lede{max-width:620px}
+  .hero::before{background:linear-gradient(90deg,rgba(11,39,101,.88) 0%,rgba(11,39,101,.7) 55%,rgba(11,39,101,.2) 92%)}
+}
