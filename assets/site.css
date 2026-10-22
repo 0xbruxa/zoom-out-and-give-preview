@@ -437,3 +437,12 @@ h1,h2,.hero h1{letter-spacing:-.02em}
 
 /* What you leave with: the line under the heading stays on one line on laptop and desktop */
 @media (min-width:900px){#get .section-head p{max-width:none;white-space:nowrap}}
+
+/* Round 7: the header stays at the top while scrolling */
+.site-head{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:saturate(1.4) blur(8px);-webkit-backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid transparent;transition:border-color .2s ease,box-shadow .2s ease}
+.site-head.scrolled{border-bottom-color:var(--slate-100);box-shadow:0 6px 20px -14px rgba(11,39,101,.35)}
+.head-links .head-label{display:inline}
+/* The two What you leave with cards line up: same picture height, text starts on the same line */
+.get-card .art,.get-card .art.sheet-mock{height:250px;min-height:0;flex:none}
+.get-card .art.sheet-mock{padding:16px 18px;overflow:hidden}
+.footer .socials a,.foot-row .socials a{color:var(--white);font-weight:600}

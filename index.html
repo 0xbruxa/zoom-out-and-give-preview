@@ -17,7 +17,7 @@
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
 <link rel="preload" href="assets/forest.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="assets/site.css?v=2026-10-22y">
+<link rel="stylesheet" href="assets/site.css?v=2026-10-22z">
 </head>
 <body>
 <div class="preview-bar" id="preview-bar" hidden>Preview for review. The forms don't send anything yet.</div>
@@ -25,7 +25,7 @@
 <header class="site-head">
   <div class="wrap">
     <a href="https://endaoment.org" aria-label="Endaoment home"><img src="assets/logo-endaoment-blue.svg" alt="Endaoment" width="145" height="30"></a>
-    <nav class="head-links" aria-label="Learn more about Endaoment"><span class="head-label">Learn more about Endaoment:</span> <a href="https://endaoment.org/#advisors" target="_blank" rel="noopener">For advisors</a> <a href="https://endaoment.org/app" target="_blank" rel="noopener">For donors</a> <a href="https://app.endaoment.org" target="_blank" rel="noopener">Endaoment App</a></nav>
+    <nav class="head-links" aria-label="Learn more about Endaoment"><span class="head-label">Learn more:</span> <a href="https://endaoment.org/app" target="_blank" rel="noopener">Endaoment App</a> <a href="https://endaoment.org/api" target="_blank" rel="noopener">Endaoment API</a></nav>
   </div>
 </header>
 
@@ -341,7 +341,7 @@
   <div class="wrap">
     <div class="advisor-note"><img src="assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: send this to clients before year-end to start the conversation.</p></div>
     <div class="foot-row">
-      <span>Learn more about Endaoment: <a href="https://endaoment.org/#advisors" target="_blank" rel="noopener">For advisors</a> · <a href="https://endaoment.org/app" target="_blank" rel="noopener">For donors</a> · <a href="https://app.endaoment.org" target="_blank" rel="noopener">Endaoment App</a></span>
+      <span class="socials">Follow Endaoment: <a href="https://www.linkedin.com/company/endaoment" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://x.com/endaomentdotorg" target="_blank" rel="noopener">X</a></span>
       <span>Endaoment does not provide financial or tax advice. Please consult your own tax or financial professional.</span>
     </div>
   </div>
@@ -537,6 +537,7 @@ if ([...utm.keys()].length) $$(".claim-link").forEach(a => { const u = new URL(a
 
 
 </script>
-<script src="assets/edit-mode.js?v=2026-10-22y"></script>
+<script>(()=>{const h=document.querySelector(".site-head");if(!h)return;const f=()=>h.classList.toggle("scrolled",scrollY>4);addEventListener("scroll",f,{passive:true});f();})();</script>
+<script src="assets/edit-mode.js?v=2026-10-22z"></script>
 </body>
 </html>
