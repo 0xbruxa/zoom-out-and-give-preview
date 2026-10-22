@@ -17,7 +17,7 @@
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
 <link rel="preload" href="assets/forest.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="assets/site.css?v=2026-10-22b">
+<link rel="stylesheet" href="assets/site.css?v=2026-10-22c">
 </head>
 <body>
 <div class="preview-bar" id="preview-bar" hidden>Preview for review. The forms don't send anything yet.</div>
@@ -38,12 +38,24 @@
         <p class="lede">A giving exercise for the end of the year. Sit down with your people, fill out one page together, and leave with a plan for your giving. Everyone at the table gets a very sweet gift from us, with a personal thank-you note, to keep or to give to someone they love.</p>
         <div class="btn-row">
           <a class="btn btn-light" href="#worksheet" id="hero-ws">Start the worksheet</a>
-          <a class="btn btn-ghost claim-link" href="claim/">Done? Claim your gift</a>
         </div>
-        <p class="meta">About 30 minutes. Your answers stay with you.</p>
+        <p class="hero-alt"><a class="claim-link" href="claim/">Already did it? Claim your gift.</a></p>
+        <p class="meta">About 30 minutes. No account needed. Your answers stay with you.</p>
       </div>
     </div>
   </div>
+
+  <section id="why">
+    <div class="wrap">
+      <div class="why-band">
+        <div class="section-head">
+          <div class="eyebrow">Why sit down</div>
+          <h2>Year-end giving can turn into one ask at a time.</h2>
+          <p>An email here, a letter there, a few quick yeses before December 31. This year, start with your people. Decide together what you want your giving to do, then give with a plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="how">
     <div class="wrap">
@@ -62,26 +74,59 @@
   <section id="get">
     <div class="wrap">
       <div class="section-head">
-        <div class="eyebrow">Why do it</div>
+        <div class="eyebrow">What you leave with</div>
         <h2>It's been a big year. Give it a plan.</h2>
         <p>In about 30 minutes you'll know what you want your giving to do, and what to get done before December 31.</p>
       </div>
       <div class="get-grid">
         <article class="get-card">
-          <div class="art" style="background-image:url(assets/hills.webp)" role="img" aria-label="Rolling blue hills at dawn"></div>
+          <div class="art sheet-mock" aria-hidden="true">
+            <div class="sheet">
+              <div class="sheet-band">Zoom Out &amp; Give 2026</div>
+              <div class="sheet-row"><span class="k">Who's at the table</span><span class="v">Mom, Dad, Maya, Leo</span></div>
+              <div class="sheet-row"><span class="k">Causes</span><span class="v"><i>Education</i><i>Animals</i><i>Your community</i></span></div>
+              <div class="sheet-row"><span class="k">First move</span><span class="v">Open a DAF and give stock</span></div>
+              <div class="sheet-row"><span class="k">Done by</span><span class="v">December 12</span></div>
+            </div>
+          </div>
           <div class="body">
             <h3>A plan for your giving</h3>
             <p>For this tax year and the years after it, made with the people you give with.</p>
           </div>
         </article>
         <article class="get-card">
-          <div class="art" style="background-image:url(assets/table.webp);background-position:center 35%" role="img" aria-label="A family around a table, planning together"></div>
+          <div class="art" style="background-image:url(assets/table.webp);background-position:center 35%" role="img" aria-label="A family around a table, planning together"><span class="asset-todo">Swap in: photo of the hat and thank-you card</span></div>
           <div class="body">
             <h3>A gift for everyone at the table</h3>
             <p>A very sweet Endaoment hat for everyone who sat down, up to four, with a personal thank-you card.</p>
           </div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Questions</div>
+        <h2>Before you sit down.</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Do we need a donor-advised fund?</summary><p>No. The worksheet works on its own. If you decide to open one, you can do it in the <a href="https://app.endaoment.org" target="_blank" rel="noopener">Endaoment App</a>, with no minimum to start.</p></details>
+        <details><summary>Who sees our answers?</summary><p>Only you. Your answers save in this browser and are never sent to us. When you email your plan, it goes out from your own email app. We keep only your email address.</p></details>
+        <details><summary>How long does it take?</summary><p>About 30 minutes for the page. Longer if the conversation gets good.</p></details>
+        <details><summary>What's the catch with the gift?</summary><p>There isn't one. Fill out the worksheet, email yourself the plan, and tell us one thing that came out of it. We'll mail an Endaoment hat for everyone at the table, up to four, with a personal thank-you card. US addresses only, while supplies last.</p></details>
+        <details><summary>I'm an advisor. Can I use this with clients?</summary><p>Yes. Send clients the link before your year-end meeting, or fill it out together. In the last step, add their email and the plan goes to both of you.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof">
+    <div class="wrap">
+      <figure class="quote">
+        <blockquote><p>&ldquo;I want to track the giving, not the accumulation.&rdquo;</p></blockquote>
+        <figcaption><strong>Justin Pullaro</strong>, Core Planning Partners</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -212,7 +257,7 @@
             <p class="daf-note">A donor-advised fund is something you come back to. The money is already set aside for giving, so there's time to get to know the nonprofits, bring others in, and give with a plan. Same time next year?</p>
           </div>
         </div>
-        <p class="print-foot">For advisors: Send to clients before year-end meetings to start the conversation. Open a donor-advised fund at app.endaoment.org. Endaoment does not provide financial or tax advice. Consult your CPA.</p>
+        <p class="print-foot">For advisors: Send to clients before year-end meetings to start the conversation. Open a donor-advised fund at app.endaoment.org. Endaoment does not provide financial or tax advice. Please consult your own tax or financial professional.</p>
       </form>
 
       <style>
@@ -272,7 +317,7 @@
     <div class="advisor-note"><img src="assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: Send to clients before year-end meetings to start the conversation.</p></div>
     <div class="foot-row">
       <span>Open a donor-advised fund at <a href="https://app.endaoment.org" target="_blank" rel="noopener">app.endaoment.org</a></span>
-      <span>Endaoment does not provide financial or tax advice. Consult your CPA.</span>
+      <span>Endaoment does not provide financial or tax advice. Please consult your own tax or financial professional.</span>
     </div>
   </div>
 </footer>
@@ -286,7 +331,7 @@ const CONFIG = {
 };
 // The form only sends on Netlify. Anywhere else (this computer, a review link) it runs as a preview.
 const IS_PREVIEW = location.protocol === "file:" || !(location.hostname.endsWith(".netlify.app") || CONFIG.liveHosts.includes(location.hostname));
-if (IS_PREVIEW) document.getElementById("preview-bar").hidden = false;
+if (IS_PREVIEW) { document.getElementById("preview-bar").hidden = false; document.documentElement.classList.add("is-preview"); }
 
 const store = {
   get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
@@ -414,5 +459,6 @@ if ([...utm.keys()].length) $$(".claim-link").forEach(a => { const u = new URL(a
 
 
 </script>
+<script src="assets/edit-mode.js?v=2026-10-22c"></script>
 </body>
 </html>
