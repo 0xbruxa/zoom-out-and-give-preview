@@ -6,14 +6,14 @@
 <title>Your gift is on the way | Endaoment</title>
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="../assets/site.css?v=2026-10-22q">
+<link rel="stylesheet" href="../assets/site.css?v=2026-10-22r">
 </head>
 <body>
 
 <header class="site-head">
   <div class="wrap">
     <a href="https://endaoment.org" aria-label="Endaoment home"><img src="../assets/logo-endaoment-blue.svg" alt="Endaoment" width="145" height="30"></a>
-    <a class="daf-link" href="https://app.endaoment.org" target="_blank" rel="noopener">Open a donor-advised fund</a>
+    <nav class="head-links" aria-label="Learn more about Endaoment"><span class="head-label">Learn more about Endaoment:</span> <a href="https://endaoment.org/#advisors" target="_blank" rel="noopener">For advisors</a> <a href="https://endaoment.org/app" target="_blank" rel="noopener">For donors</a> <a href="https://app.endaoment.org" target="_blank" rel="noopener">Endaoment App</a></nav>
   </div>
 </header>
 
@@ -66,7 +66,7 @@ If you want to try it with your people: {link}
   <div class="wrap">
     <div class="advisor-note"><img src="../assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: send this to clients before year-end to start the conversation.</p></div>
     <div class="foot-row">
-      <span>Open a donor-advised fund at <a href="https://app.endaoment.org" target="_blank" rel="noopener">app.endaoment.org</a></span>
+      <span>Learn more about Endaoment: <a href="https://endaoment.org/#advisors" target="_blank" rel="noopener">For advisors</a> · <a href="https://endaoment.org/app" target="_blank" rel="noopener">For donors</a> · <a href="https://app.endaoment.org" target="_blank" rel="noopener">Endaoment App</a></span>
       <span>Endaoment does not provide financial or tax advice. Please consult your own tax or financial professional.</span>
     </div>
   </div>
@@ -74,8 +74,10 @@ If you want to try it with your people: {link}
 
 <script>
 /* postcardUrl: the postcard image from Atra, once it exists. The download button stays hidden until then. */
-const CONFIG = { postcardUrl: "" };
-const home = new URL("../", location.href).href.split("?")[0].split("#")[0];
+const CONFIG = { postcardUrl: "", siteUrl: "" };   // siteUrl: the final Endaoment address of the page
+/* The page's own link: the final Endaoment address, or this page's address on endaoment.org. Never a review link. */
+const onEndaoment = location.hostname === "endaoment.org" || location.hostname.endsWith(".endaoment.org");
+const home = CONFIG.siteUrl || (onEndaoment ? new URL("../", location.href).href.split("?")[0].split("#")[0] : "[final Endaoment link]");
 document.querySelectorAll(".share-text").forEach(el => { el.textContent = el.textContent.replace("{link}", home); });
 if (CONFIG.postcardUrl) { const d = document.getElementById("postcard-dl"); d.href = CONFIG.postcardUrl; d.hidden = false; }
 async function copy(text, btn, done){
@@ -87,6 +89,6 @@ document.getElementById("share-btn").addEventListener("click", e => copy(home, e
 if (new URLSearchParams(location.search).get("preview") === "1") document.getElementById("preview-flag").style.display = "block";
 try { localStorage.setItem("zog2026-claimed", "true"); } catch (err) {}
 </script>
-<script src="../assets/edit-mode.js?v=2026-10-22q"></script>
+<script src="../assets/edit-mode.js?v=2026-10-22r"></script>
 </body>
 </html>

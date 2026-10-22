@@ -9,15 +9,15 @@
 <meta property="og:description" content="Take a moment to gather with your people and plan your giving. Start with one page.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Endaoment">
-<meta property="og:url" content="https://gascon-ai.github.io/zoom-out-and-give-preview/">
-<meta property="og:image" content="https://gascon-ai.github.io/zoom-out-and-give-preview/assets/og.jpg">
+<meta property="og:url" content="https://__SITE_URL__/">
+<meta property="og:image" content="https://__SITE_URL__/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
 <link rel="preload" href="assets/forest.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="assets/site.css?v=2026-10-22q">
+<link rel="stylesheet" href="assets/site.css?v=2026-10-22r">
 </head>
 <body>
 <div class="preview-bar" id="preview-bar" hidden>Preview for review. The forms don't send anything yet.</div>
@@ -25,7 +25,7 @@
 <header class="site-head">
   <div class="wrap">
     <a href="https://endaoment.org" aria-label="Endaoment home"><img src="assets/logo-endaoment-blue.svg" alt="Endaoment" width="145" height="30"></a>
-    <a class="daf-link" href="https://app.endaoment.org" target="_blank" rel="noopener">Open a donor-advised fund</a>
+    <nav class="head-links" aria-label="Learn more about Endaoment"><span class="head-label">Learn more about Endaoment:</span> <a href="https://endaoment.org/#advisors" target="_blank" rel="noopener">For advisors</a> <a href="https://endaoment.org/app" target="_blank" rel="noopener">For donors</a> <a href="https://app.endaoment.org" target="_blank" rel="noopener">Endaoment App</a></nav>
   </div>
 </header>
 
@@ -271,7 +271,7 @@
             <p class="daf-note">A donor-advised fund is something you come back to. The money is already set aside for giving, so there's time to get to know the nonprofits, bring others in, and give with a plan. Same time next year?</p>
           </div>
         </div>
-        <p class="print-foot"><strong>Claim a hat upon completion here! <span class="site-url">[link to the page]/claim/</span></strong> Tag us on X or LinkedIn. For advisors: send this to clients before year-end to start the conversation. Open a donor-advised fund at app.endaoment.org. Endaoment does not provide financial or tax advice. Please consult your own tax or financial professional.</p>
+        <p class="print-foot"><strong>Claim a hat upon completion here! <span class="site-url">[final Endaoment link]</span></strong> Tag us on X or LinkedIn. For advisors: send this to clients before year-end to start the conversation. Endaoment does not provide financial or tax advice. Please consult your own tax or financial professional.</p>
       </form>
 
       <style>
@@ -341,7 +341,7 @@
   <div class="wrap">
     <div class="advisor-note"><img src="assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: send this to clients before year-end to start the conversation.</p></div>
     <div class="foot-row">
-      <span>Open a donor-advised fund at <a href="https://app.endaoment.org" target="_blank" rel="noopener">app.endaoment.org</a></span>
+      <span>Learn more about Endaoment: <a href="https://endaoment.org/#advisors" target="_blank" rel="noopener">For advisors</a> · <a href="https://endaoment.org/app" target="_blank" rel="noopener">For donors</a> · <a href="https://app.endaoment.org" target="_blank" rel="noopener">Endaoment App</a></span>
       <span>Endaoment does not provide financial or tax advice. Please consult your own tax or financial professional.</span>
     </div>
   </div>
@@ -352,6 +352,7 @@
 const CONFIG = {
   pdfUrl: "",
   sendPlanUrl: "/api/zoom-out-and-give/send-plan",   // the endpoint that emails the plan through Mailjet (engineering-handoff.md)
+  siteUrl: "",               // the final Endaoment address of this page, e.g. https://endaoment.org/zoomout. Until it's set, links show "[final Endaoment link]".
   maxCc: 5,
   turnstileSiteKey: "",      // Cloudflare Turnstile site key from Endaoment (engineering-handoff.md). Empty = no checkbox.
   liveHosts: []              // add the page's host here if it is not on endaoment.org
@@ -523,7 +524,9 @@ function mountCaptcha(id){
 mountCaptcha("email-captcha");
 
 /* The printed sheet shows this page's own claim link */
-if (location.protocol !== "file:") $$(".site-url").forEach(s => { s.textContent = location.host + location.pathname.replace(/[^/]*$/, "") + "claim/"; });
+/* On Endaoment's own site the page knows its address; anywhere else (a review link) it stays a placeholder */
+const PAGE_URL = CONFIG.siteUrl || (IS_PREVIEW ? "" : location.origin + location.pathname.replace(/[^/]*$/, ""));
+if (PAGE_URL) $$(".site-url").forEach(s => { s.textContent = PAGE_URL.replace(/^https?:\/\//, "").replace(/\/?$/, "/") + "claim/"; });
 
 /* UTM passthrough */
 const qs = new URLSearchParams(location.search);
@@ -534,6 +537,6 @@ if ([...utm.keys()].length) $$(".claim-link").forEach(a => { const u = new URL(a
 
 
 </script>
-<script src="assets/edit-mode.js?v=2026-10-22q"></script>
+<script src="assets/edit-mode.js?v=2026-10-22r"></script>
 </body>
 </html>

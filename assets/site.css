@@ -404,3 +404,11 @@ section{padding:88px 0 0}
 .captcha-slot:empty{display:none}
 .claim .captcha-slot{display:flex;justify-content:center;margin:0 0 16px}
 @media (max-width:640px){#how .section-head h2{white-space:normal}}
+
+/* Round 5: Learn more about Endaoment links in the header */
+.head-links{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;font-size:15px}
+.head-links .head-label{color:var(--slate-600);font-weight:500}
+.head-links a{font-weight:600;text-decoration:none;color:var(--blue-700)}
+.head-links a:hover{text-decoration:underline}
+@media (max-width:900px){.head-links .head-label{display:none}}
+@media (max-width:640px){.head-links{gap:4px 12px;font-size:13.5px;justify-content:flex-end}}
