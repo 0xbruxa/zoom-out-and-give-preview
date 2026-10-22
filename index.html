@@ -17,7 +17,7 @@
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
 <link rel="preload" href="assets/forest.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="assets/site.css?v=2026-10-22j">
+<link rel="stylesheet" href="assets/site.css?v=2026-10-22k">
 </head>
 <body>
 <div class="preview-bar" id="preview-bar" hidden>Preview for review. The forms don't send anything yet.</div>
@@ -50,7 +50,10 @@
         <div class="section-head">
           <div class="eyebrow">Why sit down</div>
           <h2>The giving conversation is easy to put off.</h2>
-          <p>Year-end brings tax tips and a pile of asks, and the talk about what you want your giving to do waits another year. For families, that talk brings everyone in, kids too. For advisors, it fits into the year-end review you already hold. Zoom Out &amp; Give starts it for you, in one sitting, before December 31.</p>
+          <div class="why-text">
+            <p>Year-end brings tax tips and a pile of asks, and the talk about what you want your giving to do waits another year. For families, that talk brings everyone in, especially the next generation. For advisors, it fits into the year-end review you already hold.</p>
+            <p>Zoom Out &amp; Give starts it for you, in one sitting, before December 31.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -118,21 +121,22 @@
         <h2>Before you sit down.</h2>
       </div>
       <div class="faq">
-        <details><summary>Do we need a donor-advised fund?</summary><p>No. The worksheet works on its own. If you decide to open one, you can do it in the <a href="https://app.endaoment.org" target="_blank" rel="noopener">Endaoment App</a>, with no minimum to start.</p></details>
-        <details><summary>Who sees our answers?</summary><p>Only you, and anyone you email your plan to. Your answers save on this device. When you email your plan, we send it for you and don't keep a copy. We keep your email address, and the one line you share if you claim your gift.</p></details>
-        <details><summary>How long does it take?</summary><p>About 30 minutes for the page. Longer if the conversation gets good.</p></details>
-        <details><summary>What's the catch with the gift?</summary><p>There isn't one. Fill out the worksheet, email yourself the plan, and tell us one thing that came out of it. We'll mail an Endaoment hat for everyone at the table, up to four, with a personal thank-you card. US addresses only, while supplies last.</p></details>
-        <details><summary>I'm an advisor. Can I use this with clients?</summary><p>Yes. Send clients the link before your year-end meeting, or fill it out together. In the last step, add their email and the plan goes to both of you.</p></details>
+        <article class="faq-card"><h3>Do we need a donor-advised fund?</h3><p>No. The worksheet works on its own. If you decide to open one, you can do it in the <a href="https://app.endaoment.org" target="_blank" rel="noopener">Endaoment App</a>, with no minimum to start.</p></article>
+        <article class="faq-card"><h3>Who sees our answers?</h3><p>Only you, and anyone you email your plan to. Your answers save on this device. When you email your plan, we send it for you and don't keep a copy.</p></article>
+        <article class="faq-card"><h3>How long does it take?</h3><p>About 30 minutes for the page. Longer if the conversation gets good.</p></article>
+        <article class="faq-card"><h3>What's the catch with the gift?</h3><p>There isn't one. Fill out the worksheet, email yourself the plan, and tell us about your experience. We'll mail a very sweet Endaoment hat + goodies for everyone at the table, with personal touches from our team. US addresses only, while supplies last.</p></article>
+        <article class="faq-card"><h3>I'm an advisor. Can I use this with clients?</h3><p>Yes. Send clients the link before your year-end meeting, or fill it out together. In the last step, add their email and the plan goes to both of you.</p></article>
       </div>
     </div>
   </section>
 
-  <section id="proof">
+  <section id="start">
     <div class="wrap">
-      <figure class="quote">
-        <blockquote><p>&ldquo;I want to track the giving, not the accumulation.&rdquo;</p></blockquote>
-        <figcaption><strong>Justin Pullaro</strong>, financial advisor, Core Planning Partners</figcaption>
-      </figure>
+      <div class="cta-band">
+        <h2>Ready when you are.</h2>
+        <p>Grab a pen and the people you give with. It only takes about 30 minutes.</p>
+        <div class="btn-row"><a class="btn btn-light" href="#ws">Start the worksheet</a></div>
+      </div>
     </div>
   </section>
 
@@ -297,9 +301,8 @@
             <input id="cc-emails" type="text" inputmode="email" autocomplete="off" placeholder="client@example.com, family@example.com">
             <span class="help">Your client, your family, anyone at the table. Up to 5, separated by commas.</span>
           </div>
-          <label class="check"><input type="checkbox" name="updates" value="yes" id="self-updates"> Send me Endaoment news and giving season reminders.</label>
           <div class="send-row"><button class="btn btn-primary" type="submit" id="email-btn">Email my plan</button></div>
-          <p class="tiny">We email your plan from Endaoment to you and anyone you added. We keep your email address. We don't keep your answers or anyone else's email.</p>
+          <p class="tiny">We email your plan from Endaoment to you and anyone you added.</p>
           <p class="msg" id="email-msg" role="status" hidden></p>
         </form>
       </div>
@@ -311,6 +314,18 @@
           <a class="btn btn-primary claim-link done-locked" href="claim/?done=1" id="done-btn" aria-disabled="true" tabindex="-1">Finished? Claim your gift</a>
         </div>
         <p class="finish-note" id="finish-note">Email your plan first, then claim your gift.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="help">
+    <div class="wrap">
+      <div class="help-band">
+        <div>
+          <h2>Want help with your plan?</h2>
+          <p>Talk to our team. We can help you put your plan into action, from opening a DAF to your first gift.</p>
+        </div>
+        <div class="btn-row"><a class="btn btn-primary" href="mailto:hello@endaoment.org?subject=Zoom%20Out%20%26%20Give%3A%20help%20with%20our%20plan">Talk to our team</a></div>
       </div>
     </div>
   </section>
@@ -465,7 +480,7 @@ $("#email-form").addEventListener("submit", async e => {
   let ok = false;
   try {
     const res = await fetch(CONFIG.sendPlanUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
-      email: self, cc: others, updates: f.elements.updates.checked, plan: worksheetText(),
+      email: self, cc: others, plan: worksheetText(),
       website: f.elements.website.value, secondsOnPage: Math.round((Date.now() - loadedAt) / 1000)
     }) });
     ok = res.ok && (await res.json()).ok;
@@ -487,6 +502,6 @@ if ([...utm.keys()].length) $$(".claim-link").forEach(a => { const u = new URL(a
 
 
 </script>
-<script src="assets/edit-mode.js?v=2026-10-22j"></script>
+<script src="assets/edit-mode.js?v=2026-10-22k"></script>
 </body>
 </html>

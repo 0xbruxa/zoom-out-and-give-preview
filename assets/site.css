@@ -313,3 +313,49 @@ section{padding:88px 0 0}
 .benefits li{border-top:2px solid var(--blue-200);padding-top:16px}
 .benefits h3{font-size:19px;line-height:1.2}
 .benefits p{margin-top:6px;font-size:15.5px}
+
+/* Round 2 (Oct 22): why text in two lines, questions as blocks, CTA bands */
+.why-text{grid-column:2}
+.why-text p{padding:0}
+.why-text p+p{margin-top:12px;font-weight:600;color:var(--blue-900)}
+.faq{max-width:none;border:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.faq-card{background:var(--slate-100);border-radius:var(--radius-md);padding:26px 26px 28px}
+.faq-card h3{font-size:21px;line-height:1.2;text-wrap:balance}
+.faq-card p{margin-top:10px;font-size:15.5px}
+.cta-band{position:relative;overflow:hidden;padding:56px;border-radius:var(--radius-lg);text-align:center;background:var(--blue-900) url(night.webp) center/cover no-repeat}
+.cta-band::before{content:"";position:absolute;inset:0;background:rgba(11,39,101,.7)}
+.cta-band>*{position:relative}
+.cta-band h2{color:var(--white);font-size:clamp(32px,4vw,46px)}
+.cta-band p{margin:12px auto 0;max-width:520px;color:rgba(255,255,255,.9);font-size:18px}
+.cta-band .btn-row{justify-content:center;margin-top:26px}
+.cta-band .btn{min-height:56px;padding:0 28px;font-size:18px}
+#help{padding-bottom:88px}
+.help-band{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;background:var(--slate-100);border-radius:var(--radius-lg);padding:40px 48px}
+.help-band h2{font-size:clamp(26px,3vw,34px)}
+.help-band p{margin-top:8px;max-width:560px}
+@media (max-width:900px){
+  .why-text{grid-column:1;margin-top:16px}
+  .faq{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .faq{grid-template-columns:1fr}
+  .cta-band{padding:40px 22px}
+  .cta-band .btn{width:100%}
+  .help-band{padding:28px 22px}
+  .help-band .btn-row,.help-band .btn{width:100%}
+  #help{padding-bottom:64px}
+}
+@media print{#start,#help{display:none!important}}
+
+/* Thanks page: LinkedIn post templates */
+.thanks{max-width:860px}
+.share{margin-top:32px;padding-top:28px;border-top:1.5px solid var(--slate-100);text-align:left}
+.share h2{font-size:28px;text-align:center}
+.share .share-help{text-align:center;margin:8px auto 0;max-width:560px;font-size:15.5px}
+.share-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.share-card{display:flex;flex-direction:column;gap:14px;background:var(--slate-100);border-radius:var(--radius-md);padding:22px}
+.share-who{font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-700)}
+.share-text{white-space:pre-line;margin:0!important;max-width:none!important;font-size:15px;line-height:1.55;color:var(--blue-900);background:var(--white);border-radius:12px;padding:16px;flex:1}
+.share-card .btn{align-self:flex-start}
+.share-actions{justify-content:center;margin-top:20px}
+@media (max-width:700px){.share-cards{grid-template-columns:1fr}.share-card .btn{align-self:stretch}}
