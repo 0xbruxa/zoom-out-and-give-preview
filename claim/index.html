@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claim your gift | Zoom Out &amp; Give 2026 | Endaoment</title>
+<meta name="description" content="Finished the Zoom Out &amp; Give worksheet? Claim your gift.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  /* On its own page the claim section starts right under the header */
+  .claim-section{margin-top:0}
+  .claim-section .section-head a{color:var(--white);text-decoration:underline;text-underline-offset:3px}
+</style>
+</head>
+<body>
+<div class="preview-bar" id="preview-bar" hidden>Preview for review. The gift form doesn't send anything yet.</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a href="https://endaoment.org" aria-label="Endaoment home"><img src="../assets/logo-endaoment-blue.svg" alt="Endaoment" width="145" height="30"></a>
+    <a class="daf-link" href="https://app.endaoment.org" target="_blank" rel="noopener">Open a donor-advised fund</a>
+  </div>
+</header>
+
+<main>
+  <section class="claim-section" id="claim">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Zoom Out &amp; Give 2026</div>
+        <h2>Claim your gift.</h2>
+        <p>Finished the worksheet? Tell us one thing that came out of it, and we'll mail a very sweet Endaoment hat for everyone at the table, up to four, with a thank-you card. Haven't done it yet? <a href="../#worksheet">Start the worksheet.</a></p>
+      </div>
+
+      <div class="claim">
+        <form id="claim-form" name="claim-hat" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company_site" data-netlify-recaptcha="true" novalidate>
+          <input type="hidden" name="form-name" value="claim-hat">
+          <input type="hidden" name="subject" value="Zoom Out &amp; Give gift claim (%{submissionId})">
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
+          <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company_site" tabindex="-1" autocomplete="off"></label></div>
+
+          <fieldset class="q-done">
+            <legend>Did you sit down with the Zoom Out &amp; Give worksheet?</legend>
+            <div class="f" data-field="completed">
+              <div class="chips">
+                <label class="chip"><input type="radio" name="completed" value="yes" required><span>Yes, we did.</span></label>
+                <label class="chip"><input type="radio" name="completed" value="not yet"><span>Not yet.</span></label>
+              </div>
+              <span class="err">Pick one to keep going.</span>
+            </div>
+            <p class="not-yet" id="not-yet" hidden>No rush. <a href="../#worksheet" id="not-yet-link">Here's the worksheet.</a> Come back when you've had your hour.</p>
+          </fieldset>
+
+          <fieldset class="after-yes">
+            <legend id="takeaway-q">What's one thing that came out of the conversation?</legend>
+            <p class="help" id="takeaway-help">A cause, a nonprofit, a surprise. A line is plenty.</p>
+            <div class="f" data-field="takeaway">
+              <textarea id="takeaway" name="takeaway" maxlength="600" required aria-labelledby="takeaway-q" aria-describedby="takeaway-help"></textarea>
+              <span class="err">Add one line, even a short one.</span>
+            </div>
+          </fieldset>
+
+          <fieldset class="after-yes">
+            <legend>Open or fund an Endaoment DAF.</legend>
+            <div class="daf-box">
+              <p>Already have one? Skip ahead.</p>
+              <div class="btn-row">
+                <a class="btn btn-primary" href="https://app.endaoment.org" target="_blank" rel="noopener">Go to the Endaoment App</a>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="after-yes">
+            <legend>How many hats?</legend>
+            <p class="help">One for everyone at the table, up to four.</p>
+            <div class="chips hat-count">
+              <label class="chip"><input type="radio" name="hats" value="1" checked aria-label="1 hat"><span>1</span></label>
+              <label class="chip"><input type="radio" name="hats" value="2" aria-label="2 hats"><span>2</span></label>
+              <label class="chip"><input type="radio" name="hats" value="3" aria-label="3 hats"><span>3</span></label>
+              <label class="chip"><input type="radio" name="hats" value="4" aria-label="4 hats"><span>4</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="after-yes">
+            <legend>Where should we send your gift?</legend>
+            <p class="help">US addresses only for now.</p>
+            <div class="grid2">
+              <div class="f" data-field="name"><label for="name">Full name <span class="req">*</span></label><input id="name" name="name" type="text" autocomplete="name" required><span class="err">Add your name.</span></div>
+              <div class="f" data-field="email"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" autocomplete="email" required><span class="err">Add an email we can reach you at.</span></div>
+            </div>
+            <div class="f" data-field="address1"><label for="address1">Street address <span class="req">*</span></label><input id="address1" name="address1" type="text" autocomplete="address-line1" required><span class="err">Add a street address.</span></div>
+            <div class="f"><label for="address2">Apartment, suite, etc.</label><input id="address2" name="address2" type="text" autocomplete="address-line2"></div>
+            <div class="grid3">
+              <div class="f" data-field="city"><label for="city">City <span class="req">*</span></label><input id="city" name="city" type="text" autocomplete="address-level2" required><span class="err">Add a city.</span></div>
+              <div class="f" data-field="state"><label for="state">State <span class="req">*</span></label>
+                <select id="state" name="state" autocomplete="address-level1" required><option value="">Choose</option><option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="DC">DC</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option><option value="PR">PR</option></select><span class="err">Pick a state.</span></div>
+              <div class="f" data-field="zip"><label for="zip">ZIP <span class="req">*</span></label><input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="\d{5}(-\d{4})?" maxlength="10" required><span class="err">Use a 5-digit ZIP.</span></div>
+            </div>
+            <label class="check"><input type="checkbox" name="advisor" value="yes">I'm a financial advisor.</label>
+            <label class="check"><input type="checkbox" name="updates" value="yes">Send me Endaoment news and giving season reminders.</label>
+          </fieldset>
+
+          <div class="captcha no-print after-yes" data-netlify-recaptcha="true"></div>
+          <div class="submit-row after-yes">
+            <button class="btn btn-primary" type="submit" id="submit-btn">Send my gift</button>
+            <p class="privacy">We use your address only to send your gift. While supplies last.</p>
+            <p class="form-msg" id="form-msg" role="alert" hidden></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="advisor-note"><img src="../assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: Send to clients before year-end meetings to start the conversation.</p></div>
+    <div class="foot-row">
+      <span>Open a donor-advised fund at <a href="https://app.endaoment.org" target="_blank" rel="noopener">app.endaoment.org</a></span>
+      <span>Endaoment does not provide financial or tax advice. Consult your CPA.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Same settings as the main page. */
+const CONFIG = {
+  minSecondsOnPage: 4,       // claims sent faster than this are treated as bots
+  liveHosts: []              // add a custom domain here if one ever points at the Netlify site
+};
+// The form only sends on Netlify. Anywhere else (this computer, a review link) it runs as a preview.
+const IS_PREVIEW = location.protocol === "file:" || !(location.hostname.endsWith(".netlify.app") || CONFIG.liveHosts.includes(location.hostname));
+if (IS_PREVIEW) document.getElementById("preview-bar").hidden = false;
+const loadedAt = Date.now();
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+/* UTM passthrough */
+const qs = new URLSearchParams(location.search);
+["utm_source","utm_medium","utm_campaign","utm_content"].forEach(k => { const el = $(`[name=${k}]`); if (el) el.value = qs.get(k) || ""; });
+
+const form = $("#claim-form");
+/* "Not yet" hides the rest of the form and points back to the worksheet */
+function syncNotYet(){
+  const notYet = form.elements.completed.value === "not yet";
+  form.classList.toggle("is-not-yet", notYet);
+  $("#not-yet").hidden = !notYet;
+}
+form.addEventListener("change", e => { if (e.target.name === "completed") syncNotYet(); });
+/* Coming from "Finished? Claim your gift" on the worksheet */
+if (qs.get("done")) { $("input[name=completed][value=yes]", form).checked = true; syncNotYet(); }
+function checkField(wrap){
+  const el = $("input,textarea,select", wrap);
+  let valid;
+  if (el.type === "radio") valid = wrap.dataset.field === "completed" ? form.elements.completed.value === "yes" : form.elements[el.name].value !== "";
+  else if (el.type === "checkbox") valid = el.checked;
+  else valid = el.checkValidity() && el.value.trim() !== "";
+  wrap.classList.toggle("invalid", !valid);
+  el.setAttribute("aria-invalid", String(!valid));
+  return valid ? null : el;
+}
+function validate(){
+  let first = null;
+  $$("[data-field]", form).forEach(wrap => { const bad = checkField(wrap); first = first || bad; });
+  if (first) first.focus();
+  return !first;
+}
+form.addEventListener("input", e => { const w = e.target.closest("[data-field]"); if (w && w.classList.contains("invalid")) checkField(w); });
+
+form.addEventListener("submit", e => {
+  const msg = $("#form-msg"); msg.hidden = true;
+  if (!validate()) { e.preventDefault(); return; }
+  const captcha = $("[name='g-recaptcha-response']", form);
+  if (captcha && !captcha.value) { e.preventDefault(); msg.textContent = "Tick the box above the button, then send your gift."; msg.hidden = false; return; }
+  const tooFast = (Date.now() - loadedAt) / 1000 < CONFIG.minSecondsOnPage;
+  if (IS_PREVIEW || tooFast) { e.preventDefault(); location.href = "../thanks/" + (IS_PREVIEW ? "?preview=1" : ""); return; }
+  // Live on Netlify: the browser posts the form, Netlify saves it and opens /thanks/.
+  const btn = $("#submit-btn"); btn.textContent = "Sending...";
+  setTimeout(() => { btn.disabled = true; }, 0);
+});
+</script>
+</body>
+</html>
