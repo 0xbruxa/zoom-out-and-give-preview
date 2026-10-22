@@ -434,3 +434,6 @@ h1,h2,.hero h1{letter-spacing:-.02em}
   .hero p.hero-what,.hero p.lede{max-width:620px}
   .hero::before{background:linear-gradient(90deg,rgba(11,39,101,.88) 0%,rgba(11,39,101,.7) 55%,rgba(11,39,101,.2) 92%)}
 }
+
+/* What you leave with: the line under the heading stays on one line on laptop and desktop */
+@media (min-width:900px){#get .section-head p{max-width:none;white-space:nowrap}}
