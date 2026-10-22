@@ -307,7 +307,9 @@ section{padding:88px 0 0}
 @media print{#why,#faq,#proof{display:none!important}}
 
 /* Benefits list under What you leave with */
-.benefits{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.benefits{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+@media (max-width:900px){.benefits{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.benefits{grid-template-columns:1fr}}
 .benefits li{border-top:2px solid var(--blue-200);padding-top:16px}
 .benefits h3{font-size:19px;line-height:1.2}
 .benefits p{margin-top:6px;font-size:15.5px}
