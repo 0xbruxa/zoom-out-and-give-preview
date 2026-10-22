@@ -53,7 +53,7 @@
       </div>
       <ol class="steps">
         <li><span class="num">1</span><h3>Gather your people</h3><p>Family, a partner, your advisor, or just you. Everyone at the table gets a say.</p></li>
-        <li><span class="num">2</span><h3>Fill out the worksheet</h3><p>Print it or fill it out right here. Zoom out, pick your causes, and make a plan.</p></li>
+        <li><span class="num">2</span><h3>Fill out the worksheet</h3><p>Print it or fill it out right here. Zoom out, pick your causes, make a plan, and email it to yourself and anyone you planned with.</p></li>
         <li><span class="num">3</span><h3>Claim your gift</h3><p>Tell us one thing that came out of it and where to send your gift.</p></li>
       </ol>
     </div>
@@ -155,6 +155,7 @@
                   <thead><tr><th scope="col">Who</th><th scope="col">Cause</th><th scope="col">Nonprofit</th></tr></thead>
                   <tbody id="np-body"></tbody>
                 </table>
+                <button class="add-row no-print" type="button" id="np-add">+ Add another nonprofit</button>
                 <p class="tiny">Know a nonprofit whose page needs an update? Tell us at <a href="mailto:hello@endaoment.org">hello@endaoment.org</a>.</p>
               </div>
             </div>
@@ -215,29 +216,40 @@
       </form>
 
       <style>
-        .email-self{margin:20px 0 4px;padding:18px 20px;border:1px solid rgba(15,36,62,.12);border-radius:14px;background:rgba(98,126,234,.06)}
-        .email-self h3{margin:0 0 4px;font-size:18px}
-        .email-self p{margin:0 0 12px}
-        .email-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-        .email-row input[type=email]{flex:1 1 240px;min-width:0;padding:12px 14px;border:1px solid rgba(15,36,62,.25);border-radius:10px;font:inherit}
-        .email-self .check{display:flex;gap:8px;align-items:flex-start;margin-top:10px;font-size:14px}
-        .email-self .tiny{margin-top:8px}
+        .email-self{margin:20px 0 4px;padding:20px 22px;border:1px solid rgba(15,36,62,.12);border-radius:14px;background:rgba(98,126,234,.06)}
+        .email-self h3{margin:0 0 4px;font-size:20px}
+        .email-self p{margin:0 0 4px}
+        .email-self .step-tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-700);margin-bottom:6px}
+        .email-self .field{display:grid;gap:6px;margin-top:14px}
+        .email-self .field label{font-weight:600;font-size:15px;color:var(--blue-900)}
+        .email-self .field input{width:100%;min-width:0;padding:12px 14px;border:1px solid rgba(15,36,62,.25);border-radius:12px;font:inherit;background:var(--white)}
+        .email-self .help{font-size:13px;font-weight:400;color:var(--slate-600)}
+        .email-self .check{display:flex;gap:8px;align-items:flex-start;margin-top:12px;font-size:14px}
+        .email-self .send-row{margin-top:16px}
+        .email-self .tiny{margin-top:10px}
         .email-self .msg{margin-top:10px;font-size:14px}
-        .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+        .done-locked{opacity:.45;pointer-events:none}
+        .finish-note{flex-basis:100%;font-size:14px;color:var(--slate-600)}
       </style>
       <div class="email-self no-print" id="email-self">
         <form id="email-form" name="worksheet-email" method="POST" data-netlify="true" netlify-honeypot="bot_field" novalidate>
           <input type="hidden" name="form-name" value="worksheet-email">
           <p hidden><label>Leave this empty <input name="bot_field"></label></p>
-          <h3>Email your answers to yourself</h3>
-          <p>Keep your plan in your inbox, so it's there when you sit down again.</p>
-          <div class="email-row">
-            <label class="visually-hidden" for="self-email">Your email</label>
+          <span class="step-tag">Last step</span>
+          <h3>Email your plan</h3>
+          <p>Send your answers to yourself, and to anyone you planned with, so the plan is in your inbox when you sit down again.</p>
+          <div class="field">
+            <label for="self-email">Your email</label>
             <input id="self-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-            <button class="btn btn-outline" type="submit" id="email-btn">Email them to me</button>
+          </div>
+          <div class="field">
+            <label for="cc-emails">Also send to <span class="help">(optional)</span></label>
+            <input id="cc-emails" type="text" inputmode="email" autocomplete="off" placeholder="client@example.com, family@example.com">
+            <span class="help">Your client, your family, anyone at the table. Separate emails with commas.</span>
           </div>
           <label class="check"><input type="checkbox" name="updates" value="yes" id="self-updates"> Send me Endaoment news and giving season reminders.</label>
-          <p class="tiny">Your answers open in your own email app. We keep your email address, never your answers.</p>
+          <div class="send-row"><button class="btn btn-primary" type="submit" id="email-btn">Email my plan</button></div>
+          <p class="tiny">Your plan opens in your own email app, addressed to you and anyone you added. We keep only your email address, never your answers or anyone else's email.</p>
           <p class="msg" id="email-msg" role="status" hidden></p>
         </form>
       </div>
@@ -246,8 +258,9 @@
         <span class="saved" id="saved" aria-live="polite">Your answers save on this device as you type.</span>
         <div class="btn-row">
           <button class="btn btn-outline" type="button" id="clear-btn">Clear my answers</button>
-          <a class="btn btn-primary claim-link" href="claim/?done=1" id="done-btn">Finished? Claim your gift</a>
+          <a class="btn btn-primary claim-link done-locked" href="claim/?done=1" id="done-btn" aria-disabled="true" tabindex="-1">Finished? Claim your gift</a>
         </div>
+        <p class="finish-note" id="finish-note">Email your plan first, then claim your gift.</p>
       </div>
     </div>
   </section>
@@ -284,9 +297,10 @@ const loadedAt = Date.now();
 const $ = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 
-/* Nonprofit table: five rows, like the paper sheet */
+/* Nonprofit table: five rows like the paper sheet, plus as many more as people add */
 const npBody = $("#np-body");
-for (let i = 1; i <= 5; i++) {
+function addNpRow(){
+  const i = npBody.rows.length + 1;
   const tr = document.createElement("tr");
   ["who","cause","nonprofit"].forEach(col => {
     const td = document.createElement("td");
@@ -296,7 +310,16 @@ for (let i = 1; i <= 5; i++) {
     td.appendChild(inp); tr.appendChild(td);
   });
   npBody.appendChild(tr);
+  return tr;
 }
+for (let i = 1; i <= 5; i++) addNpRow();
+/* Rebuild any extra rows saved on this device before the answers are filled back in */
+(() => {
+  let saved = null; try { saved = JSON.parse(localStorage.getItem("zog2026-worksheet")); } catch(e) {}
+  const rows = Math.max(0, ...Object.keys(saved || {}).map(k => (k.match(/^np_\w+?_(\d+)$/) || [])[1] || 0).map(Number));
+  while (npBody.rows.length < rows) addNpRow();
+})();
+$("#np-add").addEventListener("click", () => { const tr = addNpRow(); $("input", tr).focus(); });
 
 /* PDF link */
 const pdf = $("#pdf-link");
@@ -346,7 +369,7 @@ function worksheetText(){
   ["who","right","enough"].forEach(n => add(lab(n), d[n]));
   if ((d.cause || []).length) add("Causes:", d.cause.join(", "));
   add(lab("problem"), d.problem);
-  const nps = [1,2,3,4,5].map(i => [d[`np_who_${i}`], d[`np_cause_${i}`], d[`np_nonprofit_${i}`]].filter(Boolean).join(" / ")).filter(Boolean);
+  const nps = Array.from({ length: npBody.rows.length }, (_, k) => k + 1).map(i => [d[`np_who_${i}`], d[`np_cause_${i}`], d[`np_nonprofit_${i}`]].filter(Boolean).join(" / ")).filter(Boolean);
   if (nps.length) add("Nonprofits (who / cause / nonprofit):", "\n" + nps.join("\n"));
   add(lab("fit"), d.fit);
   const done = $$("input[type=checkbox]", ws).filter(el => el.name !== "cause" && el.checked).map(el => "- " + (el.closest("label") ? el.closest("label").textContent.trim() : el.name));
@@ -355,15 +378,29 @@ function worksheetText(){
   lines.push("Zoom Out & Give 2026, from Endaoment.");
   return lines.join("\n");
 }
+const EMAIL_KEY = "zog2026-email";
+const isEmail = v => /^[^@\s,;]+@[^@\s,;]+\.[^@\s,;]+$/.test(v);
+function unlockDone(){
+  const b = $("#done-btn"); b.classList.remove("done-locked"); b.removeAttribute("aria-disabled"); b.removeAttribute("tabindex");
+  $("#finish-note").textContent = "Your plan is on its way to your inbox. Now claim your gift.";
+}
+try { const e = localStorage.getItem(EMAIL_KEY); if (e) { $("#self-email").value = e; unlockDone(); } } catch(e) {}
 $("#email-form").addEventListener("submit", e => {
   e.preventDefault();
   const f = e.target, email = $("#self-email"), msg = $("#email-msg");
-  if (!email.checkValidity() || !email.value.trim()) { msg.textContent = "Add your email address first."; msg.hidden = false; email.focus(); return; }
+  const self = email.value.trim();
+  const others = $("#cc-emails").value.split(/[\s,;]+/).filter(Boolean);
+  if (!isEmail(self)) { msg.textContent = "Add your email address to finish."; msg.hidden = false; email.focus(); return; }
+  const bad = others.filter(x => !isEmail(x));
+  if (bad.length) { msg.textContent = "Check this email: " + bad[0]; msg.hidden = false; $("#cc-emails").focus(); return; }
   if (!IS_PREVIEW && !f.elements.bot_field.value) {
     fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(f)).toString() }).catch(() => {});
   }
-  const href = "mailto:" + encodeURIComponent(email.value.trim()) + "?subject=" + encodeURIComponent("My Zoom Out & Give plan") + "&body=" + encodeURIComponent(worksheetText());
-  msg.textContent = "Your email app should open with your answers. If it doesn't, use Print or save as PDF above.";
+  try { localStorage.setItem(EMAIL_KEY, self); } catch(err) {}
+  unlockDone();
+  const cc = others.length ? "cc=" + others.map(encodeURIComponent).join(",") + "&" : "";
+  const href = "mailto:" + encodeURIComponent(self) + "?" + cc + "subject=" + encodeURIComponent("Our Zoom Out & Give plan") + "&body=" + encodeURIComponent(worksheetText());
+  msg.textContent = "Your email app should open with your plan, addressed to you" + (others.length ? " and " + others.length + " more" : "") + ". If it doesn't, use Print or save as PDF above.";
   msg.hidden = false;
   location.href = href;
 });
