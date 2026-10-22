@@ -17,7 +17,7 @@
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
 <link rel="preload" href="assets/forest.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="assets/site.css?v=2026-10-22i">
+<link rel="stylesheet" href="assets/site.css?v=2026-10-22j">
 </head>
 <body>
 <div class="preview-bar" id="preview-bar" hidden>Preview for review. The forms don't send anything yet.</div>
@@ -413,6 +413,24 @@ $("#clear-btn").addEventListener("click", () => {
 });
 $("#print-btn").addEventListener("click", () => window.print());
 
+/* The plan as plain text: every answer with its question, for the email */
+function worksheetText(){
+  const d = readWs(), lines = ["My Zoom Out & Give plan", ""];
+  const add = (label, v) => { if (v && String(v).trim()) lines.push(label + " " + String(v).trim(), ""); };
+  const lab = name => { const el = $(`[name="${name}"]`, ws); const l = el && (el.id ? $(`label[for="${el.id}"]`) : el.closest("label")); return l ? l.textContent.trim() : name; };
+  ["who","right","enough"].forEach(n => add(lab(n), d[n]));
+  if ((d.cause || []).length) add("Causes:", d.cause.join(", "));
+  add(lab("problem"), d.problem);
+  const nps = Array.from({ length: npBody.rows.length }, (_, k) => k + 1).map(i => [d[`np_who_${i}`], d[`np_cause_${i}`], d[`np_nonprofit_${i}`]].filter(Boolean).join(" / ")).filter(Boolean);
+  if (nps.length) add("Nonprofits (who / cause / nonprofit):", "\n" + nps.join("\n"));
+  add(lab("fit"), d.fit);
+  const done = $$("input[type=checkbox]", ws).filter(el => el.name !== "cause" && el.checked).map(el => "- " + (el.closest("label") ? el.closest("label").textContent.trim() : el.name));
+  if (done.length) add("Checked off:", "\n" + done.join("\n"));
+  ["else","move","done","back"].forEach(n => add(lab(n), d[n]));
+  lines.push("Zoom Out & Give 2026, from Endaoment.");
+  return lines.join("\n");
+}
+
 /* Email the plan. Endaoment's endpoint sends it through Mailjet to the visitor and anyone they added; nothing is stored.
    If the send fails, the visitor can still open the plan in their own email app. */
 const EMAIL_KEY = "zog2026-email";
@@ -469,6 +487,6 @@ if ([...utm.keys()].length) $$(".claim-link").forEach(a => { const u = new URL(a
 
 
 </script>
-<script src="assets/edit-mode.js?v=2026-10-22i"></script>
+<script src="assets/edit-mode.js?v=2026-10-22j"></script>
 </body>
 </html>
