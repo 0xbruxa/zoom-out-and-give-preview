@@ -1,3 +1,4 @@
+@font-face{font-family:"ZOGHaptik";src:url(https://endaoment.org/_next/static/media/753bbbfe6f50dbc1-s.p.otf) format("opentype");font-weight:500;font-display:swap}
 @font-face{font-family:"ZOGHaptik";src:url(https://endaoment.org/_next/static/media/7c0518813d70e01f-s.p.otf) format("opentype");font-weight:700;font-display:swap}
 @font-face{font-family:"ZOGGraphik";src:url(https://endaoment.org/_next/static/media/83115c761e2f2a1f-s.p.woff) format("woff");font-weight:400;font-display:swap}
 @font-face{font-family:"ZOGGraphik";src:url(https://endaoment.org/_next/static/media/52cb4cf1255a79b4-s.p.woff) format("woff");font-weight:500;font-display:swap}
@@ -420,3 +421,8 @@ section{padding:88px 0 0}
 .why-band .section-head h2{font-size:clamp(30px,3.6vw,42px)}
 .why-text p.why-source{margin-top:14px;font-weight:400;font-size:13.5px;color:var(--slate-600)}
 .why-text p.why-source em{font-style:italic}
+
+/* Design System 2.0 type guide (Figma "Typography Guidance"). Colors stay the Giving Season ID. */
+body{letter-spacing:.005em}
+h1,h2,.hero h1{letter-spacing:-.02em}
+.steps h3,.get-card h3,.benefits h3,.faq-card h3,.email-self h3,.claim legend,.share h2,.hero p.hero-what{font-weight:500;letter-spacing:-.01em}
