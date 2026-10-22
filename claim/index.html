@@ -7,7 +7,7 @@
 <meta name="description" content="Finished the Zoom Out &amp; Give worksheet? Claim your gift.">
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="../assets/site.css?v=2026-10-22r">
+<link rel="stylesheet" href="../assets/site.css?v=2026-10-22s">
 <style>
   /* On its own page the claim section starts right under the header */
   .claim-section{margin-top:0}
@@ -38,20 +38,10 @@
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
           <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
-          <fieldset class="q-done">
-            <legend>Did you sit down with the Zoom Out &amp; Give worksheet?</legend>
-            <div class="f" data-field="completed">
-              <div class="chips">
-                <label class="chip"><input type="radio" name="completed" value="yes" required><span>Yes, we did.</span></label>
-                <label class="chip"><input type="radio" name="completed" value="not yet"><span>Not yet.</span></label>
-              </div>
-              <span class="err">Pick one to keep going.</span>
-            </div>
-            <p class="not-yet" id="not-yet" hidden>No rush. <a href="../#worksheet" id="not-yet-link">Here's the worksheet.</a> Come back when you've had your hour.</p>
-          </fieldset>
+          <input type="hidden" name="completed" value="yes">
 
           <fieldset class="after-yes">
-            <legend id="takeaway-q">What's one thing that came out of the conversation?</legend>
+            <legend id="takeaway-q">Tell us about your experience. What's one thing that came out of it?</legend>
             <p class="help" id="takeaway-help">A cause, a nonprofit, a surprise. A line is plenty.</p>
             <div class="f" data-field="takeaway">
               <textarea id="takeaway" name="takeaway" maxlength="600" required aria-labelledby="takeaway-q" aria-describedby="takeaway-help"></textarea>
@@ -142,17 +132,8 @@ const qs = new URLSearchParams(location.search);
 ["utm_source","utm_medium","utm_campaign","utm_content"].forEach(k => { const el = $(`[name=${k}]`); if (el) el.value = qs.get(k) || ""; });
 
 const form = $("#claim-form");
-/* "Not yet" hides the rest of the form and points back to the worksheet */
-function syncNotYet(){
-  const notYet = form.elements.completed.value === "not yet";
-  form.classList.toggle("is-not-yet", notYet);
-  $("#not-yet").hidden = !notYet;
-}
-form.addEventListener("change", e => { if (e.target.name === "completed") syncNotYet(); });
 /* Fill in the email they already used to send their plan (kept on this device only) */
 try { const e = localStorage.getItem("zog2026-email"); if (e && !form.elements.email.value) form.elements.email.value = e; } catch(e) {}
-/* Coming from "Finished? Claim your gift" on the worksheet */
-if (qs.get("done")) { $("input[name=completed][value=yes]", form).checked = true; syncNotYet(); }
 function checkField(wrap){
   const el = $("input,textarea,select", wrap);
   let valid;
@@ -197,6 +178,6 @@ form.addEventListener("submit", async e => {
   msg.textContent = "We couldn't send your claim just now. Try again in a minute, or email hello@endaoment.org."; msg.hidden = false;
 });
 </script>
-<script src="../assets/edit-mode.js?v=2026-10-22r"></script>
+<script src="../assets/edit-mode.js?v=2026-10-22s"></script>
 </body>
 </html>
