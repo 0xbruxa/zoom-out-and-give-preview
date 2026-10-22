@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zoom Out &amp; Give 2026 | Endaoment</title>
-<meta name="description" content="An hour with your people. Plan your giving together on one page, then claim your Endaoment hats.">
+<meta name="description" content="An hour with your people. Plan your giving together on one page, then claim your gift.">
 <meta property="og:title" content="Zoom Out &amp; Give 2026">
 <meta property="og:description" content="Take a moment to gather with your people and plan your giving. Start with one page.">
 <meta property="og:type" content="website">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<div class="preview-bar" id="preview-bar" hidden>Preview for review. The hat form doesn't send anything yet.</div>
+<div class="preview-bar" id="preview-bar" hidden>Preview for review. The forms don't send anything yet.</div>
 
 <header class="site-head">
   <div class="wrap">
@@ -38,7 +38,7 @@
         <p class="lede">Sit down with the people you give with, fill out one page together, and leave with a plan for your giving. Everyone at the table gets a very sweet Endaoment hat.</p>
         <div class="btn-row">
           <a class="btn btn-light" href="#worksheet" id="hero-ws">Start the worksheet</a>
-          <a class="btn btn-ghost" href="#claim">Done? Claim your hats</a>
+          <a class="btn btn-ghost claim-link" href="claim/">Done? Claim your gift</a>
         </div>
         <p class="meta">About 30 minutes. Your answers stay with you.</p>
       </div>
@@ -63,8 +63,8 @@
         <article class="get-card">
           <div class="art" style="background-image:url(assets/table.webp);background-position:center 35%" role="img" aria-label="A family around a table, planning together"></div>
           <div class="body">
-            <h3>A very sweet Endaoment hat</h3>
-            <p>Finish the worksheet and we'll mail one for everyone at the table, up to four.</p>
+            <h3>A gift for everyone at the table</h3>
+            <p>A very sweet Endaoment hat for everyone who sat down, up to four, with a thank-you card.</p>
           </div>
         </article>
       </div>
@@ -80,7 +80,7 @@
       <ol class="steps">
         <li><span class="num">1</span><h3>Gather your people</h3><p>Family, a partner, your advisor, or just you. Everyone at the table gets a say.</p></li>
         <li><span class="num">2</span><h3>Fill out the worksheet</h3><p>Print it or fill it out right here. Zoom out, pick your causes, and make a plan.</p></li>
-        <li><span class="num">3</span><h3>Claim your hats</h3><p>Tell us one thing that came out of it and where to send your hats.</p></li>
+        <li><span class="num">3</span><h3>Claim your gift</h3><p>Tell us one thing that came out of it and where to send your gift.</p></li>
       </ol>
     </div>
   </section>
@@ -246,97 +246,12 @@
         <span class="saved" id="saved" aria-live="polite">Your answers save on this device as you type.</span>
         <div class="btn-row">
           <button class="btn btn-outline" type="button" id="clear-btn">Clear my answers</button>
-          <a class="btn btn-primary" href="#claim" id="done-btn">Finished? Claim your hats</a>
+          <a class="btn btn-primary claim-link" href="claim/?done=1" id="done-btn">Finished? Claim your gift</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="claim-section" id="claim">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">The hats</div>
-        <h2>Finished? Claim your hats.</h2>
-      </div>
-
-      <div class="claim">
-        <form id="claim-form" name="claim-hat" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company_site" data-netlify-recaptcha="true" novalidate>
-          <input type="hidden" name="form-name" value="claim-hat">
-          <input type="hidden" name="subject" value="Zoom Out &amp; Give hat claim (%{submissionId})">
-          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
-          <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company_site" tabindex="-1" autocomplete="off"></label></div>
-
-          <fieldset class="q-done">
-            <legend>Did you sit down with the Zoom Out &amp; Give worksheet?</legend>
-            <div class="f" data-field="completed">
-              <div class="chips">
-                <label class="chip"><input type="radio" name="completed" value="yes" required><span>Yes, we did.</span></label>
-                <label class="chip"><input type="radio" name="completed" value="not yet"><span>Not yet.</span></label>
-              </div>
-              <span class="err">Pick one to keep going.</span>
-            </div>
-            <p class="not-yet" id="not-yet" hidden>No rush. <a href="#worksheet" id="not-yet-link">Here's the worksheet.</a> Come back when you've had your hour.</p>
-          </fieldset>
-
-          <fieldset class="after-yes">
-            <legend id="takeaway-q">What's one thing that came out of the conversation?</legend>
-            <p class="help" id="takeaway-help">A cause, a nonprofit, a surprise. A line is plenty.</p>
-            <div class="f" data-field="takeaway">
-              <textarea id="takeaway" name="takeaway" maxlength="600" required aria-labelledby="takeaway-q" aria-describedby="takeaway-help"></textarea>
-              <span class="err">Add one line, even a short one.</span>
-            </div>
-          </fieldset>
-
-          <fieldset class="after-yes">
-            <legend>Open or fund an Endaoment DAF.</legend>
-            <div class="daf-box">
-              <p>Already have one? Skip ahead.</p>
-              <div class="btn-row">
-                <a class="btn btn-primary" href="https://app.endaoment.org" target="_blank" rel="noopener">Go to the Endaoment App</a>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset class="after-yes">
-            <legend>How many hats?</legend>
-            <p class="help">One for everyone at the table, up to four.</p>
-            <div class="chips hat-count">
-              <label class="chip"><input type="radio" name="hats" value="1" checked aria-label="1 hat"><span>1</span></label>
-              <label class="chip"><input type="radio" name="hats" value="2" aria-label="2 hats"><span>2</span></label>
-              <label class="chip"><input type="radio" name="hats" value="3" aria-label="3 hats"><span>3</span></label>
-              <label class="chip"><input type="radio" name="hats" value="4" aria-label="4 hats"><span>4</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="after-yes">
-            <legend>Where should we send them?</legend>
-            <p class="help">US addresses only for now.</p>
-            <div class="grid2">
-              <div class="f" data-field="name"><label for="name">Full name <span class="req">*</span></label><input id="name" name="name" type="text" autocomplete="name" required><span class="err">Add your name.</span></div>
-              <div class="f" data-field="email"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" autocomplete="email" required><span class="err">Add an email we can reach you at.</span></div>
-            </div>
-            <div class="f" data-field="address1"><label for="address1">Street address <span class="req">*</span></label><input id="address1" name="address1" type="text" autocomplete="address-line1" required><span class="err">Add a street address.</span></div>
-            <div class="f"><label for="address2">Apartment, suite, etc.</label><input id="address2" name="address2" type="text" autocomplete="address-line2"></div>
-            <div class="grid3">
-              <div class="f" data-field="city"><label for="city">City <span class="req">*</span></label><input id="city" name="city" type="text" autocomplete="address-level2" required><span class="err">Add a city.</span></div>
-              <div class="f" data-field="state"><label for="state">State <span class="req">*</span></label>
-                <select id="state" name="state" autocomplete="address-level1" required><option value="">Choose</option><option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="DC">DC</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option><option value="PR">PR</option></select><span class="err">Pick a state.</span></div>
-              <div class="f" data-field="zip"><label for="zip">ZIP <span class="req">*</span></label><input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="\d{5}(-\d{4})?" maxlength="10" required><span class="err">Use a 5-digit ZIP.</span></div>
-            </div>
-            <label class="check"><input type="checkbox" name="advisor" value="yes">I'm a financial advisor.</label>
-            <label class="check"><input type="checkbox" name="updates" value="yes">Send me Endaoment news and giving season reminders.</label>
-          </fieldset>
-
-          <div class="captcha no-print after-yes" data-netlify-recaptcha="true"></div>
-          <div class="submit-row after-yes">
-            <button class="btn btn-primary" type="submit" id="submit-btn">Send my hats</button>
-            <p class="privacy">We use your address only to send your hats. While supplies last.</p>
-            <p class="form-msg" id="form-msg" role="alert" hidden></p>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="site-foot">
@@ -388,7 +303,6 @@ const pdf = $("#pdf-link");
 if (CONFIG.pdfUrl) {
   pdf.href = CONFIG.pdfUrl;
   const hero = $("#hero-ws"); hero.href = CONFIG.pdfUrl; hero.textContent = "Download the worksheet"; hero.setAttribute("download", "");
-  $("#not-yet-link").href = CONFIG.pdfUrl;
 }
 else { pdf.hidden = true; }
 
@@ -423,7 +337,6 @@ $("#clear-btn").addEventListener("click", () => {
   ws.reset(); store.del(WS_KEY); $("#saved").textContent = "Cleared.";
 });
 $("#print-btn").addEventListener("click", () => window.print());
-$("#done-btn").addEventListener("click", () => { $("#claim-form input[name=completed][value=yes]").checked = true; syncNotYet(); });
 
 /* Email the answers to yourself. The answers go into the visitor's own email app; only the email address (and the opt-in) is saved, through Netlify Forms. */
 function worksheetText(){
@@ -457,46 +370,12 @@ $("#email-form").addEventListener("submit", e => {
 
 /* UTM passthrough */
 const qs = new URLSearchParams(location.search);
-["utm_source","utm_medium","utm_campaign","utm_content"].forEach(k => { const el = $(`[name=${k}]`); if (el) el.value = qs.get(k) || ""; });
+/* Carry the link's tags onto the claim page, so each claim still shows its channel */
+const utm = new URLSearchParams();
+["utm_source","utm_medium","utm_campaign","utm_content"].forEach(k => { if (qs.get(k)) utm.set(k, qs.get(k)); });
+if ([...utm.keys()].length) $$(".claim-link").forEach(a => { const u = new URL(a.getAttribute("href"), location.href); utm.forEach((v, k) => u.searchParams.set(k, v)); a.href = u.href; });
 
-/* Validation */
-const form = $("#claim-form");
-/* "Not yet" hides the rest of the form and points back to the worksheet */
-function syncNotYet(){
-  const notYet = form.elements.completed.value === "not yet";
-  form.classList.toggle("is-not-yet", notYet);
-  $("#not-yet").hidden = !notYet;
-}
-form.addEventListener("change", e => { if (e.target.name === "completed") syncNotYet(); });
-function checkField(wrap){
-  const el = $("input,textarea,select", wrap);
-  let valid;
-  if (el.type === "radio") valid = wrap.dataset.field === "completed" ? form.elements.completed.value === "yes" : form.elements[el.name].value !== "";
-  else if (el.type === "checkbox") valid = el.checked;
-  else valid = el.checkValidity() && el.value.trim() !== "";
-  wrap.classList.toggle("invalid", !valid);
-  el.setAttribute("aria-invalid", String(!valid));
-  return valid ? null : el;
-}
-function validate(){
-  let first = null;
-  $$("[data-field]", form).forEach(wrap => { const bad = checkField(wrap); first = first || bad; });
-  if (first) first.focus();
-  return !first;
-}
-form.addEventListener("input", e => { const w = e.target.closest("[data-field]"); if (w && w.classList.contains("invalid")) checkField(w); });
 
-form.addEventListener("submit", e => {
-  const msg = $("#form-msg"); msg.hidden = true;
-  if (!validate()) { e.preventDefault(); return; }
-  const captcha = $("[name='g-recaptcha-response']", form);
-  if (captcha && !captcha.value) { e.preventDefault(); msg.textContent = "Tick the box above the button, then send your hats."; msg.hidden = false; return; }
-  const tooFast = (Date.now() - loadedAt) / 1000 < CONFIG.minSecondsOnPage;
-  if (IS_PREVIEW || tooFast) { e.preventDefault(); location.href = "thanks/" + (IS_PREVIEW ? "?preview=1" : ""); return; }
-  // Live on Netlify: the browser posts the form, Netlify saves it and opens /thanks/.
-  const btn = $("#submit-btn"); btn.textContent = "Sending...";
-  setTimeout(() => { btn.disabled = true; }, 0);
-});
 </script>
 </body>
 </html>
