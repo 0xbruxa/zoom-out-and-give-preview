@@ -446,3 +446,9 @@ h1,h2,.hero h1{letter-spacing:-.02em}
 .get-card .art,.get-card .art.sheet-mock{height:250px;min-height:0;flex:none}
 .get-card .art.sheet-mock{padding:16px 18px;overflow:hidden}
 .footer .socials a,.foot-row .socials a{color:var(--white);font-weight:600}
+
+/* Help band: one line, the question and the button side by side, centered */
+.help-band{justify-content:center;gap:16px 28px;padding:36px 40px}
+.help-band h2{font-size:clamp(24px,2.6vw,32px);text-align:center}
+.help-band .btn{flex:none}
+@media (max-width:640px){.help-band{flex-direction:column}.help-band .btn{width:100%}}
