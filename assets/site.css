@@ -359,3 +359,11 @@ section{padding:88px 0 0}
 .share-card .btn{align-self:flex-start}
 .share-actions{justify-content:center;margin-top:20px}
 @media (max-width:700px){.share-cards{grid-template-columns:1fr}.share-card .btn{align-self:stretch}}
+
+/* Design sweep (Oct 22) */
+.faq-more{background:var(--white);border:1.5px dashed var(--blue-200);display:flex;flex-direction:column;align-items:flex-start}
+.faq-more .btn{margin-top:auto}
+.faq-more p{margin-bottom:18px}
+.email-self .field,.email-self .check{max-width:560px}
+.help-band>div:first-child{flex:1 1 360px}
+#start{padding-top:72px}
