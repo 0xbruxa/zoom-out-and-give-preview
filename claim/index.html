@@ -148,6 +148,8 @@ function syncNotYet(){
   $("#not-yet").hidden = !notYet;
 }
 form.addEventListener("change", e => { if (e.target.name === "completed") syncNotYet(); });
+/* Fill in the email they already used to send their plan (kept on this device only) */
+try { const e = localStorage.getItem("zog2026-email"); if (e && !form.elements.email.value) form.elements.email.value = e; } catch(e) {}
 /* Coming from "Finished? Claim your gift" on the worksheet */
 if (qs.get("done")) { $("input[name=completed][value=yes]", form).checked = true; syncNotYet(); }
 function checkField(wrap){
