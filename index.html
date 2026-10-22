@@ -214,6 +214,34 @@
         <p class="print-foot">For advisors: Send to clients before year-end meetings to start the conversation. Open a donor-advised fund at app.endaoment.org. Endaoment does not provide financial or tax advice. Consult your CPA.</p>
       </form>
 
+      <style>
+        .email-self{margin:20px 0 4px;padding:18px 20px;border:1px solid rgba(15,36,62,.12);border-radius:14px;background:rgba(98,126,234,.06)}
+        .email-self h3{margin:0 0 4px;font-size:18px}
+        .email-self p{margin:0 0 12px}
+        .email-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+        .email-row input[type=email]{flex:1 1 240px;min-width:0;padding:12px 14px;border:1px solid rgba(15,36,62,.25);border-radius:10px;font:inherit}
+        .email-self .check{display:flex;gap:8px;align-items:flex-start;margin-top:10px;font-size:14px}
+        .email-self .tiny{margin-top:8px}
+        .email-self .msg{margin-top:10px;font-size:14px}
+        .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+      </style>
+      <div class="email-self no-print" id="email-self">
+        <form id="email-form" name="worksheet-email" method="POST" data-netlify="true" netlify-honeypot="bot_field" novalidate>
+          <input type="hidden" name="form-name" value="worksheet-email">
+          <p hidden><label>Leave this empty <input name="bot_field"></label></p>
+          <h3>Email your answers to yourself</h3>
+          <p>Keep your plan in your inbox, so it's there when you sit down again.</p>
+          <div class="email-row">
+            <label class="visually-hidden" for="self-email">Your email</label>
+            <input id="self-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <button class="btn btn-outline" type="submit" id="email-btn">Email them to me</button>
+          </div>
+          <label class="check"><input type="checkbox" name="updates" value="yes" id="self-updates"> Send me Endaoment news and giving season reminders.</label>
+          <p class="tiny">Your answers open in your own email app. We keep your email address, never your answers.</p>
+          <p class="msg" id="email-msg" role="status" hidden></p>
+        </form>
+      </div>
+
       <div class="ws-actions">
         <span class="saved" id="saved" aria-live="polite">Your answers save on this device as you type.</span>
         <div class="btn-row">
@@ -396,6 +424,36 @@ $("#clear-btn").addEventListener("click", () => {
 });
 $("#print-btn").addEventListener("click", () => window.print());
 $("#done-btn").addEventListener("click", () => { $("#claim-form input[name=completed][value=yes]").checked = true; syncNotYet(); });
+
+/* Email the answers to yourself. The answers go into the visitor's own email app; only the email address (and the opt-in) is saved, through Netlify Forms. */
+function worksheetText(){
+  const d = readWs(), lines = ["My Zoom Out & Give plan", ""];
+  const add = (label, v) => { if (v && String(v).trim()) lines.push(label + " " + String(v).trim(), ""); };
+  const lab = name => { const el = $(`[name="${name}"]`, ws); const l = el && (el.id ? $(`label[for="${el.id}"]`) : el.closest("label")); return l ? l.textContent.trim() : name; };
+  ["who","right","enough"].forEach(n => add(lab(n), d[n]));
+  if ((d.cause || []).length) add("Causes:", d.cause.join(", "));
+  add(lab("problem"), d.problem);
+  const nps = [1,2,3,4,5].map(i => [d[`np_who_${i}`], d[`np_cause_${i}`], d[`np_nonprofit_${i}`]].filter(Boolean).join(" / ")).filter(Boolean);
+  if (nps.length) add("Nonprofits (who / cause / nonprofit):", "\n" + nps.join("\n"));
+  add(lab("fit"), d.fit);
+  const done = $$("input[type=checkbox]", ws).filter(el => el.name !== "cause" && el.checked).map(el => "- " + (el.closest("label") ? el.closest("label").textContent.trim() : el.name));
+  if (done.length) add("Checked off:", "\n" + done.join("\n"));
+  ["else","move","done","back"].forEach(n => add(lab(n), d[n]));
+  lines.push("Zoom Out & Give 2026, from Endaoment.");
+  return lines.join("\n");
+}
+$("#email-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, email = $("#self-email"), msg = $("#email-msg");
+  if (!email.checkValidity() || !email.value.trim()) { msg.textContent = "Add your email address first."; msg.hidden = false; email.focus(); return; }
+  if (!IS_PREVIEW && !f.elements.bot_field.value) {
+    fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(f)).toString() }).catch(() => {});
+  }
+  const href = "mailto:" + encodeURIComponent(email.value.trim()) + "?subject=" + encodeURIComponent("My Zoom Out & Give plan") + "&body=" + encodeURIComponent(worksheetText());
+  msg.textContent = "Your email app should open with your answers. If it doesn't, use Print or save as PDF above.";
+  msg.hidden = false;
+  location.href = href;
+});
 
 /* UTM passthrough */
 const qs = new URLSearchParams(location.search);
