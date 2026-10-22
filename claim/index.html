@@ -7,7 +7,7 @@
 <meta name="description" content="Finished the Zoom Out &amp; Give worksheet? Claim your gift.">
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="../assets/site.css?v=2026-10-22h">
+<link rel="stylesheet" href="../assets/site.css?v=2026-10-22i">
 <style>
   /* On its own page the claim section starts right under the header */
   .claim-section{margin-top:0}
@@ -34,11 +34,9 @@
       </div>
 
       <div class="claim">
-        <form id="claim-form" name="claim-hat" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company_site" data-netlify-recaptcha="true" novalidate>
-          <input type="hidden" name="form-name" value="claim-hat">
-          <input type="hidden" name="subject" value="Zoom Out &amp; Give gift claim (%{submissionId})">
+        <form id="claim-form" novalidate>
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
-          <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company_site" tabindex="-1" autocomplete="off"></label></div>
+          <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
           <fieldset class="q-done">
             <legend>Did you sit down with the Zoom Out &amp; Give worksheet?</legend>
@@ -64,7 +62,7 @@
           <fieldset class="after-yes">
             <legend>Open or fund an Endaoment DAF.</legend>
             <div class="daf-box">
-              <p>Already have one? Skip ahead.</p>
+              <p>Start a demo account</p>
               <div class="btn-row">
                 <a class="btn btn-primary" href="https://app.endaoment.org" target="_blank" rel="noopener">Go to the Endaoment App</a>
               </div>
@@ -98,10 +96,8 @@
               <div class="f" data-field="zip"><label for="zip">ZIP <span class="req">*</span></label><input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="\d{5}(-\d{4})?" maxlength="10" required><span class="err">Use a 5-digit ZIP.</span></div>
             </div>
             <label class="check"><input type="checkbox" name="advisor" value="yes">I'm a financial advisor.</label>
-            <label class="check"><input type="checkbox" name="updates" value="yes">Send me Endaoment news and giving season reminders.</label>
           </fieldset>
 
-          <div class="captcha no-print after-yes" data-netlify-recaptcha="true"></div>
           <div class="submit-row after-yes">
             <button class="btn btn-primary" type="submit" id="submit-btn">Send my gift</button>
             <p class="privacy">We use your address only to send your gift. While supplies last.</p>
@@ -115,7 +111,7 @@
 
 <footer class="site-foot">
   <div class="wrap">
-    <div class="advisor-note"><img src="../assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: Send to clients before year-end meetings to start the conversation.</p></div>
+    <div class="advisor-note"><img src="../assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: send this to clients before year-end to start the conversation.</p></div>
     <div class="foot-row">
       <span>Open a donor-advised fund at <a href="https://app.endaoment.org" target="_blank" rel="noopener">app.endaoment.org</a></span>
       <span>Endaoment does not provide financial or tax advice. Please consult your own tax or financial professional.</span>
@@ -126,11 +122,13 @@
 <script>
 /* Same settings as the main page. */
 const CONFIG = {
+  claimUrl: "/api/zoom-out-and-give/claim",   // the endpoint that emails the claim through Mailjet (engineering-handoff.md)
   minSecondsOnPage: 4,       // claims sent faster than this are treated as bots
-  liveHosts: []              // add a custom domain here if one ever points at the Netlify site
+  liveHosts: []              // add the page's host here if it is not on endaoment.org
 };
-// The form only sends on Netlify. Anywhere else (this computer, a review link) it runs as a preview.
-const IS_PREVIEW = location.protocol === "file:" || !(location.hostname.endsWith(".netlify.app") || CONFIG.liveHosts.includes(location.hostname));
+// The forms only send on Endaoment's own site (endaoment.org or a subdomain, or a host in liveHosts).
+// Anywhere else (this computer, a review link) the page runs as a preview and sends nothing.
+const IS_PREVIEW = location.protocol === "file:" || !(location.hostname === "endaoment.org" || location.hostname.endsWith(".endaoment.org") || CONFIG.liveHosts.includes(location.hostname));
 if (IS_PREVIEW) document.getElementById("preview-bar").hidden = false;
 const loadedAt = Date.now();
 const $ = (s, r=document) => r.querySelector(s);
@@ -170,18 +168,25 @@ function validate(){
 }
 form.addEventListener("input", e => { const w = e.target.closest("[data-field]"); if (w && w.classList.contains("invalid")) checkField(w); });
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", async e => {
+  e.preventDefault();
   const msg = $("#form-msg"); msg.hidden = true;
-  if (!validate()) { e.preventDefault(); return; }
-  const captcha = $("[name='g-recaptcha-response']", form);
-  if (captcha && !captcha.value) { e.preventDefault(); msg.textContent = "Tick the box above the button, then send your gift."; msg.hidden = false; return; }
+  if (!validate()) return;
   const tooFast = (Date.now() - loadedAt) / 1000 < CONFIG.minSecondsOnPage;
-  if (IS_PREVIEW || tooFast) { e.preventDefault(); location.href = "../thanks/" + (IS_PREVIEW ? "?preview=1" : ""); return; }
-  // Live on Netlify: the browser posts the form, Netlify saves it and opens /thanks/.
-  const btn = $("#submit-btn"); btn.textContent = "Sending...";
-  setTimeout(() => { btn.disabled = true; }, 0);
+  if (IS_PREVIEW || tooFast) { location.href = "../thanks/" + (IS_PREVIEW ? "?preview=1" : ""); return; }
+  const btn = $("#submit-btn"), label = btn.textContent; btn.disabled = true; btn.textContent = "Sending...";
+  const data = Object.fromEntries(new FormData(form));
+  data.secondsOnPage = Math.round((Date.now() - loadedAt) / 1000);
+  let ok = false;
+  try {
+    const res = await fetch(CONFIG.claimUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+    ok = res.ok && (await res.json()).ok;
+  } catch(err) {}
+  if (ok) { location.href = "../thanks/"; return; }
+  btn.disabled = false; btn.textContent = label;
+  msg.textContent = "We couldn't send your claim just now. Try again in a minute, or email hello@endaoment.org."; msg.hidden = false;
 });
 </script>
-<script src="../assets/edit-mode.js?v=2026-10-22h"></script>
+<script src="../assets/edit-mode.js?v=2026-10-22i"></script>
 </body>
 </html>

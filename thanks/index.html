@@ -6,7 +6,7 @@
 <title>Your gift is on the way | Endaoment</title>
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="../assets/site.css?v=2026-10-22h">
+<link rel="stylesheet" href="../assets/site.css?v=2026-10-22i">
 </head>
 <body>
 
@@ -27,7 +27,7 @@
         <button class="btn btn-primary" type="button" id="share-btn">Copy the link</button>
         <a class="btn btn-outline" id="li-share" href="#" target="_blank" rel="noopener">Share on LinkedIn</a>
       </div>
-      <p class="preview-flag" id="preview-flag">Preview mode. Nothing was sent. Claims are only saved once the page is live on Netlify.</p>
+      <p class="preview-flag" id="preview-flag">Preview mode. Nothing was sent. Claims only send once the page is live on Endaoment's site.</p>
       <a class="back" href="../#worksheet">Back to the worksheet</a>
     </div>
   </div>
@@ -35,7 +35,7 @@
 
 <footer class="site-foot">
   <div class="wrap">
-    <div class="advisor-note"><img src="../assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: Send to clients before year-end meetings to start the conversation.</p></div>
+    <div class="advisor-note"><img src="../assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: send this to clients before year-end to start the conversation.</p></div>
     <div class="foot-row">
       <span>Open a donor-advised fund at <a href="https://app.endaoment.org" target="_blank" rel="noopener">app.endaoment.org</a></span>
       <span>Endaoment does not provide financial or tax advice. Please consult your own tax or financial professional.</span>
@@ -53,6 +53,6 @@ document.getElementById("share-btn").addEventListener("click", async e => {
 if (new URLSearchParams(location.search).get("preview") === "1") document.getElementById("preview-flag").style.display = "block";
 try { localStorage.setItem("zog2026-claimed", "true"); } catch (err) {}
 </script>
-<script src="../assets/edit-mode.js?v=2026-10-22h"></script>
+<script src="../assets/edit-mode.js?v=2026-10-22i"></script>
 </body>
 </html>

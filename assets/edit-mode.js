@@ -4,6 +4,7 @@
    Edits stay in this browser until "Undo this page". */
 (() => {
   const KEY = "zog2026-copy-edits";
+  const CKEY = "zog2026-copy-comments";
   const PAGES = ["Main page", "Claim page", "Thanks page"];
   const me = document.currentScript;
   const root = me ? me.src.replace(/assets\/edit-mode\.js.*$/, "") : new URL(".", location.href).href;
@@ -11,6 +12,8 @@
   const page = rel.startsWith("claim") ? "Claim page" : rel.startsWith("thanks") ? "Thanks page" : "Main page";
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } };
   const save = all => { try { localStorage.setItem(KEY, JSON.stringify(all)); } catch (e) {} };
+  const loadC = () => { try { return JSON.parse(localStorage.getItem(CKEY)) || {}; } catch (e) { return {}; } };
+  const saveC = all => { try { localStorage.setItem(CKEY, JSON.stringify(all)); } catch (e) {} };
   const withEdit = (href, on) => { const u = new URL(href, location.href); if (on) u.searchParams.set("edit", "1"); else u.searchParams.delete("edit"); return u.href; };
 
   /* Not editing: offer the switch in the yellow preview bar */
@@ -32,6 +35,9 @@
     [data-zog-edit]:hover{outline-color:#2759C5}
     [data-zog-edit]:focus{outline:2px solid #2759C5}
     [data-zog-edit].zog-changed{outline:2px solid #F5B400}
+    .zog-commented{outline:2px solid #9B5DE5 !important;outline-offset:3px}
+    body.zog-commenting, body.zog-commenting *{cursor:crosshair !important}
+    #zog-edit-bar button.on{background:#9B5DE5;color:#fff}
     button[data-zog-edit]{cursor:pointer}
     body{padding-bottom:110px}
     #zog-edit-bar{position:fixed;left:12px;right:12px;bottom:12px;z-index:2147483000;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;
@@ -117,8 +123,28 @@
   }
 
   /* Editing, not using: links, labels, buttons and forms stand still */
+  /* Comments: click "Comment", then click anything on the page and type a note. "Overall note" is for the page as a whole. */
+  let commenting = false;
+  function markComments() {
+    (loadC()[page] || []).forEach(c => {
+      const el = c.idx != null ? targets[c.idx] : null;
+      if (el) { el.classList.add("zog-commented"); el.title = (el.title ? el.title + "\n" : "") + "Comment: " + c.note; }
+    });
+  }
   document.addEventListener("click", e => {
     if (e.target.closest("#zog-edit-bar, #zog-edit-panel")) return;
+    if (commenting) {
+      e.preventDefault(); e.stopPropagation();
+      const el = e.target.closest("[data-zog-edit]") || e.target;
+      const on = textOf(el).replace(/\n/g, " / ").slice(0, 90) || el.tagName.toLowerCase();
+      setCommenting(false);
+      const note = prompt("Your comment on: \u201c" + on + "\u201d");
+      if (note && note.trim()) {
+        const all = loadC(); (all[page] = all[page] || []).push({ where: whereOf(el), on, note: note.trim(), idx: el.dataset.zogEdit != null ? +el.dataset.zogEdit : null });
+        saveC(all); el.classList.add("zog-commented"); el.title = "Comment: " + note.trim(); updateCount();
+      }
+      return;
+    }
     const btn = e.target.closest("button[data-zog-edit]");
     if (btn) {
       e.preventDefault(); e.stopPropagation();
@@ -151,16 +177,30 @@
   bar.id = "zog-edit-bar";
   const links = [["Main page", root], ["Claim page", root + "claim/"], ["Thanks page", root + "thanks/?preview=1"]]
     .map(([name, href]) => name === page ? `<span class="here">${name}</span>` : `<a href="${withEdit(href, true)}">${name}</a>`).join(" · ");
-  bar.innerHTML = `<span><strong>Edit mode.</strong> Click any text and type. Changed copy turns yellow.</span>
+  bar.innerHTML = `<span><strong>Edit mode.</strong> Click any text and type. Changed copy turns yellow, comments purple.</span>
     <span>${links}</span>
-    <span class="acts"><span id="zog-count"></span><button type="button" id="zog-copy">Copy my changes</button><button type="button" class="ghost" id="zog-undo">Undo this page</button><a href="${withEdit(location.href, false)}">Exit</a></span>`;
+    <span class="acts"><span id="zog-count"></span><button type="button" class="ghost" id="zog-comment">Comment</button><button type="button" class="ghost" id="zog-overall">Overall note</button><button type="button" id="zog-copy">Copy my changes</button><button type="button" class="ghost" id="zog-undo">Undo this page</button><a href="${withEdit(location.href, false)}">Exit</a></span>`;
   document.body.appendChild(bar);
   const count = bar.querySelector("#zog-count");
   function updateCount() {
     const n = Object.values(load()).reduce((s, m) => s + Object.keys(m || {}).length, 0);
-    count.textContent = n === 1 ? "1 change" : n + " changes";
+    const c = Object.values(loadC()).reduce((s, l) => s + (l || []).length, 0);
+    count.textContent = (n === 1 ? "1 change" : n + " changes") + (c ? " · " + (c === 1 ? "1 comment" : c + " comments") : "");
   }
   updateCount();
+  markComments();
+  const commentBtn = bar.querySelector("#zog-comment");
+  function setCommenting(on) {
+    commenting = on; document.body.classList.toggle("zog-commenting", on);
+    commentBtn.classList.toggle("on", on); commentBtn.textContent = on ? "Click what to comment on" : "Comment";
+  }
+  commentBtn.addEventListener("click", () => setCommenting(!commenting));
+  bar.querySelector("#zog-overall").addEventListener("click", () => {
+    const note = prompt("Your overall note on the " + page.toLowerCase() + ":");
+    if (!note || !note.trim()) return;
+    const all = loadC(); (all[page] = all[page] || []).push({ where: "Overall", on: "", note: note.trim(), idx: null });
+    saveC(all); updateCount();
+  });
 
   function buildText() {
     const all = load(), out = ["Copy edits from the Zoom Out & Give review link", ""];
@@ -174,7 +214,15 @@
         out.push(`${n}. ${m[k].where}`, `   Before: ${m[k].before.replace(/\n/g, " / ")}`, `   After: ${m[k].after.replace(/\n/g, " / ")}`, "");
       });
     });
-    if (!n) out.push("No changes yet.");
+    if (!n) out.push("No copy changes yet.", "");
+    const cs = loadC(); let m = 0;
+    PAGES.forEach(pg => {
+      const list = cs[pg] || [];
+      if (!list.length) return;
+      if (!m) out.push("COMMENTS");
+      out.push(pg);
+      list.forEach(c => { m++; out.push(`${m}. ${c.where}${c.on ? ": \u201c" + c.on + "\u201d" : ""}`, `   ${c.note}`, ""); });
+    });
     return out.join("\n");
   }
   function showPanel(text, copied) {
@@ -195,7 +243,8 @@
     showPanel(text, copied);
   });
   bar.querySelector("#zog-undo").addEventListener("click", () => {
-    if (!confirm("Undo every change on this page?")) return;
-    const all = load(); delete all[page]; save(all); location.reload();
+    if (!confirm("Undo every change and comment on this page?")) return;
+    const all = load(); delete all[page]; save(all);
+    const cs = loadC(); delete cs[page]; saveC(cs); location.reload();
   });
 })();
