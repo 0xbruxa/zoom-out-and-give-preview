@@ -6,7 +6,7 @@
 <title>Your gift is on the way | Endaoment</title>
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="../assets/site.css?v=2026-10-23i">
+<link rel="stylesheet" href="../assets/site.css?v=2026-10-23j">
 </head>
 <body>
 
@@ -24,19 +24,20 @@
       <!-- Once the claim email sends the worksheet PDF, add after the first sentence: "We've emailed you a copy of the worksheet, so it's there when you sit down again next year." -->
       <p>Thank you for making the time.</p>
       <div class="share">
-        <h2>Share it in your own words</h2>
-        <p class="share-help">Copy this post, paste it into LinkedIn, and make it yours. Add a photo of your table or your new hat, and tag @Endaoment.</p>
+        <h2>Show us your table</h2>
+        <p class="share-help">Snap a photo of everyone at the table (or in their new hats when they arrive), write a few lines in your own words, and tag @Endaoment. Here's an example to get you going.</p>
         <div class="share-post">
-          <p class="share-text" id="starter-post">This week we sat down together and zoomed out on our giving.
+          <span class="share-who">Example</span>
+          <p class="share-text" id="example-post">Best 30 minutes of our week.
 
-One page, about 30 minutes: what went right this year, the causes that matter to us, and a plan for our giving before December 31.
+We grabbed snacks, sat down with Endaoment's Zoom Out &amp; Give worksheet, and looked back on the year. Everyone picked one cause. The kids chose the animal shelter. We left with a plan for our giving before December 31, and matching hats.
 
 Try it with your people: {link}
 
 @Endaoment</p>
         </div>
         <div class="btn-row share-actions">
-          <a class="btn btn-primary" id="copy-open" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener">Copy and open LinkedIn</a>
+          <a class="btn btn-primary" id="li-share" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener">Open LinkedIn</a>
           <button class="btn btn-outline" type="button" id="share-btn">Copy the link</button>
           <a class="btn btn-outline" id="postcard-dl" href="#" download hidden>Download the postcard</a>
         </div>
@@ -64,10 +65,8 @@ const CONFIG = { postcardUrl: "", siteUrl: "" };   // siteUrl: the final Endaome
 const onEndaoment = location.hostname === "endaoment.org" || location.hostname.endsWith(".endaoment.org");
 const home = CONFIG.siteUrl || (onEndaoment ? new URL("../", location.href).href.split("?")[0].split("#")[0] : "[final Endaoment link]");
 if (CONFIG.postcardUrl) { const d = document.getElementById("postcard-dl"); d.href = CONFIG.postcardUrl; d.hidden = false; }
-/* The starter post: copied on the click that opens LinkedIn, so they paste it there and make it their own */
-const starter = document.getElementById("starter-post");
-starter.textContent = starter.textContent.replace("{link}", home);
-document.getElementById("copy-open").addEventListener("click", () => { navigator.clipboard.writeText(starter.textContent).catch(() => {}); });
+const example = document.getElementById("example-post");
+example.textContent = example.textContent.replace("{link}", home);
 document.getElementById("share-btn").addEventListener("click", async e => {
   try { await navigator.clipboard.writeText(home); e.target.textContent = "Link copied"; }
   catch (err) { prompt("Copy this link:", home); }
@@ -76,6 +75,6 @@ if (new URLSearchParams(location.search).get("preview") === "1") document.getEle
 try { localStorage.setItem("zog2026-claimed", "true"); } catch (err) {}
 </script>
 <script>(()=>{const h=document.querySelector(".site-head");if(!h)return;const f=()=>h.classList.toggle("scrolled",scrollY>4);addEventListener("scroll",f,{passive:true});f();})();</script>
-<script src="../assets/edit-mode.js?v=2026-10-23i"></script>
+<script src="../assets/edit-mode.js?v=2026-10-23j"></script>
 </body>
 </html>
