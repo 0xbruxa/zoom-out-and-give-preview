@@ -715,3 +715,12 @@ section{padding-top:112px}
   .head-links .head-label{display:none}
   .head-links a{white-space:nowrap}
 }
+
+/* How it works, desktop: each step centered under its badge; the dashed line runs from the first badge to the last */
+@media (min-width:901px){
+  .steps{gap:48px}
+  .steps li{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .steps .num{margin:0 0 24px}
+  .steps p{margin-left:auto;margin-right:auto;max-width:300px}
+  .steps::before{left:calc((100% - 96px) / 6);right:calc((100% - 96px) / 6)}
+}
