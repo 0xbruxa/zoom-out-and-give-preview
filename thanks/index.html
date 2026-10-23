@@ -6,7 +6,7 @@
 <title>Your gift is on the way | Endaoment</title>
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="../assets/site.css?v=2026-10-23f">
+<link rel="stylesheet" href="../assets/site.css?v=2026-10-23g">
 </head>
 <body>
 
@@ -22,38 +22,14 @@
     <div class="thanks">
       <h1>Your gift is on the way.</h1>
       <!-- Once the claim email sends the worksheet PDF, add after the first sentence: "We've emailed you a copy of the worksheet, so it's there when you sit down again next year." -->
-      <p>Thank you for making the time. If you share the moment, tag Endaoment. We'd love to see it.</p>
+      <p>Thank you for making the time.</p>
       <div class="share">
-        <h2>Share it on LinkedIn</h2>
-        <p class="share-help">Pick a post, copy it, and paste it into LinkedIn. Add the postcard and tag @Endaoment.</p>
-        <div class="share-cards">
-          <article class="share-card">
-            <span class="share-who">For advisors</span>
-            <p class="share-text" id="post-advisor">Just completed my giving exercise with a client family.
-
-One page from Endaoment, about 30 minutes: what went right this year, the causes that matter to them, and a plan to fund their giving before December 31.
-
-It was the best conversation of their year-end review. Advisors, you can run it with your own clients: {link}
-
-@Endaoment</p>
-            <button class="btn btn-primary copy-post" type="button" data-for="post-advisor">Copy this post</button>
-          </article>
-          <article class="share-card">
-            <span class="share-who">For families</span>
-            <p class="share-text" id="post-family">Just completed our giving exercise as a family.
-
-We sat down with Endaoment's Zoom Out &amp; Give worksheet, picked the causes we care about, and left with a plan for our giving before the year ends.
-
-If you want to try it with your people: {link}
-
-@Endaoment</p>
-            <button class="btn btn-primary copy-post" type="button" data-for="post-family">Copy this post</button>
-          </article>
-        </div>
+        <h2>Share it in your own words</h2>
+        <p class="share-help">Post a photo of your table or your new hat. Say who sat down with you and one cause you chose, then tag @Endaoment. We'd love to see it.</p>
         <div class="btn-row share-actions">
-          <a class="btn btn-outline" id="postcard-dl" href="#" download hidden>Download the postcard</a>
+          <button class="btn btn-primary" type="button" id="share-btn">Copy the link</button>
           <a class="btn btn-outline" id="li-share" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener">Open LinkedIn</a>
-          <button class="btn btn-outline" type="button" id="share-btn">Copy the link</button>
+          <a class="btn btn-outline" id="postcard-dl" href="#" download hidden>Download the postcard</a>
         </div>
       </div>
       <p class="preview-flag" id="preview-flag">Preview mode. Nothing was sent. Claims only send once the page is live on Endaoment's site.</p>
@@ -78,18 +54,15 @@ const CONFIG = { postcardUrl: "", siteUrl: "" };   // siteUrl: the final Endaome
 /* The page's own link: the final Endaoment address, or this page's address on endaoment.org. Never a review link. */
 const onEndaoment = location.hostname === "endaoment.org" || location.hostname.endsWith(".endaoment.org");
 const home = CONFIG.siteUrl || (onEndaoment ? new URL("../", location.href).href.split("?")[0].split("#")[0] : "[final Endaoment link]");
-document.querySelectorAll(".share-text").forEach(el => { el.textContent = el.textContent.replace("{link}", home); });
 if (CONFIG.postcardUrl) { const d = document.getElementById("postcard-dl"); d.href = CONFIG.postcardUrl; d.hidden = false; }
-async function copy(text, btn, done){
-  try { await navigator.clipboard.writeText(text); btn.textContent = done; }
-  catch (err) { const r = document.createRange(); r.selectNodeContents(btn.previousElementSibling); getSelection().removeAllRanges(); getSelection().addRange(r); btn.textContent = "Selected. Press Copy."; }
-}
-document.querySelectorAll(".copy-post").forEach(b => b.addEventListener("click", () => copy(document.getElementById(b.dataset.for).textContent, b, "Copied. Paste it into LinkedIn.")));
-document.getElementById("share-btn").addEventListener("click", e => copy(home, e.target, "Link copied"));
+document.getElementById("share-btn").addEventListener("click", async e => {
+  try { await navigator.clipboard.writeText(home); e.target.textContent = "Link copied"; }
+  catch (err) { prompt("Copy this link:", home); }
+});
 if (new URLSearchParams(location.search).get("preview") === "1") document.getElementById("preview-flag").style.display = "block";
 try { localStorage.setItem("zog2026-claimed", "true"); } catch (err) {}
 </script>
 <script>(()=>{const h=document.querySelector(".site-head");if(!h)return;const f=()=>h.classList.toggle("scrolled",scrollY>4);addEventListener("scroll",f,{passive:true});f();})();</script>
-<script src="../assets/edit-mode.js?v=2026-10-23f"></script>
+<script src="../assets/edit-mode.js?v=2026-10-23g"></script>
 </body>
 </html>
