@@ -226,7 +226,7 @@ section{padding:88px 0 0}
   .claim-section{padding:64px 0;margin-top:64px}
   .grid2,.grid3{grid-template-columns:1fr}
   .claim legend{font-size:21px}
-  .daf-box{flex-direction:column;align-items:stretch;text-align:left}
+  .daf-box{flex-direction:column;align-items:stretch}
   .daf-box .btn-row .btn{flex:1}
   .submit-row .btn{width:100%;min-width:0}
   .advisor-note p{font-size:19px}
@@ -726,3 +726,99 @@ section{padding-top:112px}
 }
 @media (min-width:901px){#how .section-head{text-align:center;justify-items:center}#how .section-head h2{margin-left:auto;margin-right:auto}}
 .why-text p.why-source a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+
+/* Simplify pass (Oct 23 evening): What you leave with removed, lighter questions, even rhythm */
+section{padding-top:96px}
+#start{padding-top:96px}
+#help{padding-top:80px;padding-bottom:96px}
+#faq .section-head{display:block;text-align:center;margin-bottom:48px}
+.faq{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;max-width:960px;margin:0 auto}
+.faq-card,.faq-more{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);column-gap:40px;align-items:baseline;background:none;border:0;border-radius:0;padding:0}
+.faq-card h3{font-size:20px;line-height:1.3;text-wrap:balance}
+.faq-card p{margin:0;font-size:16px;line-height:1.6;max-width:600px}
+.faq-more{margin-top:12px}
+.faq-more p{margin:0}
+.faq-more .btn{grid-column:2;justify-self:start;margin-top:14px}
+@media (max-width:640px){
+  section{padding-top:64px}
+  #start{padding-top:64px}
+  #help{padding-top:56px;padding-bottom:64px}
+  #faq .section-head{text-align:left;margin-bottom:32px}
+  .faq{gap:24px}
+  .faq-card,.faq-more{grid-template-columns:minmax(0,1fr);row-gap:6px}
+  .faq-card h3{font-size:19px}
+  .faq-more .btn{grid-column:1;width:100%}
+}
+
+/* Claim: hat count block centered */
+.claim fieldset:has(.hat-count){text-align:center}
+.claim fieldset:has(.hat-count) legend{width:100%}
+.claim .hat-count{justify-content:center}
+
+/* Claim: whole page centered (header, form card, footer) */
+.claim-section .section-head,.claim,.claim fieldset,.claim legend,.claim .help,.claim .f label,.claim .err,.claim .privacy,.claim .form-msg{text-align:center}
+.claim legend{width:100%;text-wrap:balance;justify-content:center;flex-wrap:wrap}
+.claim .help,.claim .privacy{margin-left:auto;margin-right:auto}
+.claim textarea,.claim input[type=text],.claim input[type=email],.claim select{text-align:center;text-align-last:center}
+.daf-box{align-items:center;text-align:center}
+.daf-box .btn-row{justify-content:center}
+.check{justify-content:center}
+.submit-row{display:flex;flex-direction:column;align-items:center}
+body:has(#claim-form) .advisor-note{justify-content:center;text-align:center}
+body:has(#claim-form) .foot-row{justify-content:center;text-align:center}
+.claim legend#takeaway-q{display:block}
+
+/* Header: Learn more links as 2.0 pills with the official App and API icons */
+.head-links{gap:8px 10px}
+.head-links .head-label{margin-right:4px}
+.head-links a{gap:10px;min-height:44px;padding:0 18px 0 10px;border:1.5px solid var(--blue-200);border-radius:999px;background:var(--white);color:var(--blue-900);font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap;transition:border-color .2s ease,box-shadow .2s ease,transform .2s cubic-bezier(.2,.6,.2,1)}
+.head-links a:hover{text-decoration:none;border-color:var(--blue-700);box-shadow:var(--shadow-sm)}
+.head-links a:active{transform:scale(.98)}
+.head-links a:focus-visible{outline:3px solid var(--blue-400);outline-offset:2px}
+.site-head .head-links a img{width:24px;height:24px;flex:none;border-radius:6px}
+@media (max-width:640px){
+  .site-head .wrap{flex-wrap:wrap;justify-content:center;row-gap:10px}
+  .head-links{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .head-links a{justify-content:center;padding:0 12px 0 8px;font-size:14.5px;gap:8px}
+  .site-head .head-links a img{width:22px;height:22px}
+}
+
+/* Questions back to blocks (Oct 23 late): soft cards, three across, short and scannable */
+.faq{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:none}
+.faq-card,.faq-more{display:flex;flex-direction:column;gap:10px;background:var(--slate-050);border:1px solid var(--slate-100);border-radius:var(--radius-card);padding:28px}
+.faq-card h3{font-size:19px;line-height:1.25}
+.faq-card p{font-size:15.5px;line-height:1.55;max-width:none}
+.faq-more{margin-top:0;background:var(--white);border:1.5px dashed var(--blue-200)}
+.faq-more .btn{grid-column:auto;margin-top:auto;align-self:flex-start}
+@media (max-width:900px){.faq{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  .faq{grid-template-columns:minmax(0,1fr);gap:12px}
+  .faq-card,.faq-more{padding:22px 20px;row-gap:8px}
+  .faq-more .btn{align-self:stretch;width:auto}
+}
+/* Questions: every question on one line in the 3-across grid; 2 across below 1200px so cards stay wide enough */
+.faq-card,.faq-more{padding:28px 24px}
+.faq-card h3{font-size:17px;line-height:1.3;text-wrap:wrap}
+@media (max-width:1199px){.faq{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.faq{grid-template-columns:minmax(0,1fr)}.faq-card,.faq-more{padding:22px 20px}}
+/* Worksheet intro: heading, line and the two PDF buttons centered in one column above the sheet */
+.ws-intro{flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:24px}
+.ws-intro .section-head{max-width:680px;margin-left:auto;margin-right:auto}
+.ws-intro .btn-row{justify-content:center}
+@media (max-width:640px){.ws-intro .btn-row{width:100%}.ws-intro .btn-row .btn{flex:1 1 100%}}
+/* Footer advisor line centered on every page */
+.advisor-note{justify-content:center;text-align:center}
+/* Footer: LinkedIn and X as 2.0 icons, each a 44px round tap target */
+.foot-row .socials{display:inline-flex;align-items:center;gap:6px}
+.foot-row .socials a{justify-content:center;width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;color:var(--white);transition:background-color .2s ease,transform .2s cubic-bezier(.2,.6,.2,1)}
+.foot-row .socials a:hover{background:rgba(255,255,255,.12)}
+.foot-row .socials a:active{transform:scale(.96)}
+.foot-row .socials a:focus-visible{outline:3px solid var(--blue-400);outline-offset:2px}
+.foot-row .socials svg{width:20px;height:20px;display:block}
+/* Header pills now read "App" and "API": one row on phone too, no second header row */
+.head-links a{padding:0 16px 0 10px}
+@media (max-width:640px){
+  .site-head .wrap{flex-wrap:nowrap;justify-content:space-between}
+  .head-links{width:auto;display:flex;gap:8px}
+  .head-links a{padding:0 14px 0 8px}
+}
