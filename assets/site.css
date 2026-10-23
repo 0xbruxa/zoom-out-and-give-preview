@@ -725,3 +725,4 @@ section{padding-top:112px}
   .steps::before{left:calc((100% - 96px) / 6);right:calc((100% - 96px) / 6)}
 }
 @media (min-width:901px){#how .section-head{text-align:center;justify-items:center}#how .section-head h2{margin-left:auto;margin-right:auto}}
+.why-text p.why-source a{color:inherit;text-decoration:underline;text-underline-offset:2px}
