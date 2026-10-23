@@ -707,3 +707,11 @@ section{padding-top:112px}
   #ws{border:0;box-shadow:none;padding:0;border-radius:0}
   .ws-section{border-top:1px solid #999}
 }
+
+/* Phone header: logo and both links on one line */
+@media (max-width:640px){
+  .site-head .wrap{flex-wrap:nowrap;gap:12px}
+  .head-links{flex-wrap:nowrap;gap:0 14px;font-size:13.5px}
+  .head-links .head-label{display:none}
+  .head-links a{white-space:nowrap}
+}
