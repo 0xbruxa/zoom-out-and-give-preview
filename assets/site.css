@@ -826,3 +826,9 @@ body:has(#claim-form) .foot-row{justify-content:center;text-align:center}
 /* Thank-you page: one example post, centered under the share line */
 .share-post{max-width:560px;margin:22px auto 0}
 .share-post .share-who{display:inline-block;margin-bottom:10px}
+
+/* Questions: four cards, two across from 641px so there's no lone card on a row (Bruxa, Oct 24) */
+@media (min-width:641px){.faq{grid-template-columns:repeat(2,minmax(0,1fr));max-width:960px;margin-left:auto;margin-right:auto}}
+/* Questions are the last section now, so they carry the bottom space the Need support band used to */
+#faq{padding-bottom:96px}
+@media (max-width:640px){#faq{padding-bottom:64px}}
