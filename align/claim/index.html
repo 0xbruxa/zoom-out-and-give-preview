@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preview: Claim your gift | Zoom Out &amp; Give 2026 | Endaoment</title>
+<meta name="description" content="Finished the Zoom Out &amp; Give worksheet? Claim your gift.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../align.css?v=a1">
+<style>
+  /* On its own page the claim section starts right under the header */
+  .claim-section{margin-top:0}
+  .claim-section .section-head a{color:var(--white);text-decoration:underline;text-underline-offset:3px}
+</style>
+</head>
+<body>
+<div class="preview-bar" id="preview-bar" hidden>Preview for review. The gift form doesn't send anything yet.</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a href="https://endaoment.org" aria-label="Endaoment home"><img src="../../assets/logo-endaoment-blue.svg" alt="Endaoment" width="145" height="30"></a>
+    <nav class="head-links" aria-label="Learn more about Endaoment"><span class="head-label">Learn more:</span> <a href="https://endaoment.org/app" target="_blank" rel="noopener" aria-label="Endaoment App"><img src="../../assets/icon-endaoment-app.svg" alt="" width="24" height="24">App</a> <a href="https://endaoment.org/api" target="_blank" rel="noopener" aria-label="Endaoment API"><img src="../../assets/icon-endaoment-api.svg" alt="" width="24" height="24">API</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="claim-section" id="claim">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Zoom Out &amp; Give 2026</div>
+        <h2>Claim your gift.</h2>
+        <p>Finished the worksheet? Tell us about your experience, and we'll mail a very sweet Endaoment hat + goodies for everyone at the table. Haven't done it yet? <a href="../#worksheet">Start the worksheet.</a></p>
+      </div>
+
+      <div class="claim">
+        <form id="claim-form" novalidate>
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
+          <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+          <input type="hidden" name="completed" value="yes">
+
+          <fieldset class="after-yes">
+            <legend id="takeaway-q">Tell us about your experience.<br>What's one thing that came out of it?</legend>
+            <p class="help" id="takeaway-help">A cause, a nonprofit, a surprise. A line is plenty.</p>
+            <div class="f" data-field="takeaway">
+              <textarea id="takeaway" name="takeaway" maxlength="600" required aria-labelledby="takeaway-q" aria-describedby="takeaway-help"></textarea>
+              <span class="err">Add one line, even a short one.</span>
+            </div>
+          </fieldset>
+
+          <fieldset class="after-yes">
+            <legend>Open or fund an Endaoment DAF.</legend>
+            <div class="daf-box">
+              <p><b>Already have one?</b> Skip ahead.<br><b>Want a walkthrough first?</b> Book a demo with our team.</p>
+              <div class="btn-row">
+                <a class="btn btn-primary" href="https://app.endaoment.org" target="_blank" rel="noopener">Go to the Endaoment App</a>
+                <a class="btn btn-outline" href="https://calendly.com/d/cj8s-j7w-q2k/request-a-demo-with-endaoment" target="_blank" rel="noopener">Book a demo</a>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="after-yes">
+            <legend>How many hats?</legend>
+            <p class="help">One for everyone at the table, up to four.</p>
+            <div class="chips hat-count">
+              <label class="chip"><input type="radio" name="hats" value="1" checked aria-label="1 hat"><span>1</span></label>
+              <label class="chip"><input type="radio" name="hats" value="2" aria-label="2 hats"><span>2</span></label>
+              <label class="chip"><input type="radio" name="hats" value="3" aria-label="3 hats"><span>3</span></label>
+              <label class="chip"><input type="radio" name="hats" value="4" aria-label="4 hats"><span>4</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="after-yes">
+            <legend>Where should we send your gift?</legend>
+            <p class="help">US addresses only for now.</p>
+            <div class="grid2">
+              <div class="f" data-field="name"><label for="name">Full name <span class="req">*</span></label><input id="name" name="name" type="text" autocomplete="name" required><span class="err">Add your name.</span></div>
+              <div class="f" data-field="email"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" autocomplete="email" required><span class="err">Add an email we can reach you at.</span></div>
+            </div>
+            <div class="f" data-field="address1"><label for="address1">Street address <span class="req">*</span></label><input id="address1" name="address1" type="text" autocomplete="address-line1" required><span class="err">Add a street address.</span></div>
+            <div class="f"><label for="address2">Apartment, suite, etc.</label><input id="address2" name="address2" type="text" autocomplete="address-line2"></div>
+            <div class="grid3">
+              <div class="f" data-field="city"><label for="city">City <span class="req">*</span></label><input id="city" name="city" type="text" autocomplete="address-level2" required><span class="err">Add a city.</span></div>
+              <div class="f" data-field="state"><label for="state">State <span class="req">*</span></label>
+                <select id="state" name="state" autocomplete="address-level1" required><option value="">Choose</option><option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="DC">DC</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option><option value="PR">PR</option></select><span class="err">Pick a state.</span></div>
+              <div class="f" data-field="zip"><label for="zip">ZIP <span class="req">*</span></label><input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="\d{5}(-\d{4})?" maxlength="10" required><span class="err">Use a 5-digit ZIP.</span></div>
+            </div>
+            <label class="check"><input type="checkbox" name="advisor" value="yes">I'm a financial advisor.</label>
+          </fieldset>
+
+          <div class="captcha-slot no-print after-yes" id="claim-captcha"></div>
+          <div class="submit-row after-yes">
+            <button class="btn btn-primary" type="submit" id="submit-btn">Send my gift</button>
+            <p class="privacy">We use your address only to send your gift. While supplies last.</p>
+            <p class="form-msg" id="form-msg" role="alert" hidden></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="advisor-note"><img src="../../assets/icon-advisors.svg" alt="" width="48" height="48"><p>For advisors: send this to clients before year-end to start the conversation.</p></div>
+    <div class="foot-row">
+      <span class="socials">Follow Endaoment: <a href="https://www.linkedin.com/company/endaoment" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg><span class="sr-only">LinkedIn</span></a> <a href="https://x.com/endaomentdotorg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg><span class="sr-only">X</span></a></span>
+      <span>Endaoment does not provide financial or tax advice. Please consult your own tax or financial professional.</span>
+    </div>
+    <p class="foot-legal">Endaoment is a registered United States 501(c)(3) with EIN 84-4661797 · © 2026 Endaoment · <a href="mailto:hello@endaoment.org">hello@endaoment.org</a></p>
+  </div>
+</footer>
+
+<script>
+/* Same settings as the main page. */
+const CONFIG = {
+  claimUrl: "/api/zoom-out-and-give/claim",   // the endpoint that emails the claim through Mailjet (engineering-handoff.md)
+  turnstileSiteKey: "",      // Cloudflare Turnstile site key from Endaoment (engineering-handoff.md). Empty = no checkbox.
+  minSecondsOnPage: 4,       // claims sent faster than this are treated as bots
+  liveHosts: []              // add the page's host here if it is not on endaoment.org
+};
+// The forms only send on Endaoment's own site (endaoment.org or a subdomain, or a host in liveHosts).
+// Anywhere else (this computer, a review link) the page runs as a preview and sends nothing.
+const IS_PREVIEW = location.protocol === "file:" || !(location.hostname === "endaoment.org" || location.hostname.endsWith(".endaoment.org") || CONFIG.liveHosts.includes(location.hostname));
+if (IS_PREVIEW) document.getElementById("preview-bar").hidden = false;
+const loadedAt = Date.now();
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+/* UTM passthrough */
+const qs = new URLSearchParams(location.search);
+["utm_source","utm_medium","utm_campaign","utm_content"].forEach(k => { const el = $(`[name=${k}]`); if (el) el.value = qs.get(k) || ""; });
+
+const form = $("#claim-form");
+/* Fill in the email they already used to send their plan (kept on this device only) */
+try { const e = localStorage.getItem("zog2026-email"); if (e && !form.elements.email.value) form.elements.email.value = e; } catch(e) {}
+function checkField(wrap){
+  const el = $("input,textarea,select", wrap);
+  let valid;
+  if (el.type === "radio") valid = wrap.dataset.field === "completed" ? form.elements.completed.value === "yes" : form.elements[el.name].value !== "";
+  else if (el.type === "checkbox") valid = el.checked;
+  else valid = el.checkValidity() && el.value.trim() !== "";
+  wrap.classList.toggle("invalid", !valid);
+  el.setAttribute("aria-invalid", String(!valid));
+  return valid ? null : el;
+}
+function validate(){
+  let first = null;
+  $$("[data-field]", form).forEach(wrap => { const bad = checkField(wrap); first = first || bad; });
+  if (first) first.focus();
+  return !first;
+}
+form.addEventListener("input", e => { const w = e.target.closest("[data-field]"); if (w && w.classList.contains("invalid")) checkField(w); });
+
+/* Spam check: Cloudflare Turnstile, only once Endaoment adds its site key and only on the live page */
+if (CONFIG.turnstileSiteKey && !IS_PREVIEW) {
+  const el = document.getElementById("claim-captcha"); el.classList.add("cf-turnstile"); el.dataset.sitekey = CONFIG.turnstileSiteKey;
+  const s = document.createElement("script"); s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js"; s.async = true; s.defer = true; document.head.appendChild(s);
+}
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const msg = $("#form-msg"); msg.hidden = true;
+  if (!validate()) return;
+  const captcha = (form.querySelector("[name='cf-turnstile-response']") || {}).value || "";
+  if (CONFIG.turnstileSiteKey && !IS_PREVIEW && !captcha) { msg.textContent = "Tick the box above the button, then send your gift."; msg.hidden = false; return; }
+  const tooFast = (Date.now() - loadedAt) / 1000 < CONFIG.minSecondsOnPage;
+  if (IS_PREVIEW || tooFast) { location.href = "../thanks/" + (IS_PREVIEW ? "?preview=1" : ""); return; }
+  const btn = $("#submit-btn"), label = btn.textContent; btn.disabled = true; btn.textContent = "Sending...";
+  const data = Object.fromEntries(new FormData(form));
+  data.secondsOnPage = Math.round((Date.now() - loadedAt) / 1000);
+  let ok = false;
+  try {
+    const res = await fetch(CONFIG.claimUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+    ok = res.ok && (await res.json()).ok;
+  } catch(err) {}
+  if (ok) { location.href = "../thanks/"; return; }
+  btn.disabled = false; btn.textContent = label;
+  msg.textContent = "We couldn't send your claim just now. Try again in a minute, or email hello@endaoment.org."; msg.hidden = false;
+});
+</script>
+<script>(()=>{const h=document.querySelector(".site-head");if(!h)return;const f=()=>h.classList.toggle("scrolled",scrollY>4);addEventListener("scroll",f,{passive:true});f();})();</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+/* Preview only: the Zoom Out & Give pages aligned to how endaoment.org is built (Oct 24).
+   Giving Season colors and art are unchanged; every color below is an existing Giving Season token. */
+
+/* 2. Headings sized like endaoment.org: section headings 40px (28px on phone), hero headline up to 62px, tight line height */
+.section-head h2,.why-band .section-head h2,#how .section-head h2{font-size:40px;line-height:1.05}
+.hero h1{font-size:clamp(38px,4.3vw,62px);line-height:1}
+@media (max-width:640px){.section-head h2,.why-band .section-head h2,#how .section-head h2{font-size:28px}}
+
+/* 3. Section labels in sentence case, in the heading font, like their "Financial Advisors" labels */
+.eyebrow{text-transform:none;font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.01em}
+
+/* 4. Even space above and below each section, with alternating light bands (slate-050 is already a Giving Season token) */
+#why,#how,#worksheet,#get,#faq{padding-top:96px;padding-bottom:96px}
+#how,#get{background:var(--slate-050)}
+@media (max-width:640px){#why,#how,#worksheet,#get,#faq{padding-top:64px;padding-bottom:64px}}
+
+/* 5. Arrows on buttons: to their own pages, and to other sites */
+#hero-ws::after,.hero .claim-link::after,#done-btn::after{content:"\2192";margin-left:.45em;font-weight:700}
+a.btn[target="_blank"]::after{content:"\2197";margin-left:.4em;font-weight:700}
+
+/* 6. Cards like theirs: 20px corners, white, thin border, light shadow */
+.faq-card,.get-card{border-radius:20px;background:var(--white);border:1px solid rgba(173,186,204,.55);box-shadow:0 1px 2px rgba(11,39,101,.04)}
+
+/* 7. Their footer trust line, under our footer row */
+.foot-legal{margin:18px 0 0;font-size:13px;line-height:1.6;color:rgba(255,255,255,.62)}
+.foot-legal a{color:inherit}
+
+/* 9. Gutters and header height like theirs: 24px sides (20px on phone), header 76px (64px on phone) */
+:root{--gutter:24px}
+.site-head{padding:16px 0}
+@media (max-width:640px){:root{--gutter:20px}.site-head{padding:10px 0}}
