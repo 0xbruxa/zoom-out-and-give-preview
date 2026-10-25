@@ -915,3 +915,21 @@ a.btn[target="_blank"]{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.
   .steps p{margin-left:auto;margin-right:auto;max-width:240px;font-size:15.5px}
   .steps::before{top:27px;bottom:auto;left:calc((100% - 48px) / 6);right:calc((100% - 48px) / 6);border-left:0;border-top:2px dashed var(--blue-200)}
 }
+
+/* Claim: less empty space under "I'm a financial advisor." The captcha slot takes no room until Turnstile fills it */
+.captcha-slot:empty{display:none}
+.claim .submit-row{padding-top:0}
+/* Claim and thank-you: the card and the footer share the dark blue, so trim the band between them (176px to about 96px) */
+main .claim-section,main.claim-section{padding-bottom:48px}
+body:has(.claim-section) .site-foot{padding-top:48px}
+/* Footer: the last lines centered, on every page */
+.foot-row{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}
+.foot-legal{text-align:center}
+.foot-legal .nw{white-space:nowrap}
+
+/* How it works, stacked on phones: the dashed line runs from one number to the next and stops at 3, instead of down past the last step */
+@media (max-width:640px){
+  .steps::before{display:none}
+  .steps li{position:relative}
+  .steps li:not(:last-child)::after{content:"";position:absolute;left:27px;top:56px;bottom:-32px;border-left:2px dashed var(--blue-200)}
+}
