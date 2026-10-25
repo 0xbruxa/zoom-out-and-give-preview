@@ -988,3 +988,9 @@ main a[target="_blank"]:not(.btn):not(.ex-save)::after{content:"";display:inline
 .ex-copy-text:hover{color:var(--blue-900)}
 /* Share on + platform icon: the icon reads as the platform name */
 .ex-drafts svg{width:19px;height:19px}
+
+/* Footer spacing (Oct 25): LinkedIn and X sit together (36px wide, still 44px tall to tap); the advisor line sits closer to the card */
+.foot-row .socials{gap:2px}
+.foot-row .socials a{width:36px;min-width:36px;min-height:44px}
+main .claim-section,main.claim-section{padding-bottom:32px}
+body:has(.claim-section) .site-foot{padding-top:32px}
