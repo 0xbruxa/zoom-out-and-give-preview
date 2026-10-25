@@ -986,3 +986,5 @@ main a[target="_blank"]:not(.btn):not(.ex-save)::after{content:"";display:inline
 /* Copy the text: a quiet link under the share buttons */
 .ex-copy-text{align-self:center;background:none;border:0;padding:6px 8px;font:inherit;font-weight:600;font-size:15px;color:var(--blue-700);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .ex-copy-text:hover{color:var(--blue-900)}
+/* Share on + platform icon: the icon reads as the platform name */
+.ex-drafts svg{width:19px;height:19px}
