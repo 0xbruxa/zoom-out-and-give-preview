@@ -6,7 +6,7 @@
 <title>Your gift is on the way | Endaoment</title>
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="../assets/site.css?v=2026-10-24d">
+<link rel="stylesheet" href="../assets/site.css?v=2026-10-24e">
 </head>
 <body>
 
@@ -25,16 +25,28 @@
       <p>Thank you for making the time.</p>
       <div class="share">
         <h2>Show us your table</h2>
-        <p class="share-help">Snap a photo of everyone at the table (or in their new hats when they arrive), write a few lines in your own words, and tag @Endaoment. Here's an example to get you going.</p>
-        <div class="share-post">
-          <span class="share-who">Example</span>
-          <p class="share-text" id="example-post">We tried something new this week.
+        <p class="share-help">Snap a photo of everyone at the table (or in their new hats when they arrive). Write a few lines in your own words, attach your photo, and tag @Endaoment. Here are two examples to get you going.</p>
+        <div class="share-cards">
+          <article class="share-card">
+            <span class="share-who">Advisor example</span>
+            <p class="share-text">Tried something new in a year-end meeting this week.
+
+A client family and I sat down with Endaoment's Zoom Out &amp; Give worksheet. We looked back on their year, everyone picked one cause, and they left with a plan for their giving before December 31. Matching hats are on the way.
+
+Advisors, try it with your clients: {link}
+
+@Endaoment</p>
+          </article>
+          <article class="share-card">
+            <span class="share-who">Family example</span>
+            <p class="share-text">We tried something new this week.
 
 We grabbed snacks, sat down with Endaoment's Zoom Out &amp; Give worksheet, and looked back on the year. Everyone picked one cause. The kids chose the animal shelter. We left with a plan for our giving before December 31, and matching hats.
 
 Try it with your people: {link}
 
 @Endaoment</p>
+          </article>
         </div>
         <div class="btn-row share-actions">
           <a class="btn btn-primary" id="li-share" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener">Open LinkedIn</a>
@@ -66,8 +78,7 @@ const CONFIG = { postcardUrl: "", siteUrl: "" };   // siteUrl: the final Endaome
 const onEndaoment = location.hostname === "endaoment.org" || location.hostname.endsWith(".endaoment.org");
 const home = CONFIG.siteUrl || (onEndaoment ? new URL("../", location.href).href.split("?")[0].split("#")[0] : "[final Endaoment link]");
 if (CONFIG.postcardUrl) { const d = document.getElementById("postcard-dl"); d.href = CONFIG.postcardUrl; d.hidden = false; }
-const example = document.getElementById("example-post");
-example.textContent = example.textContent.replace("{link}", home);
+document.querySelectorAll(".share-text").forEach(el => { el.textContent = el.textContent.replace("{link}", home); });
 document.getElementById("share-btn").addEventListener("click", async e => {
   try { await navigator.clipboard.writeText(home); e.target.textContent = "Link copied"; }
   catch (err) { prompt("Copy this link:", home); }
@@ -76,6 +87,6 @@ if (new URLSearchParams(location.search).get("preview") === "1") document.getEle
 try { localStorage.setItem("zog2026-claimed", "true"); } catch (err) {}
 </script>
 <script>(()=>{const h=document.querySelector(".site-head");if(!h)return;const f=()=>h.classList.toggle("scrolled",scrollY>4);addEventListener("scroll",f,{passive:true});f();})();</script>
-<script src="../assets/edit-mode.js?v=2026-10-24d"></script>
+<script src="../assets/edit-mode.js?v=2026-10-24e"></script>
 </body>
 </html>
