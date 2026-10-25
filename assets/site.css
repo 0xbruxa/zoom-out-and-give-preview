@@ -982,4 +982,7 @@ main a[target="_blank"]:not(.btn):not(.ex-save)::after{content:"";display:inline
 @media (max-width:640px){.ex-drafts{grid-template-columns:1fr}}
 /* Thank-you share, simplest (Oct 24): one card, one line, centered under the heading */
 .share-card.share-one{max-width:520px;margin:22px auto 0}
-.share-one .ex-post .share-text{padding-top:48px;font-size:17px}
+.share-one .ex-post .share-text{padding-top:20px;font-size:17px}
+/* Copy the text: a quiet link under the share buttons */
+.ex-copy-text{align-self:center;background:none;border:0;padding:6px 8px;font:inherit;font-weight:600;font-size:15px;color:var(--blue-700);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.ex-copy-text:hover{color:var(--blue-900)}
