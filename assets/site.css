@@ -959,5 +959,9 @@ body:has(.claim-section) .site-foot{padding-top:48px}
 .ex-copy:hover,.ex-save:hover{background:var(--slate-050);color:var(--blue-900)}
 .ex-copy:focus-visible,.ex-save:focus-visible{outline:3px solid var(--blue-400);outline-offset:2px}
 .ex-copy svg,.ex-save svg{width:15px;height:15px;flex:none}
-/* Post on LinkedIn under each example, full width */
-.share-card .ex-li{align-self:stretch;margin-top:2px}
+/* The photo carries the Endaoment logo at the bottom, so the tag sits top left and Save image top right */
+.ex-photo-tag{top:10px;bottom:auto}
+/* The photo is a 3:2 landscape crop with the white Endaoment logo bottom left */
+.ex-photo{aspect-ratio:3/2}
+/* "Show us your table" in GT Haptik Bold, like the site's headings at this size (it was Medium) */
+.share h2{font-weight:700;letter-spacing:-.02em}

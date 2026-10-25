@@ -6,7 +6,7 @@
 <title>Your gift is on the way | Endaoment</title>
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="../assets/site.css?v=2026-10-24m">
+<link rel="stylesheet" href="../assets/site.css?v=2026-10-24n">
 </head>
 <body>
 
@@ -32,19 +32,18 @@
             <div class="ex-post"><button class="ex-copy" type="button" aria-label="Copy this example"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>Copy</span></button><p class="share-text">This week I zoomed out on giving with <mark class="blank">a client family</mark>. They picked <mark class="blank">a cause</mark> to support before December 31.
 
 Advisors, try it with your clients: <span class="ex-link"></span> @Endaoment</p></div>
-            <div class="ex-photo"><img src="../assets/table.webp" alt="" width="600" height="400" loading="lazy"><span class="ex-photo-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Your photo here, or use ours</span><a class="ex-save" href="../assets/zoom-out-and-give-table.jpg" download="zoom-out-and-give.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Save image</a></div>
-            <a class="btn btn-primary ex-li" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener">Post on LinkedIn</a>
+            <div class="ex-photo"><img src="../assets/zoom-out-and-give-table.jpg" alt="Atra's Giving Season table illustration with the Endaoment logo" width="1067" height="711" loading="lazy"><span class="ex-photo-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Your photo here</span><a class="ex-save" href="../assets/zoom-out-and-give-table.jpg" download="zoom-out-and-give.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Save image</a></div>
           </article>
           <article class="share-card">
             <span class="share-who">Family example</span>
             <div class="ex-post"><button class="ex-copy" type="button" aria-label="Copy this example"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>Copy</span></button><p class="share-text">This week we zoomed out on our giving with <mark class="blank">who was at the table</mark>. We picked <mark class="blank">a cause</mark> to support before December 31.
 
 Try it with your people: <span class="ex-link"></span> @Endaoment</p></div>
-            <div class="ex-photo"><img src="../assets/table.webp" alt="" width="600" height="400" loading="lazy"><span class="ex-photo-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Your photo here, or use ours</span><a class="ex-save" href="../assets/zoom-out-and-give-table.jpg" download="zoom-out-and-give.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Save image</a></div>
-            <a class="btn btn-primary ex-li" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener">Post on LinkedIn</a>
+            <div class="ex-photo"><img src="../assets/zoom-out-and-give-table.jpg" alt="Atra's Giving Season table illustration with the Endaoment logo" width="1067" height="711" loading="lazy"><span class="ex-photo-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Your photo here</span><a class="ex-save" href="../assets/zoom-out-and-give-table.jpg" download="zoom-out-and-give.jpg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Save image</a></div>
           </article>
         </div>
         <div class="btn-row share-actions">
+          <a class="btn btn-primary" id="li-share" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener">Open LinkedIn</a>
           <button class="btn btn-outline" type="button" id="share-btn">Copy the link</button>
           <a class="btn btn-outline" id="postcard-dl" href="#" download hidden>Download the postcard</a>
         </div>
@@ -80,10 +79,6 @@ const exampleText = card => {
   p.querySelectorAll("mark.blank").forEach(m => m.replaceWith("[" + m.textContent + "]"));
   return p.textContent.trim();
 };
-/* Post on LinkedIn: opens LinkedIn's post box with the example already typed in. They add the photo there. */
-document.querySelectorAll(".ex-li").forEach(a => {
-  a.href = "https://www.linkedin.com/feed/?shareActive=true&text=" + encodeURIComponent(exampleText(a.closest(".share-card")));
-});
 /* Copy an example: the blanks come out in brackets so it's clear what to swap in */
 document.querySelectorAll(".ex-copy").forEach(btn => btn.addEventListener("click", async () => {
   const label = btn.querySelector("span");
@@ -99,6 +94,6 @@ if (new URLSearchParams(location.search).get("preview") === "1") document.getEle
 try { localStorage.setItem("zog2026-claimed", "true"); } catch (err) {}
 </script>
 <script>(()=>{const h=document.querySelector(".site-head");if(!h)return;const f=()=>h.classList.toggle("scrolled",scrollY>4);addEventListener("scroll",f,{passive:true});f();})();</script>
-<script src="../assets/edit-mode.js?v=2026-10-24m"></script>
+<script src="../assets/edit-mode.js?v=2026-10-24n"></script>
 </body>
 </html>
