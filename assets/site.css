@@ -851,10 +851,10 @@ body:has(#claim-form) .foot-row{justify-content:center;text-align:center}
 /* 5. Arrows on buttons: to their own pages, and to other sites */
 /*    Drawn arrows like theirs (stroke 3, about 1em), 10px from the text; the arrow side gets a little less padding so the label stays centered */
 #hero-ws,.hero .claim-link,#done-btn,a.btn[target="_blank"]{gap:10px;padding-right:20px}
-#hero-ws::after,.hero .claim-link::after,#done-btn::after,a.btn[target="_blank"]::after{content:"";flex:none;width:1.05em;height:1.05em;background:currentColor;
+#hero-ws::after,.hero .claim-link::after,#done-btn::after,a.btn[target="_blank"]::after{content:"";flex:none;width:1.1em;height:1.1em;background:currentColor;
   -webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
-#hero-ws,.hero .claim-link,#done-btn{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E")}
-a.btn[target="_blank"]{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E")}
+#hero-ws,.hero .claim-link,#done-btn{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12H20M20 12L14 6M20 12L14 18'/%3E%3C/svg%3E")}
+a.btn[target="_blank"]{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.5 17.5L17.5 6.5M17.5 6.5H9M17.5 6.5V15'/%3E%3C/svg%3E")}
 
 /* 6. Cards like theirs: 20px corners, white, thin border, light shadow */
 .faq-card,.get-card{border-radius:20px;background:var(--white);border:1px solid rgba(173,186,204,.55);box-shadow:0 1px 2px rgba(11,39,101,.04)}
@@ -896,3 +896,6 @@ a.btn[target="_blank"]{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.
 /* Why sit down: less padding inside the panel, to match the tighter section spacing */
 .why-band{padding:64px 56px}
 @media (max-width:640px){.why-band{padding:40px 22px}}
+/* Arrows are endaoment.org's own ArrowIcon and PopupIcon paths at 1.1em. Start the worksheet scrolls down this page, so its arrow points down */
+#hero-ws{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4V20M12 20L6 14M12 20L18 14'/%3E%3C/svg%3E")}
+@media (max-width:1023px){#hero-ws,.hero .claim-link,#done-btn,a.btn[target="_blank"]{padding-right:16px}}
