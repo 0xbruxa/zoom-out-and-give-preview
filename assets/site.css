@@ -832,3 +832,53 @@ body:has(#claim-form) .foot-row{justify-content:center;text-align:center}
 /* Questions are the last section now, so they carry the bottom space the Need support band used to */
 #faq{padding-bottom:96px}
 @media (max-width:640px){#faq{padding-bottom:64px}}
+
+/* Aligned to how endaoment.org is built (Oct 24, Vince): its type sizes, labels, section rhythm, buttons, cards, footer line and gutters.
+   Giving Season colors and art are unchanged; every color below is an existing Giving Season token. */
+
+/* 2. Headings sized like endaoment.org: section headings 40px (28px on phone), hero headline up to 62px, tight line height */
+.section-head h2,.why-band .section-head h2,#how .section-head h2{font-size:40px;line-height:1.05}
+.hero h1{font-size:clamp(38px,4.3vw,62px);line-height:1}
+@media (max-width:640px){.section-head h2,.why-band .section-head h2,#how .section-head h2{font-size:28px}}
+
+/* 3. Section labels in sentence case, in the heading font, like their "Financial Advisors" labels */
+.eyebrow{text-transform:none;font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.01em}
+
+/* 4. Even space above and below each section, with alternating light bands (slate-050 is already a Giving Season token) */
+#why,#how,#worksheet,#get,#faq{padding-top:96px;padding-bottom:96px}
+#how,#get{background:var(--slate-050)}
+@media (max-width:640px){#why,#how,#worksheet,#get,#faq{padding-top:64px;padding-bottom:64px}}
+
+/* 5. Arrows on buttons: to their own pages, and to other sites */
+/*    Drawn arrows like theirs (stroke 3, about 1em), 10px from the text; the arrow side gets a little less padding so the label stays centered */
+#hero-ws,.hero .claim-link,#done-btn,a.btn[target="_blank"]{gap:10px;padding-right:20px}
+#hero-ws::after,.hero .claim-link::after,#done-btn::after,a.btn[target="_blank"]::after{content:"";flex:none;width:1.05em;height:1.05em;background:currentColor;
+  -webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
+#hero-ws,.hero .claim-link,#done-btn{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E")}
+a.btn[target="_blank"]{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E")}
+
+/* 6. Cards like theirs: 20px corners, white, thin border, light shadow */
+.faq-card,.get-card{border-radius:20px;background:var(--white);border:1px solid rgba(173,186,204,.55);box-shadow:0 1px 2px rgba(11,39,101,.04)}
+
+/* 7. Their footer trust line, under our footer row */
+.foot-legal{margin:18px 0 0;font-size:13px;line-height:1.6;color:rgba(255,255,255,.62)}
+.foot-legal a{color:inherit}
+
+/* 9. Gutters and header height like theirs: 24px sides on wider screens, header 76px (64px on phone) */
+:root{--gutter:24px}
+.site-head{padding:17px 0}
+/* Phone keeps 16px sides: our hero and claim card carry their own inner padding, and 20px pushed lines like the hero tag onto two rows */
+@media (max-width:640px){:root{--gutter:16px}.site-head{padding:12px 0}}
+
+/* Header: App and API as one segmented bar, like endaoment.org's top menu. Their labels are the heading font at 18px,
+   items 42px tall with a divider between; the official icons and Giving Season colors stay */
+.head-links{gap:0}
+.head-links .head-label{margin-right:14px}
+.head-links a{min-height:42px;padding:0 22px 0 14px;gap:9px;border:1px solid rgba(173,186,204,.75);border-radius:0;background:var(--white);
+  font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em;color:var(--blue-900);box-shadow:0 1px 2px rgba(11,39,101,.05)}
+.head-links a + a{border-left:0}
+.head-links a:first-of-type{border-radius:20px 0 0 20px}
+.head-links a:last-of-type{border-radius:0 20px 20px 0}
+.head-links a:hover{background:var(--slate-050);color:var(--blue-700);border-color:rgba(173,186,204,.75);box-shadow:0 1px 2px rgba(11,39,101,.05)}
+.head-links a:active{transform:none;background:var(--slate-100)}
+@media (max-width:640px){.head-links a{min-height:40px;padding:0 14px 0 10px;gap:7px;font-size:15px}}
