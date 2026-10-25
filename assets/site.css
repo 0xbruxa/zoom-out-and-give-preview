@@ -899,3 +899,7 @@ a.btn[target="_blank"]{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.
 /* Arrows are endaoment.org's own ArrowIcon and PopupIcon paths at 1.1em. Start the worksheet scrolls down this page, so its arrow points down */
 #hero-ws{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4V20M12 20L6 14M12 20L18 14'/%3E%3C/svg%3E")}
 @media (max-width:1023px){#hero-ws,.hero .claim-link,#done-btn,a.btn[target="_blank"]{padding-right:16px}}
+
+/* Make it real: "Before December 31" sits beside "Done by:", so the three boxes line up. Columns rebalanced to give that card the room */
+@media (min-width:1200px){.commit{grid-template-columns:minmax(0,1.3fr) minmax(0,1.15fr) minmax(0,.85fr)}}
+@media (min-width:901px){.commit .plan-head{flex-wrap:nowrap;justify-content:flex-start;gap:8px}.commit .plan-head .pill{white-space:nowrap}}
