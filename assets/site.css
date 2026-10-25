@@ -974,5 +974,9 @@ body:has(.claim-section) .site-foot{padding-top:48px}
 /* Text links that leave the page get endaoment.org's diagonal arrow, like every outside link on their site (buttons, header and footer have their own) */
 main a[target="_blank"]:not(.btn):not(.ex-save)::after{content:"";display:inline-block;width:.85em;height:.85em;margin-left:.2em;vertical-align:-.08em;background:currentColor;
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.5 17.5L17.5 6.5M17.5 6.5H9M17.5 6.5V15'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.5 17.5L17.5 6.5M17.5 6.5H9M17.5 6.5V15'/%3E%3C/svg%3E") center/contain no-repeat}
-/* Draft on LinkedIn under each example, full width */
-.share-card .ex-li{align-self:stretch;margin-top:2px}
+/* Draft on LinkedIn and Draft on X under each example, side by side (stacked on phones) */
+.ex-drafts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.ex-drafts .btn{min-height:48px;padding:0 14px;font-size:15px;gap:8px}
+.ex-drafts .btn::after{display:none}
+.ex-drafts svg{width:17px;height:17px;flex:none}
+@media (max-width:640px){.ex-drafts{grid-template-columns:1fr}}
