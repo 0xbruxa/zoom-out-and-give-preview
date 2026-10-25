@@ -933,3 +933,9 @@ body:has(.claim-section) .site-foot{padding-top:48px}
   .steps li{position:relative}
   .steps li:not(:last-child)::after{content:"";position:absolute;left:27px;top:56px;bottom:-32px;border-left:2px dashed var(--blue-200)}
 }
+
+/* Phone fixes from the 375 walkthrough (Oct 24) */
+/* Make it real: one card per row below 901px. A later unconditional rule had forced three squeezed columns at every width */
+@media (max-width:900px){.commit{grid-template-columns:minmax(0,1fr)}.commit .plan-head{flex-wrap:nowrap;justify-content:flex-start;gap:8px}}
+/* Worksheet top on phones: the intro and the 30-minutes note come before "Who's at the table" */
+@media (max-width:640px){#ws{display:flex;flex-direction:column}#ws>.ws-banner{order:-2}#ws>.ws-lead{order:-1;margin-bottom:20px}}
