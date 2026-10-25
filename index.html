@@ -17,7 +17,7 @@
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
 <link rel="preload" href="assets/forest.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="assets/site.css?v=2026-10-24e">
+<link rel="stylesheet" href="assets/site.css?v=2026-10-24f">
 </head>
 <body>
 <div class="preview-bar" id="preview-bar" hidden>Preview for review. The forms don't send anything yet.</div>
@@ -136,6 +136,7 @@
                   <label class="chip"><input type="checkbox" name="cause" value="Around the world"><span>Around the world</span></label>
                   <label class="chip"><input type="checkbox" name="cause" value="Other"><span>Other</span></label>
                 </div>
+                <input class="cause-other" id="cause-other" name="cause_other" type="text" maxlength="80" placeholder="What's the cause?" aria-label="Other cause" hidden>
                 <label class="q" for="q-problem" style="display:block;margin-top:20px">What problem do you wish someone would solve?</label>
                 <textarea id="q-problem" name="problem"></textarea>
               </div>
@@ -332,8 +333,8 @@ function addNpRow(){
   const tr = document.createElement("tr");
   ["who","cause","nonprofit"].forEach(col => {
     const td = document.createElement("td");
-    const inp = document.createElement("input");
-    inp.type = "text"; inp.name = `np_${col}_${i}`;
+    const inp = document.createElement("textarea");
+    inp.rows = 1; inp.name = `np_${col}_${i}`;
     inp.setAttribute("aria-label", `${col[0].toUpperCase()+col.slice(1)}, row ${i}`);
     td.appendChild(inp); tr.appendChild(td);
   });
@@ -347,7 +348,16 @@ for (let i = 1; i <= 5; i++) addNpRow();
   const rows = Math.max(0, ...Object.keys(saved || {}).map(k => (k.match(/^np_\w+?_(\d+)$/) || [])[1] || 0).map(Number));
   while (npBody.rows.length < rows) addNpRow();
 })();
-$("#np-add").addEventListener("click", () => { const tr = addNpRow(); $("input", tr).focus(); });
+$("#np-add").addEventListener("click", () => { const tr = addNpRow(); $("textarea", tr).focus(); });
+/* Long names wrap: each cell grows to fit what's typed. Enter moves to the next cell instead of adding a line. */
+const fitCell = el => { el.style.height = "auto"; el.style.height = el.scrollHeight + "px"; };
+npBody.addEventListener("input", e => { if (e.target.tagName === "TEXTAREA") fitCell(e.target); });
+npBody.addEventListener("keydown", e => {
+  if (e.key !== "Enter" || e.target.tagName !== "TEXTAREA") return;
+  e.preventDefault();
+  const cells = $$("textarea", npBody), next = cells[cells.indexOf(e.target) + 1];
+  if (next) next.focus();
+});
 
 /* PDF link */
 const pdf = $("#pdf-link");
@@ -376,6 +386,12 @@ function writeWs(data){
   });
 }
 writeWs(store.get(WS_KEY));
+/* "Other" opens a box to name the cause; saved answers reopen it */
+const otherChip = $('input[name="cause"][value="Other"]'), otherBox = $("#cause-other");
+const syncOther = focus => { otherBox.hidden = !otherChip.checked; if (focus && otherChip.checked) otherBox.focus(); };
+otherChip.addEventListener("change", () => syncOther(true));
+syncOther(false);
+$$("textarea", npBody).forEach(fitCell);
 let saveTimer;
 ws.addEventListener("input", () => {
   clearTimeout(saveTimer);
@@ -386,6 +402,7 @@ ws.addEventListener("input", () => {
 $("#clear-btn").addEventListener("click", () => {
   if (!confirm("Clear every answer on this worksheet?")) return;
   ws.reset(); store.del(WS_KEY); $("#saved").textContent = "Cleared.";
+  $$("textarea", npBody).forEach(fitCell); syncOther(false);
 });
 $("#print-btn").addEventListener("click", () => window.print());
 
@@ -395,7 +412,7 @@ function worksheetText(){
   const add = (label, v) => { if (v && String(v).trim()) lines.push(label + " " + String(v).trim(), ""); };
   const lab = name => { const el = $(`[name="${name}"]`, ws); const l = el && (el.id ? $(`label[for="${el.id}"]`) : el.closest("label")); return l ? l.textContent.replace(/\s*\*\s*$/, "").trim() : name; };   // drop the required-field star
   ["who","right","enough"].forEach(n => add(lab(n), d[n]));
-  if ((d.cause || []).length) add("Causes:", d.cause.join(", "));
+  if ((d.cause || []).length) add("Causes:", d.cause.map(c => c === "Other" && (d.cause_other || "").trim() ? d.cause_other.trim() : c).join(", "));
   add(lab("problem"), d.problem);
   const nps = Array.from({ length: npBody.rows.length }, (_, k) => k + 1).map(i => [d[`np_who_${i}`], d[`np_cause_${i}`], d[`np_nonprofit_${i}`]].filter(Boolean).join(" / ")).filter(Boolean);
   if (nps.length) add("Nonprofits (who / cause / nonprofit):", "\n" + nps.join("\n"));
@@ -492,6 +509,6 @@ if ([...utm.keys()].length) $$(".claim-link").forEach(a => { const u = new URL(a
 
 </script>
 <script>(()=>{const h=document.querySelector(".site-head");if(!h)return;const f=()=>h.classList.toggle("scrolled",scrollY>4);addEventListener("scroll",f,{passive:true});f();})();</script>
-<script src="assets/edit-mode.js?v=2026-10-24e"></script>
+<script src="assets/edit-mode.js?v=2026-10-24f"></script>
 </body>
 </html>

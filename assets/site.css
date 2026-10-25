@@ -843,10 +843,10 @@ body:has(#claim-form) .foot-row{justify-content:center;text-align:center}
 /* 3. Section labels in sentence case, in the heading font, like their "Financial Advisors" labels */
 .eyebrow{text-transform:none;font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.01em}
 
-/* 4. Even space above and below each section, with alternating light bands (slate-050 is already a Giving Season token) */
-#why,#how,#worksheet,#get,#faq{padding-top:96px;padding-bottom:96px}
+/* 4. Even space above and below each section (64px, like their banded sections; 48px on phone), with alternating light bands (slate-050 is already a Giving Season token) */
+#why,#how,#worksheet,#get,#faq{padding-top:64px;padding-bottom:64px}
 #how,#get{background:var(--slate-050)}
-@media (max-width:640px){#why,#how,#worksheet,#get,#faq{padding-top:64px;padding-bottom:64px}}
+@media (max-width:640px){#why,#how,#worksheet,#get,#faq{padding-top:48px;padding-bottom:48px}}
 
 /* 5. Arrows on buttons: to their own pages, and to other sites */
 /*    Drawn arrows like theirs (stroke 3, about 1em), 10px from the text; the arrow side gets a little less padding so the label stays centered */
@@ -881,3 +881,18 @@ a.btn[target="_blank"]{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.
 .head-links a:hover{background:var(--slate-050);color:var(--blue-700);border-color:rgba(173,186,204,.75);box-shadow:0 1px 2px rgba(11,39,101,.05)}
 .head-links a:active{transform:none;background:var(--slate-100)}
 @media (max-width:640px){.head-links a{min-height:40px;padding:0 14px 0 10px;gap:7px;font-size:15px}}
+
+/* Worksheet fixes (Oct 24): long nonprofit names wrap and the cell grows; Nonprofit gets the widest column */
+.np-table{table-layout:fixed}
+.np-table th:nth-child(1){width:27%}
+.np-table th:nth-child(2){width:29%}
+.ws-card .np-table textarea{display:block;width:100%;min-height:44px;height:44px;margin:0;border:0;border-radius:0;padding:11px 12px;resize:none;overflow:hidden;
+  font:inherit;font-size:15px;line-height:1.4;color:var(--blue-900);background:transparent;overflow-wrap:anywhere}
+.np-table textarea:focus{outline:2px solid var(--blue-400);outline-offset:-2px}
+/* The "Other" cause box, under the chips */
+.ws-card input.cause-other{margin-top:12px}
+/* Questions at 16px, like endaoment.org's card titles, so the longer ones stay on one line */
+.ws-card .q,.commit .ws-card .q{font-size:16px;letter-spacing:-.015em}
+/* Why sit down: less padding inside the panel, to match the tighter section spacing */
+.why-band{padding:64px 56px}
+@media (max-width:640px){.why-band{padding:40px 22px}}
