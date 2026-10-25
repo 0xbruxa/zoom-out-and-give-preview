@@ -971,3 +971,6 @@ body:has(.claim-section) .site-foot{padding-top:48px}
 .link-url{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;font-size:15px;color:var(--blue-900)}
 .ex-copy.link-copy{position:static;flex:none}
 @media (max-width:640px){.link-box{flex-wrap:wrap}.link-label{width:100%}}
+/* Text links that leave the page get endaoment.org's diagonal arrow, like every outside link on their site (buttons, header and footer have their own) */
+main a[target="_blank"]:not(.btn):not(.ex-save)::after{content:"";display:inline-block;width:.85em;height:.85em;margin-left:.2em;vertical-align:-.08em;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.5 17.5L17.5 6.5M17.5 6.5H9M17.5 6.5V15'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.5 17.5L17.5 6.5M17.5 6.5H9M17.5 6.5V15'/%3E%3C/svg%3E") center/contain no-repeat}
