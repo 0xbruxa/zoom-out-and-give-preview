@@ -1001,3 +1001,10 @@ body:has(.claim-section) .site-foot{padding-top:32px}
   #worksheet .ws-intro .section-head h2{white-space:nowrap}
   #worksheet .ws-intro .section-head p{max-width:680px;margin-left:auto;margin-right:auto}
 }
+
+/* Oct 26: The forest row. The first question now wraps to two lines, so the two cards share rows (question, nudge, box) and both answer boxes start at the same height. Side by side only. */
+@media (min-width:700px){
+  .ws-cards:has(#q-right){grid-template-rows:auto auto 1fr;row-gap:0}
+  .ws-cards:has(#q-right)>.ws-card{display:grid;grid-row:span 3;grid-template-rows:subgrid;align-content:start}
+  .ws-cards:has(#q-right)>.ws-card>textarea{align-self:stretch}
+}
