@@ -17,7 +17,7 @@
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
 <link rel="preload" href="assets/forest.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="assets/site.css?v=onway2">
+<link rel="stylesheet" href="assets/site.css?v=bruxacopy">
 </head>
 <body>
 <div class="preview-bar" id="preview-bar" hidden>Preview for review. The forms don't send anything yet.</div>
@@ -34,15 +34,15 @@
     <div class="hero">
       <div class="hero-inner">
         <span class="kicker">Zoom Out &amp; Give · Giving Season 2026</span>
-        <h1>A Year-End Giving Exercise</h1>
-        <p class="hero-what">A free one-page plan for your giving, made together before December 31.</p>
-        <p class="lede">Look back on the year, pick the causes that matter to you, and leave with a structured plan for your giving.</p>
+        <h1>A moment to vision together.</h1>
+        <p class="hero-what">Plan your giving with the ones you trust most, whether that's your advisor or your family, before December 31.</p>
+        <p class="lede">Reflect, choose your causes, and leave ready to give before the tax year closes, with a head start on 2027.</p>
         <div class="btn-row">
           <a class="btn btn-light" href="#worksheet" id="hero-ws">Start the worksheet</a>
-          <a class="btn btn-ghost claim-link" href="claim/">Claim your gift</a>
+          <a class="btn btn-ghost claim-link" href="claim/">Claim your hats</a>
           <a class="btn btn-quiet" href="#how">How it works</a>
         </div>
-        <p class="meta">It only takes about 30 minutes, and your answers stay with you.</p>
+        <p class="meta">Download the PDF or fill it out online. Your answers stay with you.</p>
       </div>
     </div>
   </div>
@@ -52,9 +52,9 @@
       <div class="why-band">
         <div class="section-head">
           <div class="eyebrow">Why sit down</div>
-          <h2>Your giving deserves a plan.</h2>
+          <h2>Your giving deserves a strategy.</h2>
           <div class="why-text">
-            <p>Most investors say they want guidance on their giving. Most still give without a structured plan, and the talk about what matters most to your family keeps waiting for next year. Zoom Out &amp; Give gives it a simple, easy and fun starting point.</p>
+            <p>Three in four investors want guidance on their giving from their advisor, yet only a third receive it. Meanwhile, the talk about what matters most to your family keeps waiting for next year. Zoom Out &amp; Give is an enjoyable pause to plan.</p>
             <p class="why-source">Based on T. Rowe Price research, <a href="https://www.troweprice.com/en/us/press/2026/press-release--t--rowe-price-survey-finds-charitable-giving-plan" target="_blank" rel="noopener"><em>The Generosity Effect</em>, February 2026</a>.</p>
           </div>
         </div>
@@ -66,12 +66,12 @@
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">How it works</div>
-        <h2>Three simple (and fun) steps</h2>
+        <h2>Three joyful steps</h2>
       </div>
       <ol class="steps">
-        <li><span class="num">1</span><h3>Gather your people</h3><p>Family, a partner, your advisor, or just you. Everyone at the table gets to contribute to a meaningful conversation.</p></li>
-        <li><span class="num">2</span><h3>Fill out the worksheet</h3><p>Print it or fill it out right here. Zoom out, pick your causes, make a plan, and email it to yourself and anyone you planned with.</p></li>
-        <li><span class="num">3</span><h3>Claim your gift</h3><p>Tell us about your experience and where to send your gift.</p></li>
+        <li><span class="num">1</span><h3>Gather your people</h3><p>Family, a partner, your advisor, or just you and a tea. Sitting at the table allows for reflection and meaningful conversation.</p></li>
+        <li><span class="num">2</span><h3>Move through the worksheet</h3><p>Print or fill out below. Reflect, pick your causes, and watch your plan take shape. Email it to yourself and anyone you plan with.</p></li>
+        <li><span class="num">3</span><h3>Claim your gift</h3><p>Tell us how it went and where to send your Endaoment hats!</p></li>
       </ol>
     </div>
   </section>
@@ -81,12 +81,11 @@
       <div class="ws-intro">
         <div class="section-head">
           <div class="eyebrow">The worksheet</div>
-          <h2>Zoom out, then plan.</h2>
-          <p>Fill it out below, or print the PDF and do it on paper. Your answers save on this device. They only leave it when you email your plan, and we don't keep a copy.</p>
+          <p>Take a moment to gather your people and plan your giving. Start with one page. Fill it out here or print it. Your answers stay on this device until you email them.</p>
         </div>
         <div class="btn-row">
           <a class="btn btn-outline" id="pdf-link" href="#" download>Download the PDF</a>
-          <button class="btn btn-outline" type="button" id="print-btn">Print or save as PDF</button>
+          <button class="btn btn-outline" type="button" id="print-btn">Download PDF</button>
         </div>
       </div>
 
@@ -210,9 +209,9 @@
       <div class="email-self no-print" id="email-self">
         <form id="email-form" novalidate>
           <p hidden><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
-          <span class="step-tag">Last step</span>
+          <span class="step-tag">Almost there</span>
           <h3>Email your plan</h3>
-          <p>Send your answers to yourself, and to anyone you planned with, so the plan is in your inbox when you sit down again.</p>
+          <p>Keep a copy, and share it with anyone at the table.</p>
           <div class="field">
             <label for="self-email">Your email</label>
             <input id="self-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
@@ -220,11 +219,11 @@
           <div class="field">
             <label for="cc-emails">Also send to <span class="help">(optional)</span></label>
             <input id="cc-emails" type="text" inputmode="email" autocomplete="off" placeholder="client@example.com">
-            <span class="help">Your client, your family, anyone at the table. Up to 5, separated by commas.</span>
+            <span class="help">Up to 5, separated by commas.</span>
           </div>
           <div class="captcha-slot" id="email-captcha"></div>
-          <div class="send-row"><button class="btn btn-primary" type="submit" id="email-btn">Email my plan</button></div>
-          <p class="tiny">We email your plan from Endaoment to you and anyone you added.</p>
+          <div class="send-row"><button class="btn btn-primary" type="submit" id="email-btn">Send my plan</button></div>
+          <p class="tiny">It comes from Endaoment, and we don't keep a copy.</p>
           <p class="msg" id="email-msg" role="status" hidden></p>
         </form>
       </div>
@@ -244,8 +243,8 @@
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">What you leave with</div>
-        <h2>It's been a big year. Give giving a plan.</h2>
-        <p>A structured plan and real clarity before December 31, so you skip the year&#8209;end rush.</p>
+        <h2>A plan in hand, and a hat on your head.</h2>
+        <p>Real clarity before December 31, to carry you into the new year.</p>
       </div>
       <div class="get-grid">
         <article class="get-card">
@@ -266,8 +265,8 @@
         <article class="get-card">
           <div class="art" style="background-image:url(assets/table.webp);background-position:center 35%" role="img" aria-label="A family around a table, planning together"><span class="asset-todo">Swap in: photo of the hat and thank-you card</span></div>
           <div class="body">
-            <h3>A gift for everyone at the table</h3>
-            <p>A very sweet Endaoment hat + goodies for everyone who sat down, with personal touches from our team.</p>
+            <h3>A token of our affection</h3>
+            <p>A very sweet Endaoment hat for everyone who sat down.</p>
           </div>
         </article>
       </div>
@@ -283,7 +282,7 @@
       <div class="faq">
         <article class="faq-card"><h3>Do we need a donor-advised fund?</h3><p>No. The worksheet works on its own. If you decide to open one, you can do it in the <a href="https://app.endaoment.org" target="_blank" rel="noopener">Endaoment App</a>, with no minimum to start.</p></article>
         <article class="faq-card"><h3>Who sees our answers?</h3><p>Only you, and anyone you email your plan to. Your answers save on this device. When you email your plan, we send it for you and don't keep a copy.</p></article>
-        <article class="faq-card"><h3>What's the catch with the gift?</h3><p>There isn't one. Fill out the worksheet, email yourself the plan, and tell us about your experience. We'll mail a very sweet Endaoment hat + goodies for everyone at the table, with personal touches from our team. For now, we can only ship to US addresses, while supplies last!</p></article>
+        <article class="faq-card"><h3>What's the catch with the gift?</h3><p>There isn't one. Fill out the worksheet, email yourself the plan, and tell us how it went. We'll mail a very sweet Endaoment hat + goodies for everyone at the table, with personal touches from our team. For now, we can only ship to US addresses, while supplies last!</p></article>
         <article class="faq-card"><h3>I'm an advisor. Can I use this with clients?</h3><p>Yes!! This was made exactly for advisors and families, to give you a simple process to start the giving conversation early. In the last step, add their email and the plan goes to both of you.</p></article>
       </div>
     </div>
@@ -363,6 +362,7 @@ npBody.addEventListener("keydown", e => {
 const pdf = $("#pdf-link");
 if (CONFIG.pdfUrl) {
   pdf.href = CONFIG.pdfUrl;
+  $("#print-btn").hidden = true;
   const hero = $("#hero-ws"); hero.href = CONFIG.pdfUrl; hero.textContent = "Download the worksheet"; hero.setAttribute("download", "");
 }
 else { pdf.hidden = true; }
@@ -509,6 +509,6 @@ if ([...utm.keys()].length) $$(".claim-link").forEach(a => { const u = new URL(a
 
 </script>
 <script>(()=>{const h=document.querySelector(".site-head");if(!h)return;const f=()=>h.classList.toggle("scrolled",scrollY>4);addEventListener("scroll",f,{passive:true});f();})();</script>
-<script src="assets/edit-mode.js?v=onway2"></script>
+<script src="assets/edit-mode.js?v=bruxacopy"></script>
 </body>
 </html>
