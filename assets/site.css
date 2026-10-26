@@ -994,3 +994,10 @@ main a[target="_blank"]:not(.btn):not(.ex-save)::after{content:"";display:inline
 .foot-row .socials a{width:36px;min-width:36px;min-height:44px}
 main .claim-section,main.claim-section{padding-bottom:32px}
 body:has(.claim-section) .site-foot{padding-top:32px}
+
+/* Oct 26: worksheet intro heading on one line on desktop. The heading gets a wider box than the 680px section head; the line under it keeps 680px. Phones still wrap. */
+@media (min-width:900px){
+  #worksheet .ws-intro .section-head{max-width:900px}
+  #worksheet .ws-intro .section-head h2{white-space:nowrap}
+  #worksheet .ws-intro .section-head p{max-width:680px;margin-left:auto;margin-right:auto}
+}
